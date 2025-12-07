@@ -481,22 +481,532 @@
         ];
 
         // --- DATA ---
-        const REPO_THEMES = {
-            core: { label: "CORE_INDEX", desc: { it: "Fondamenta AI", en: "AI Foundations" }, briefing: { it: "L'arsenale completo: Framework DL, LLM e Data Science.", en: "The complete arsenal: DL Frameworks, LLMs, and Data Science." },
-                items: [{id: "pytorch/pytorch", why: {it: "Il motore matematico preferito dalla ricerca. Fondamentale per capire le reti neurali.", en: "Research's favorite mathematical engine. Essential for understanding neural nets."}}, {id: "tensorflow/tensorflow", why: {it: "La piattaforma storica di Google per il ML su larga scala e produzione.", en: "Google's historic platform for large-scale ML and production."}}, {id: "huggingface/transformers", why: {it: "Il 'GitHub dei Modelli'. Scarica migliaia di modelli con due righe di codice.", en: "The 'GitHub of Models'. Download thousands of models with two lines of code."}}, {id: "langchain-ai/langchain", why: {it: "Il framework per connettere gli LLM ai tuoi dati (PDF, DB) e creare app.", en: "Framework to connect LLMs to your data (PDFs, DBs) and build apps."}}, {id: "run-llama/llama_index", why: {it: "Specializzato nell'ingestione dati per il RAG. Ottimo per search su documenti.", en: "Specialized in data ingestion for RAG. Great for document search."}}, {id: "numpy/numpy", why: {it: "La base di tutto. Gestione array ad alta velocità per il calcolo scientifico.", en: "The foundation. High-speed array handling for scientific computing."}}, {id: "pandas-dev/pandas", why: {it: "Il 'Excel programmabile'. Essenziale per pulire e analizzare i dati prima del training.", en: "The 'Programmable Excel'. Essential for cleaning and analyzing data before training."}}, {id: "scikit-learn/scikit-learn", why: {it: "Imbattibile per algoritmi classici (non-Deep) come regressioni e clustering.", en: "Unbeatable for classic algorithms (non-Deep) like regressions and clustering."}}, {id: "tiangolo/fastapi", why: {it: "Lo standard moderno per creare API veloci e servire i tuoi modelli AI.", en: "The modern standard for building fast APIs and serving your AI models."}}, {id: "streamlit/streamlit", why: {it: "Crea interfacce web per le tue demo AI in puro Python, senza HTML/CSS.", en: "Create web interfaces for your AI demos in pure Python, no HTML/CSS needed."}}] },
-            databases: { label: "AI_DATABASES", desc: { it: "Memoria per AI", en: "AI Memory" }, briefing: { it: "Database vettoriali e a grafo: la memoria a lungo termine per il RAG.", en: "Vector and Graph databases: long-term memory for RAG." },
-                items: [{id: "milvus-io/milvus", why: {it: "DB vettoriale cloud-native per scalare su miliardi di vettori.", en: "Cloud-native vector DB scaling to billions of vectors."}}, {id: "chroma-core/chroma", why: {it: "Soluzione open-source 'AI-native', facilissima da integrare.", en: "'AI-native' open-source solution, super easy to integrate."}}, {id: "qdrant/qdrant", why: {it: "Motore vettoriale in Rust. Veloce, efficiente e supporta filtri complessi.", en: "Vector engine in Rust. Fast, efficient, supports complex filters."}}, {id: "weaviate/weaviate", why: {it: "DB vettoriale con moduli ML integrati e ricerca ibrida.", en: "Vector DB with integrated ML modules and hybrid search."}}, {id: "facebookresearch/faiss", why: {it: "La libreria fondamentale di Meta per la ricerca di similarità densa.", en: "Meta's fundamental library for dense similarity search."}}, {id: "pgvector/pgvector", why: {it: "Estensione per PostgreSQL. Perfetto se usi già Postgres.", en: "Extension for PostgreSQL. Perfect if you already use Postgres."}}, {id: "lancedb/lancedb", why: {it: "DB vettoriale serverless per dati multimodali (immagini, video).", en: "Serverless vector DB for multimodal data (images, video)."}}, {id: "neo4j/neo4j", why: {it: "Il database a grafo leader. Cruciale per il GraphRAG (relazioni tra concetti).", en: "The leading graph database. Crucial for GraphRAG (concept relationships)."}}] },
-            learning: { label: "LEARNING", desc: { it: "Risorse Educative", en: "Educational Resources" }, briefing: { it: "Impara dai migliori: corsi, tutorial e implementazioni da zero.", en: "Learn from the best: courses, tutorials, and from-scratch implementations." },
-                items: [{id: "rasbt/LLMs-from-scratch", why: {it: "Il miglior libro/repo per costruire un clone di GPT da zero. Illuminante.", en: "The best book/repo to build a GPT clone from scratch. Enlightening."}}, {id: "huggingface/course", why: {it: "Il corso ufficiale gratuito per padroneggiare l'ecosistema Transformers.", en: "Official free course to master the Transformers ecosystem."}}, {id: "karpathy/nanoGPT", why: {it: "Codice minimale di Andrej Karpathy per addestrare GPT. Un capolavoro didattico.", en: "Andrej Karpathy's minimal code to train GPT. An educational masterpiece."}}, {id: "ageron/handson-ml3", why: {it: "Notebook del libro 'Hands-On ML', la bibbia per iniziare con Scikit/TF.", en: "Notebooks from 'Hands-On ML', the bible for starting with Scikit/TF."}}, {id: "fastai/fastai", why: {it: "Approccio 'top-down' al Deep Learning. Ottieni risultati subito, poi capisci la teoria.", en: "'Top-down' approach to Deep Learning. Get results first, understand theory later."}}, {id: "d2l-ai/d2l-en", why: {it: "Dive into Deep Learning: libro interattivo completo con codice eseguibile.", en: "Dive into Deep Learning: complete interactive book with executable code."}}, {id: "microsoft/ML-For-Beginners", why: {it: "Curriculum di 12 settimane creato da Microsoft. Ottimo punto di partenza.", en: "12-week curriculum by Microsoft. Great starting point."}}] },
-            genai: { label: "GEN_AI", desc: { it: "Generazione Media", en: "Media Generation" }, briefing: { it: "Strumenti per creare immagini, audio e servire modelli LLM in locale.", en: "Tools to create images, audio, and serve LLMs locally." },
-                items: [{id: "AUTOMATIC1111/stable-diffusion-webui", why: {it: "L'interfaccia standard per generare immagini con Stable Diffusion. Piena di feature.", en: "Standard interface for generating images with Stable Diffusion. Feature-packed."}}, {id: "comfyanonymous/ComfyUI", why: {it: "Interfaccia a nodi per SD. Massima potenza e controllo per workflow complessi.", en: "Node-based UI for SD. Maximum power and control for complex workflows."}}, {id: "openai/whisper", why: {it: "Il miglior modello open per trascrivere audio (Speech-to-Text).", en: "Best open model for audio transcription (Speech-to-Text)."}}, {id: "ollama/ollama", why: {it: "Esegui Llama 3, Mistral e altri sul tuo PC con un comando. Zero config.", en: "Run Llama 3, Mistral, and others on your PC with one command. Zero config."}}, {id: "vllm-project/vllm", why: {it: "Il motore più veloce per servire LLM in produzione ad alto throughput.", en: "Fastest engine for serving high-throughput LLMs in production."}}, {id: "lm-sys/FastChat", why: {it: "Piattaforma aperta per addestrare, servire e valutare chatbot.", en: "Open platform for training, serving, and evaluating chatbots."}}, {id: "ggerganov/llama.cpp", why: {it: "Il miracolo che porta gli LLM su CPU e Apple Silicon.", en: "The miracle bringing LLMs to CPU and Apple Silicon."}}, {id: "Stability-AI/generative-models", why: {it: "Repo ufficiale per i modelli base di Stability AI (immagini, video, 3D).", en: "Official repo for Stability AI base models (images, video, 3D)."}}] },
-            agentic: { label: "AGENTIC_AI", desc: { it: "Agenti Autonomi", en: "Autonomous Agents" }, briefing: { it: "Framework per costruire agenti che ragionano e agiscono nel mondo reale.", en: "Frameworks to build agents that reason and act in the real world." },
-                items: [{id: "langchain-ai/langchain", why: {it: "Il framework storico per creare catene di pensiero e tool use.", en: "Historic framework for creating chains of thought and tool use."}}, {id: "langchain-ai/langgraph", why: {it: "L'evoluzione per creare agenti stateful, ciclici e robusti.", en: "Evolution for creating stateful, cyclic, and robust agents."}}, {id: "microsoft/autogen", why: {it: "Crea team di agenti che conversano tra loro per risolvere task.", en: "Create teams of agents conversing to solve tasks."}}, {id: "crewAIInc/crewAI", why: {it: "Orchestra agenti con ruoli specifici (es. Ricercatore, Scrittore).", en: "Orchestrate agents with specific roles (e.g., Researcher, Writer)."}}, {id: "Significant-Gravitas/AutoGPT", why: {it: "Uno dei primi agenti autonomi. Gli dai un obiettivo, lui prova a raggiungerlo.", en: "One of the first autonomous agents. Give it a goal, it tries to reach it."}}, {id: "OpenInterpreter/open-interpreter", why: {it: "Permette all'LLM di eseguire vero codice sul tuo computer per agire.", en: "Lets LLMs run real code on your computer to act."}}, {id: "microsoft/semantic-kernel", why: {it: "SDK leggero per integrare LLM in codice 'tradizionale' (C#, Python).", en: "Lightweight SDK to integrate LLMs into 'traditional' code (C#, Python)."}}] },
-            ml: { label: "MACHINE_LEARNING", desc: { it: "ML Classico", en: "Classic ML" }, briefing: { it: "Algoritmi classici, boosting e calcolo numerico.", en: "Classic algorithms, boosting, and numerical computing." },
-                items: [{id: "pytorch/pytorch", why: {it: "Framework dominante.", en: "Dominant framework."}}, {id: "tensorflow/tensorflow", why: {it: "Standard produzione.", en: "Production standard."}}, {id: "scikit-learn/scikit-learn", why: {it: "Strumenti semplici ed efficienti per l'analisi dati.", en: "Simple and efficient tools for data mining and data analysis."}}, {id: "dmlc/xgboost", why: {it: "Il re delle competizioni su dati tabulari.", en: "The king of tabular data competitions."}}, {id: "microsoft/LightGBM", why: {it: "Gradient boosting veloce ed efficiente.", en: "Fast and efficient gradient boosting."}}, {id: "numpy/numpy", why: {it: "Base del calcolo scientifico.", en: "Scientific computing base."}}, {id: "pandas-dev/pandas", why: {it: "Strumento potente per l'analisi e manipolazione dati.", en: "Powerful data analysis and manipulation tool."}}, {id: "google/jax", why: {it: "Autograd e XLA per calcolo ad alte prestazioni.", en: "Autograd and XLA for high-performance machine learning research."}}] },
-            opensource: { label: "OPEN_SOURCE_AI", desc: { it: "Hub & Modelli", en: "Hub & Models" }, briefing: { it: "Piattaforme e strumenti chiave per l'AI open source.", en: "Key platforms and tools for open source AI." },
-                items: [{id: "huggingface/transformers", why: {it: "Migliaia di modelli pre-addestrati pronti all'uso.", en: "Thousands of pre-trained models ready to use."}}, {id: "huggingface/diffusers", why: {it: "Modelli di diffusione per generazione immagini/audio.", en: "Diffusion models for image/audio generation."}}, {id: "huggingface/peft", why: {it: "Fine-tuning efficiente per modelli di grandi dimensioni.", en: "Efficient fine-tuning for large models."}}, {id: "facebookresearch/llama", why: {it: "Il modello che ha democratizzato gli LLM potenti.", en: "The model that democratized powerful LLMs."}}, {id: "mistralai/mistral-src", why: {it: "Modelli efficienti e performanti open weights.", en: "Efficient and high-performance open weights models."}}, {id: "EleutherAI/gpt-neox", why: {it: "Libreria per addestrare modelli trasformer su GPU.", en: "Library for training transformer models on GPUs."}}, {id: "LAION-AI/Open-Assistant", why: {it: "Assistente conversazionale open source.", en: "Open source conversational assistant."}}] }
-        };
+const REPO_THEMES = {
+    core: {
+        label: "CORE_INDEX",
+        desc: { it: "Fondamenta AI", en: "AI Foundations" },
+        briefing: {
+            it: "Il nucleo duro: framework di deep learning, librerie per LLM, strumenti di data science e serving. Se vuoi costruire qualsiasi cosa in AI, prima o poi passi da qui.",
+            en: "The hard core: deep learning frameworks, LLM libraries, data science tools and serving. If you want to build anything in AI, sooner or later you touch these."
+        },
+        items: [
+            {
+                id: "pytorch/pytorch",
+                why: {
+                    it: "Il motore matematico preferito dalla ricerca e da gran parte dell’industria: ti permette di sperimentare rapidamente nuove architetture e idee.",
+                    en: "Research’s and industry’s favorite math engine: lets you rapidly experiment with new architectures and ideas."
+                }
+            },
+            {
+                id: "tensorflow/tensorflow",
+                why: {
+                    it: "La piattaforma storica di Google per ML su larga scala e produzione: ideale quando hai bisogno di un ecosistema maturo e ben integrato.",
+                    en: "Google's historic platform for large-scale ML and production: ideal when you need a mature, well-integrated ecosystem."
+                }
+            },
+            {
+                id: "huggingface/transformers",
+                why: {
+                    it: "Il 'GitHub dei Modelli': migliaia di modelli pre-addestrati (NLP, visione, audio) da usare con poche righe di codice.",
+                    en: "The 'GitHub of Models': thousands of pretrained models (NLP, vision, audio) ready to use with a few lines of code."
+                }
+            },
+            {
+                id: "langchain-ai/langchain",
+                why: {
+                    it: "Framework per connettere LLM a dati e servizi (PDF, DB, API) e costruire pipeline complesse di ragionamento e tool use.",
+                    en: "Framework to connect LLMs to data and services (PDFs, DBs, APIs) and build complex reasoning and tool-use pipelines."
+                }
+            },
+            {
+                id: "run-llama/llama_index",
+                why: {
+                    it: "Specializzato nell’ingestione e indicizzazione dei dati per il RAG: ottimo per fare search intelligente su documenti e knowledge base.",
+                    en: "Specialized in data ingestion and indexing for RAG: great for intelligent search over documents and knowledge bases."
+                }
+            },
+            {
+                id: "ray-project/ray",
+                why: {
+                    it: "Framework unificato per scalare job Python e workload AI su cluster: perfetto per training e inferenza distribuita senza impazzire con l’infrastruttura.",
+                    en: "Unified framework to scale Python and AI workloads across clusters: great for distributed training and inference without drowning in infra."
+                }
+            },
+            {
+                id: "numpy/numpy",
+                why: {
+                    it: "La base di tutto: array numerici veloci, operazioni vettorializzate e algebra lineare. Senza di lui, il resto crolla.",
+                    en: "The foundation of everything: fast numerical arrays, vectorized ops and linear algebra. Without it, the rest collapses."
+                }
+            },
+            {
+                id: "pandas-dev/pandas",
+                why: {
+                    it: "Il 'Excel programmabile': essenziale per pulire, trasformare e analizzare i dati prima di qualunque modello serio.",
+                    en: "The 'programmable Excel': essential for cleaning, transforming and analysing data before any serious modeling."
+                }
+            },
+            {
+                id: "scikit-learn/scikit-learn",
+                why: {
+                    it: "Imbattibile per algoritmi classici (non deep): regressioni, classificazioni, clustering, preprocessing. Perfetto per baseline solide.",
+                    en: "Unbeatable for classic (non-deep) algorithms: regression, classification, clustering, preprocessing. Perfect for solid baselines."
+                }
+            },
+            {
+                id: "tiangolo/fastapi",
+                why: {
+                    it: "Lo standard moderno per creare API veloci con Python: ideale per esporre i tuoi modelli AI in produzione.",
+                    en: "The modern standard for building fast APIs in Python: ideal to expose your AI models in production."
+                }
+            },
+            {
+                id: "streamlit/streamlit",
+                why: {
+                    it: "Crea interfacce web per demo e tool AI in puro Python, senza HTML/CSS: perfetto per prototipare e condividere velocemente.",
+                    en: "Create web UIs for AI demos and tools in pure Python, no HTML/CSS: perfect for fast prototyping and sharing."
+                }
+            }
+        ]
+    },
+
+    databases: {
+        label: "AI_DATABASES",
+        desc: { it: "Memoria per AI", en: "AI Memory" },
+        briefing: {
+            it: "Database vettoriali, estensioni per Postgres e grafi di conoscenza: qui vive la memoria a lungo termine dei tuoi sistemi RAG e dei tuoi agenti.",
+            en: "Vector databases, Postgres extensions and knowledge graphs: this is where long-term memory for your RAG systems and agents lives."
+        },
+        items: [
+            {
+                id: "milvus-io/milvus",
+                why: {
+                    it: "Database vettoriale cloud-native pensato per scalare a miliardi di vettori: adatto per applicazioni enterprise di ricerca semantica.",
+                    en: "Cloud-native vector database designed to scale to billions of vectors: suitable for enterprise-grade semantic search."
+                }
+            },
+            {
+                id: "chroma-core/chroma",
+                why: {
+                    it: "Soluzione open-source 'AI-native', minimal e facile da integrare in applicazioni Python e prototipi RAG.",
+                    en: "An 'AI-native' open-source solution, minimal and easy to integrate into Python apps and RAG prototypes."
+                }
+            },
+            {
+                id: "qdrant/qdrant",
+                why: {
+                    it: "Motore vettoriale in Rust, veloce ed efficiente, con supporto per filtri complessi e metadata: ottimo per search avanzata.",
+                    en: "Rust-based vector engine, fast and efficient, with support for complex filters and metadata: great for advanced search."
+                }
+            },
+            {
+                id: "weaviate/weaviate",
+                why: {
+                    it: "DB vettoriale con moduli ML integrati e ricerca ibrida (testo + vettori): pensato per applicazioni semantiche end-to-end.",
+                    en: "Vector DB with integrated ML modules and hybrid search (text + vectors): built for end-to-end semantic applications."
+                }
+            },
+            {
+                id: "facebookresearch/faiss",
+                why: {
+                    it: "Libreria fondamentale di Meta per la ricerca di similarità densa: usata sotto il cofano da molti motori vettoriali.",
+                    en: "Meta’s fundamental library for dense similarity search: used under the hood by many vector engines."
+                }
+            },
+            {
+                id: "pgvector/pgvector",
+                why: {
+                    it: "Estensione per PostgreSQL che aggiunge supporto ai vettori: perfetta se vuoi aggiungere RAG senza cambiare database.",
+                    en: "PostgreSQL extension that adds vector support: perfect if you want RAG without switching databases."
+                }
+            },
+            {
+                id: "lancedb/lancedb",
+                why: {
+                    it: "DB vettoriale serverless per dati multimodali (immagini, video, testo): ben integrato con workflow moderni e notebook.",
+                    en: "Serverless vector DB for multimodal data (images, video, text): well integrated with modern workflows and notebooks."
+                }
+            },
+            {
+                id: "neo4j/neo4j",
+                why: {
+                    it: "Il database a grafo leader: cruciale per GraphRAG e sistemi che ragionano su relazioni tra concetti, entità ed eventi.",
+                    en: "The leading graph database: crucial for GraphRAG and systems that reason over relationships between concepts, entities and events."
+                }
+            },
+            {
+                id: "redis/redis",
+                why: {
+                    it: "Key-value store ubiquo in produzione; oggi usato anche come vector store e cache per sistemi RAG e servizi AI real-time.",
+                    en: "Ubiquitous production key-value store; now also used as a vector store and cache layer for RAG systems and real-time AI services."
+                }
+            }
+        ]
+    },
+
+    learning: {
+        label: "LEARNING",
+        desc: { it: "Risorse Educative", en: "Educational Resources" },
+        briefing: {
+            it: "Libri, corsi e repository didattici per capire come funzionano davvero LLM, modelli di deep learning e ML classico. Qui costruisci la base mentale.",
+            en: "Books, courses and educational repos to truly understand how LLMs, deep learning and classic ML work. This is where you build your mental foundation."
+        },
+        items: [
+            {
+                id: "rasbt/LLMs-from-scratch",
+                why: {
+                    it: "Libro/repo che ti guida a costruire un GPT-like da zero: perfetto per capire cosa succede sotto il cofano.",
+                    en: "Book/repo that guides you to build a GPT-like model from scratch: perfect to understand what happens under the hood."
+                }
+            },
+            {
+                id: "huggingface/course",
+                why: {
+                    it: "Corso ufficiale gratuito di Hugging Face: copre Transformers, tokenizzazione, fine-tuning e deployment.",
+                    en: "Hugging Face’s official free course: covers Transformers, tokenization, fine-tuning and deployment."
+                }
+            },
+            {
+                id: "karpathy/nanoGPT",
+                why: {
+                    it: "Codice minimale di Karpathy per addestrare un piccolo GPT: un capolavoro didattico per chi vuole imparare partendo dal codice.",
+                    en: "Karpathy’s minimal code to train a small GPT: an educational gem if you want to learn by reading code."
+                }
+            },
+            {
+                id: "ageron/handson-ml3",
+                why: {
+                    it: "Notebook del libro 'Hands-On ML': coprono tutto, da Scikit-Learn a TensorFlow, con esempi pratici ben spiegati.",
+                    en: "Notebooks from 'Hands-On ML': cover everything from Scikit-Learn to TensorFlow, with well-explained practical examples."
+                }
+            },
+            {
+                id: "fastai/fastai",
+                why: {
+                    it: "Approccio 'top-down' al deep learning: risultati velocemente, con API ad alto livello e spiegazioni progressive.",
+                    en: "Top-down approach to deep learning: fast results with high-level APIs and progressive explanations."
+                }
+            },
+            {
+                id: "d2l-ai/d2l-en",
+                why: {
+                    it: "Dive into Deep Learning: libro interattivo completo con codice eseguibile e spiegazioni matematiche accessibili.",
+                    en: "Dive into Deep Learning: complete interactive book with executable code and accessible math explanations."
+                }
+            },
+            {
+                id: "microsoft/ML-For-Beginners",
+                why: {
+                    it: "Curriculum di 12 settimane creato da Microsoft: ottimo per chi parte da zero e vuole una roadmap strutturata.",
+                    en: "12-week curriculum by Microsoft: great for beginners who want a structured learning roadmap."
+                }
+            },
+            {
+                id: "openai/openai-cookbook",
+                why: {
+                    it: "Raccolta ufficiale di esempi pratici per costruire app reali con l’API OpenAI: dal prompt design al RAG, fino agli agenti.",
+                    en: "Official collection of practical examples for building real apps with the OpenAI API: from prompt design and RAG to agents."
+                }
+            },
+            {
+                id: "meta-llama/llama-cookbook",
+                why: {
+                    it: "Ricettario ufficiale per inference, fine-tuning e casi d’uso end-to-end con la famiglia Llama: perfetto per lavorare seriamente con open weights.",
+                    en: "Official cookbook for inference, fine-tuning and end-to-end use cases with the Llama family: perfect for serious work with open weights."
+                }
+            }
+        ]
+    },
+
+    genai: {
+        label: "GEN_AI",
+        desc: { it: "Generazione Media", en: "Media Generation" },
+        briefing: {
+            it: "Strumenti per generare immagini, audio e testo, e per servire LLM in locale o in produzione. È la zona dove l’AI diventa creativa (e visual).",
+            en: "Tools to generate images, audio and text, and to serve LLMs locally or in production. This is where AI gets creative (and visual)."
+        },
+        items: [
+            {
+                id: "AUTOMATIC1111/stable-diffusion-webui",
+                why: {
+                    it: "Interfaccia standard per usare Stable Diffusion: tantissime feature, estensioni e controlli per il prompting visivo.",
+                    en: "Standard UI for Stable Diffusion: tons of features, extensions and controls for visual prompting."
+                }
+            },
+            {
+                id: "comfyanonymous/ComfyUI",
+                why: {
+                    it: "Interfaccia a nodi per Stable Diffusion: massima flessibilità per workflow complessi di generazione e post-processing.",
+                    en: "Node-based UI for Stable Diffusion: maximum flexibility for complex generation and post-processing workflows."
+                }
+            },
+            {
+                id: "openai/whisper",
+                why: {
+                    it: "Uno dei migliori modelli open per speech-to-text: robusto, multilingua, ottimo per trascrizioni e pipeline audio.",
+                    en: "One of the best open models for speech-to-text: robust, multilingual, great for transcription and audio pipelines."
+                }
+            },
+            {
+                id: "ollama/ollama",
+                why: {
+                    it: "Esegui Llama 3, Mistral e altri LLM sul tuo PC con un comando: perfetto per sperimentare modelli localmente.",
+                    en: "Run Llama 3, Mistral and other LLMs on your machine with a single command: perfect for local experimentation."
+                }
+            },
+            {
+                id: "vllm-project/vllm",
+                why: {
+                    it: "Motore di inferenza ad altissimo throughput per LLM: pensato per servire molti utenti con latency bassa.",
+                    en: "High-throughput inference engine for LLMs: designed to serve many users with low latency."
+                }
+            },
+            {
+                id: "lm-sys/FastChat",
+                why: {
+                    it: "Piattaforma aperta per addestrare, servire e valutare chatbot: include UI, backend e strumenti di benchmark.",
+                    en: "Open platform to train, serve and evaluate chatbots: includes UI, backend and benchmarking tools."
+                }
+            },
+            {
+                id: "ggerganov/llama.cpp",
+                why: {
+                    it: "Il 'miracolo' che porta gli LLM su CPU e Apple Silicon: ideale per chi vuole modelli grandi su hardware non enterprise.",
+                    en: "The 'miracle' bringing LLMs to CPU and Apple Silicon: ideal if you want big models on non-enterprise hardware."
+                }
+            },
+            {
+                id: "Stability-AI/generative-models",
+                why: {
+                    it: "Repo ufficiale per i modelli base di Stability AI (immagini, video, 3D): ottimo punto di accesso al loro ecosistema.",
+                    en: "Official repo for Stability AI base models (images, video, 3D): a great entry point into their ecosystem."
+                }
+            },
+            {
+                id: "open-webui/open-webui",
+                why: {
+                    it: "Interfaccia web self-hosted per orchestrare LLM locali (es. Ollama) e remoti: chat, RAG, plugin e multi-modello in un unico posto.",
+                    en: "Self-hosted web UI to orchestrate local (e.g. Ollama) and remote LLMs: chat, RAG, plugins and multi-model in a single place."
+                }
+            },
+            {
+                id: "janhq/jan",
+                why: {
+                    it: "App desktop open che porta l’esperienza tipo ChatGPT su modelli locali e cloud, con un’unica interfaccia pulita.",
+                    en: "Open desktop app bringing a ChatGPT-like experience to local and cloud models through a single clean interface."
+                }
+            }
+        ]
+    },
+
+    agentic: {
+        label: "AGENTIC_AI",
+        desc: { it: "Agenti Autonomi", en: "Autonomous Agents" },
+        briefing: {
+            it: "Framework e tool per costruire agenti che non si limitano a rispondere, ma pianificano, chiamano tool, leggono e scrivono file, orchestrano workflow.",
+            en: "Frameworks and tools to build agents that don’t just answer, but plan, call tools, read/write files and orchestrate workflows."
+        },
+        items: [
+            {
+                id: "langchain-ai/langchain",
+                why: {
+                    it: "Framework storico per orchestrare LLM, memorie e tool: ottimo per prototipi veloci e per capire i pattern di base degli agenti.",
+                    en: "Historic framework to orchestrate LLMs, memory and tools: great for fast prototyping and learning basic agent patterns."
+                }
+            },
+            {
+                id: "langchain-ai/langgraph",
+                why: {
+                    it: "Evoluzione di LangChain per creare agenti stateful, ciclici e robusti: pensato per applicazioni più complesse e affidabili.",
+                    en: "LangChain’s evolution for building stateful, cyclic and robust agents: aimed at more complex and reliable applications."
+                }
+            },
+            {
+                id: "microsoft/autogen",
+                why: {
+                    it: "Crea team di agenti che conversano tra loro per risolvere task: perfetto per scenari multi-ruolo (planner, coder, reviewer).",
+                    en: "Create teams of agents that talk to each other to solve tasks: perfect for multi-role scenarios (planner, coder, reviewer)."
+                }
+            },
+            {
+                id: "crewAIInc/crewAI",
+                why: {
+                    it: "Orchestra agenti con ruoli specifici (es. Ricercatore, Scrittore, Strategist) e flussi di lavoro coordinati.",
+                    en: "Orchestrates agents with specific roles (e.g., Researcher, Writer, Strategist) and coordinated workflows."
+                }
+            },
+            {
+                id: "Significant-Gravitas/AutoGPT",
+                why: {
+                    it: "Uno dei primi agenti autonomi 'goal-driven': gli dai un obiettivo e lui prova a decomporlo in passi e azioni.",
+                    en: "One of the first 'goal-driven' autonomous agents: you give it a goal and it tries to decompose it into steps and actions."
+                }
+            },
+            {
+                id: "OpenInterpreter/open-interpreter",
+                why: {
+                    it: "Permette a un LLM di eseguire vero codice sul tuo computer (shell, Python, ecc.): ponte diretto tra modello e ambiente locale.",
+                    en: "Lets an LLM execute real code on your machine (shell, Python, etc.): a direct bridge between model and local environment."
+                }
+            },
+            {
+                id: "microsoft/semantic-kernel",
+                why: {
+                    it: "SDK leggero per integrare LLM in codice 'tradizionale' (C#, Python): perfetto per agenti che vivono dentro servizi esistenti.",
+                    en: "Lightweight SDK to integrate LLMs into 'traditional' code (C#, Python): perfect for agents living inside existing services."
+                }
+            },
+            {
+                id: "deepset-ai/haystack",
+                why: {
+                    it: "Framework end-to-end per RAG e sistemi agentici production-ready: pipeline, integrazioni, eval e deployment in un unico stack.",
+                    en: "End-to-end framework for RAG and production-ready agentic systems: pipelines, integrations, eval and deployment in a single stack."
+                }
+            }
+        ]
+    },
+
+    ml: {
+        label: "MACHINE_LEARNING",
+        desc: { it: "ML Classico", en: "Classic ML" },
+        briefing: {
+            it: "Algoritmi classici, ensemble e calcolo numerico: tutto ciò che esisteva prima dell’ondata LLM e che continua a risolvere un sacco di problemi reali.",
+            en: "Classic algorithms, ensembles and numerical computing: everything that existed before the LLM wave and still solves a ton of real problems."
+        },
+        items: [
+            {
+                id: "pytorch/pytorch",
+                why: {
+                    it: "Framework ormai dominante anche oltre il deep puro: usato come base per molti progetti di ricerca e produzione.",
+                    en: "Dominant framework beyond pure deep learning: used as a base for many research and production projects."
+                }
+            },
+            {
+                id: "tensorflow/tensorflow",
+                why: {
+                    it: "Standard di fatto per molte pipeline di produzione storiche: ancora molto presente in ecosistemi enterprise.",
+                    en: "De facto standard for many legacy production pipelines: still very present in enterprise ecosystems."
+                }
+            },
+            {
+                id: "scikit-learn/scikit-learn",
+                why: {
+                    it: "Strumenti semplici ed efficienti per analisi dati e ML classico: la libreria da conoscere se lavori con tabellari e feature engineering.",
+                    en: "Simple and efficient tools for data mining and classic ML: the library to know if you work with tabular data and feature engineering."
+                }
+            },
+            {
+                id: "dmlc/xgboost",
+                why: {
+                    it: "Il re delle competizioni su dati tabellari: gradient boosting estremamente performante e ben rodato.",
+                    en: "The king of tabular data competitions: extremely strong and battle-tested gradient boosting."
+                }
+            },
+            {
+                id: "microsoft/LightGBM",
+                why: {
+                    it: "Gradient boosting veloce ed efficiente con ottima gestione di grandi dataset: alternativa spesso più leggera rispetto ad altri.",
+                    en: "Fast, efficient gradient boosting with great handling of large datasets: often a lighter alternative to others."
+                }
+            },
+            {
+                id: "catboost/catboost",
+                why: {
+                    it: "Gradient boosting pensato per gestire in modo eccellente le feature categoriali: spesso top su problemi tabellari reali.",
+                    en: "Gradient boosting library that handles categorical features extremely well: often top-tier on real-world tabular problems."
+                }
+            },
+            {
+                id: "numpy/numpy",
+                why: {
+                    it: "Base del calcolo scientifico in Python: tutto il resto (ML, DL, statistica) si appoggia sopra i suoi array.",
+                    en: "Base of scientific computing in Python: everything else (ML, DL, stats) sits on top of its arrays."
+                }
+            },
+            {
+                id: "pandas-dev/pandas",
+                why: {
+                    it: "Strumento potente per analisi e manipolazione dati: essenziale per preparare feature e dataset puliti.",
+                    en: "Powerful tool for data analysis and manipulation: essential for preparing clean features and datasets."
+                }
+            },
+            {
+                id: "google/jax",
+                why: {
+                    it: "Autograd e XLA per calcolo ad alte prestazioni: ponte naturale tra numerica classica e sperimentazione deep moderna.",
+                    en: "Autograd and XLA for high-performance computation: a natural bridge between classic numerics and modern deep experiments."
+                }
+            }
+        ]
+    },
+
+    opensource: {
+        label: "OPEN_SOURCE_AI",
+        desc: { it: "Hub & Modelli", en: "Hub & Models" },
+        briefing: {
+            it: "Piattaforme, modelli open-weight e progetti comunitari: qui si muove l’AI aperta, dove puoi ispezionare, forchettare e costruire sopra.",
+            en: "Platforms, open-weight models and community projects: this is where open AI lives, where you can inspect, fork and build on top."
+        },
+        items: [
+            {
+                id: "huggingface/transformers",
+                why: {
+                    it: "Migliaia di modelli pre-addestrati pronti all’uso: l’hub più importante per chi lavora con modelli open.",
+                    en: "Thousands of pretrained models ready to use: the most important hub if you work with open models."
+                }
+            },
+            {
+                id: "huggingface/diffusers",
+                why: {
+                    it: "Modelli di diffusione per generazione di immagini, audio e altro: lo standard de facto per sperimentare con diffusion models.",
+                    en: "Diffusion models for image, audio and more: the de facto standard for experimenting with diffusion models."
+                }
+            },
+            {
+                id: "huggingface/peft",
+                why: {
+                    it: "Fine-tuning efficiente (LoRA & co.) per modelli grandi: ti permette di adattare LLM con poca memoria e pochi dati.",
+                    en: "Efficient fine-tuning (LoRA & co.) for large models: lets you adapt LLMs with limited memory and data."
+                }
+            },
+            {
+                id: "facebookresearch/llama",
+                why: {
+                    it: "La famiglia di modelli che ha democratizzato gli LLM potenti in versione open-weight.",
+                    en: "The model family that democratized powerful LLMs in open-weight form."
+                }
+            },
+            {
+                id: "meta-llama/llama3",
+                why: {
+                    it: "Release ufficiale dei pesi Llama 3: modelli open-weight moderni, base di tanti progetti LLM open in produzione.",
+                    en: "Official Llama 3 weights release: modern open-weight models that power many real-world open LLM projects."
+                }
+            },
+            {
+                id: "mistralai/mistral-src",
+                why: {
+                    it: "Modelli efficienti e performanti open-weight: spesso ai primi posti per rapporto qualità/risorse.",
+                    en: "Efficient, high-performance open-weight models: often leading in quality-to-resources ratio."
+                }
+            },
+            {
+                id: "EleutherAI/gpt-neox",
+                why: {
+                    it: "Libreria per addestrare modelli Transformer di grandi dimensioni su GPU: fondamentale nella storia degli LLM open.",
+                    en: "Library to train large Transformer models on GPUs: a key piece in the history of open LLMs."
+                }
+            },
+            {
+                id: "LAION-AI/Open-Assistant",
+                why: {
+                    it: "Assistente conversazionale open source guidato dalla community: dimostra cosa si può fare con dati e collaborazione aperta.",
+                    en: "Community-driven open-source conversational assistant: shows what’s possible with open data and collaboration."
+                }
+            }
+        ]
+    }
+};
 
         const TITAN_THEMES = {
     meta: {
