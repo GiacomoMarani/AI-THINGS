@@ -16,16 +16,16 @@
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://giacomomarani.github.io/AI-THINGS/"> 
-    <meta property="og:title" content="AI THINGS // Cyberpunk Knowledge Explorer">
+    <meta property="og:title" content="AI THINGS // Knowledge Explorer">
     <meta property="og:description" content="Esplora l'ecosistema AI: dai repository Core agli stack delle Big Tech. Una mappa interattiva per sviluppatori.">
     <meta property="og:image" content="https://raw.githubusercontent.com/GiacomoMarani/AI-THINGS/main/preview.png"> 
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://giacomomarani.github.io/AI-THINGS/">
-    <meta property="twitter:title" content="AI THINGS // Cyberpunk Knowledge Explorer">
+    <meta property="twitter:title" content="AI THINGS // Knowledge Explorer">
     <meta property="twitter:description" content="Esplora l'ecosistema AI: dai repository Core agli stack delle Big Tech. Una mappa interattiva per sviluppatori.">
-    <meta property="twitter:image" content="preview.png">
+    <meta property="twitter:image" content="https://raw.githubusercontent.com/GiacomoMarani/AI-THINGS/main/preview.png">
 
     <!-- --- ASSETS --- -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -44,13 +44,13 @@
             background-size: 40px 40px;
         }
 
-        /* --- SCROLLBAR --- */
+        /* --- SCROLLBAR (CYAN) --- */
         ::-webkit-scrollbar { width: 8px; height: 4px; }
         ::-webkit-scrollbar-track { background: #0a0a0f; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #00FFFF; }
 
-        /* --- GLASS PANELS --- */
+        /* --- GLASS PANELS (CYAN TINT) --- */
         .bg-glass {
             background: rgba(10, 10, 15, 0.85);
             backdrop-filter: blur(12px);
@@ -59,7 +59,7 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
-        /* --- INTERACTIVE ELEMENTS --- */
+        /* --- INTERACTIVE ELEMENTS (CYAN HOVER) --- */
         .bg-interactive {
             background: rgba(17, 17, 22, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -74,7 +74,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- BRIEFING PANEL --- */
+        /* --- BRIEFING PANEL (CYAN) --- */
         .briefing-panel {
             background: rgba(0, 255, 255, 0.05);
             border-left: 4px solid #00FFFF;
@@ -110,7 +110,7 @@
         .neon-blue { color: #00FFFF; text-shadow: 0 0 8px rgba(0, 255, 255, 0.5); }
         .neon-pink { color: #FF00FF; text-shadow: 0 0 8px rgba(255, 0, 255, 0.5); }
         
-        /* --- STRANGER THINGS NEON --- */
+        /* --- STRANGER THINGS NEON (TITLE ONLY) --- */
         .neon-stranger {
             font-family: 'IBM Plex Mono', monospace;
             color: #E72429;
@@ -129,7 +129,7 @@
                 0 0 10px rgba(231, 36, 41, 0.8);
         }
 
-        /* --- BUTTONS (MENU STYLE - NEON RED) --- */
+        /* --- BUTTONS (MENU STYLE - RED NEON - RESTORED) --- */
         .btn-category {
             @apply px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-[0.15em] transition-all duration-200 relative whitespace-nowrap;
             background: transparent; 
@@ -146,13 +146,14 @@
 
         .btn-category.active {
             background: rgba(231, 36, 41, 0.05); 
-            color: #E72429;
-            border-top: 2px solid #E72429;
-            border-bottom: 2px solid #E72429;
+            color: #E72429; /* RED TEXT */
+            border-top: 2px solid #E72429; /* RED LINE */
+            border-bottom: 2px solid #E72429; /* RED LINE */
             box-shadow: 0 0 15px rgba(231, 36, 41, 0.2);
             text-shadow: 0 0 8px rgba(231, 36, 41, 0.6);
         }
 
+        /* --- SEARCH BUTTON --- */
         .btn-search {
             background: linear-gradient(90deg, #FF00FF, #cc00cc);
             color: #fff;
@@ -160,6 +161,9 @@
             border: none;
             border-radius: 4px;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .btn-search:hover { filter: brightness(1.2); box-shadow: 0 0 15px rgba(255, 0, 255, 0.4); }
         
@@ -175,7 +179,7 @@
             text-shadow: 0 0 5px #00FFFF;
         }
 
-        /* --- INPUTS --- */
+        /* --- INPUTS (CYAN) --- */
         .input-cyber {
             background: rgba(15, 15, 19, 0.9);
             border: 1px solid #374151;
@@ -261,6 +265,8 @@
                     <select id="view-selector" class="select-view w-full lg:w-auto uppercase tracking-widest text-sm rounded h-10">
                         <option value="explorer">⦿ KNOWLEDGE EXPLORER</option>
                         <option value="titans">⟁ CORPORATE STACKS</option>
+                        <option value="mcp">↯ MCP PROTOCOL</option>
+                        <option value="docs">▤ OFFICIAL DOCS</option>
                     </select>
                 </div>
             </header>
@@ -269,6 +275,7 @@
             <!-- VISTA 1: REPO EXPLORER -->
             <!-- ========================================== -->
             <section id="view-explorer" class="view-section flex-grow">
+                <!-- MENU SPAZIATO E CENTRATO -->
                 <div class="mb-6">
                     <div id="category-buttons" class="flex flex-wrap gap-x-6 gap-y-4 border-b border-gray-800 pb-6 justify-center"></div>
                 </div>
@@ -278,11 +285,16 @@
                     <p id="explorer-briefing-text">...</p>
                 </div>
 
+                <!-- SEARCH BAR (NO WRAP) -->
                 <div class="mb-8 relative group">
                     <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-600 to-cyan-600 rounded-lg blur opacity-30 group-hover:opacity-60 transition duration-500"></div>
-                    <div class="relative flex flex-col sm:flex-row gap-0 bg-black rounded-lg p-1">
-                        <input type="text" id="search-input" placeholder="..." class="input-cyber flex-1 px-5 py-3 rounded-md text-sm font-mono placeholder-gray-600 border-none">
-                        <button id="execute-query-button" class="btn-search px-8 py-3 rounded-md text-sm uppercase tracking-widest mt-2 sm:mt-0 sm:ml-2">SCAN</button>
+                    <div class="relative flex flex-row gap-0 bg-black rounded-lg p-1">
+                        <input type="text" id="search-input" placeholder="..." class="input-cyber flex-1 px-4 py-3 rounded-md text-sm font-mono placeholder-gray-600 border-none min-w-0">
+                        <button id="execute-query-button" class="btn-search w-14 flex-shrink-0 flex items-center justify-center rounded-md hover:scale-105 transition-transform" aria-label="Search">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
                 
@@ -305,6 +317,7 @@
             <!-- VISTA 2: TITANS -->
             <!-- ========================================== -->
             <section id="view-titans" class="view-section hidden flex-grow">
+                <!-- MENU SPAZIATO E CENTRATO -->
                 <div class="mb-6">
                     <h2 class="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-3 text-center" data-i18n="select_player">SELECT PLAYER</h2>
                     <div id="titans-buttons" class="flex flex-wrap gap-x-6 gap-y-4 border-b border-gray-800 pb-6 justify-center"></div>
@@ -332,6 +345,57 @@
                 <div id="titans-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 min-h-[200px]"></div>
             </section>
 
+             <!-- ========================================== -->
+            <!-- VISTA 3: MCP PROTOCOL -->
+            <!-- ========================================== -->
+            <section id="view-mcp" class="view-section hidden flex-grow">
+                <div class="mb-8">
+                    <div id="mcp-briefing" class="briefing-panel animate-entry" style="border-left-color: #FFD700; background: rgba(255, 215, 0, 0.05);">
+                        <span class="briefing-title" style="color: #FFD700;">// WHAT IS MCP?</span>
+                        <p id="mcp-briefing-text" class="text-sm leading-relaxed">
+                            <!-- Text injected via JS -->
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flex items-end justify-between mb-6 pl-4 border-l-4 border-yellow-500">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white uppercase tracking-tight leading-none">MCP SERVERS</h2>
+                        <p class="text-xs text-yellow-500 font-mono mt-2 tracking-wide">// AGENTIC INFRASTRUCTURE BRIDGE</p>
+                    </div>
+                </div>
+
+                <div id="mcp-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-4 min-h-[200px]">
+                     <!-- Cards injected via JS -->
+                </div>
+            </section>
+
+             <!-- ========================================== -->
+            <!-- VISTA 4: OFFICIAL DOCS -->
+            <!-- ========================================== -->
+            <section id="view-docs" class="view-section hidden flex-grow">
+                <div class="mb-8">
+                    <div id="docs-briefing" class="briefing-panel animate-entry" style="border-left-color: #A855F7; background: rgba(168, 85, 247, 0.05);">
+                        <span class="briefing-title" style="color: #A855F7;">// DOCUMENTATION HUB</span>
+                        <p id="docs-briefing-text" class="text-sm leading-relaxed">
+                             <!-- Text injected via JS -->
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex items-end justify-between mb-6 pl-4 border-l-4 border-purple-500">
+                    <div>
+                        <h2 class="text-2xl font-bold text-white uppercase tracking-tight leading-none">OFFICIAL REFERENCES</h2>
+                        <p class="text-xs text-purple-500 font-mono mt-2 tracking-wide">// DIRECT LINK UPLINK</p>
+                    </div>
+                </div>
+
+                <div id="docs-container" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 min-h-[200px]">
+                    <!-- Cards injected via JS -->
+                </div>
+            </section>
+
+
             <div id="error-container" class="hidden mb-4 p-4 border border-red-500/50 bg-red-900/10 rounded text-red-400 text-sm font-mono mt-4"></div>
 
             <footer class="mt-16 border-t border-gray-800 pt-6 text-center">
@@ -350,24 +414,15 @@
     <div id="guide-modal" class="modal-overlay fixed inset-0 flex items-center justify-center hidden p-4">
         <div class="bg-[#0a0a0f] border border-cyan-500 rounded-lg max-w-lg w-full p-6 shadow-[0_0_30px_rgba(0,255,255,0.2)] relative animate-entry">
             <button id="btn-close-guide" class="absolute top-4 right-4 text-gray-500 hover:text-cyan-500 text-xl font-bold">&times;</button>
-            
             <h2 class="text-xl font-bold neon-blue mb-4 tracking-widest" data-i18n="guide_title">// SYSTEM MANUAL</h2>
-            
             <div class="space-y-4 text-sm text-gray-300 font-mono leading-relaxed">
                 <p data-i18n="guide_intro">...</p>
-                
-                <div class="p-3 bg-gray-900 border-l-2 border-pink-500">
-                    <p data-i18n="guide_mode_1">...</p>
-                </div>
-
-                <div class="p-3 bg-gray-900 border-l-2 border-cyan-500">
-                    <p data-i18n="guide_mode_2">...</p>
-                </div>
+                <div class="p-3 bg-gray-900 border-l-2 border-pink-500"><p data-i18n="guide_mode_1">...</p></div>
+                <div class="p-3 bg-gray-900 border-l-2 border-cyan-500"><p data-i18n="guide_mode_2">...</p></div>
+                <div class="p-3 bg-gray-900 border-l-2 border-yellow-500"><p data-i18n="guide_mode_3">...</p></div>
+                <div class="p-3 bg-gray-900 border-l-2 border-purple-500"><p data-i18n="guide_mode_4">...</p></div>
             </div>
-
-            <div class="mt-6 text-center">
-                <span class="text-[10px] text-gray-600 uppercase tracking-[0.2em]">ACCESS GRANTED</span>
-            </div>
+            <div class="mt-6 text-center"><span class="text-[10px] text-gray-600 uppercase tracking-[0.2em]">ACCESS GRANTED</span></div>
         </div>
     </div>
 
@@ -379,322 +434,117 @@
         // --- I18N DICTIONARY ---
         const I18N = {
             it: {
-                system_status: "STATO_SISTEMA: ONLINE",
-                view_label: "MODALITÀ",
-                select_player: "SELEZIONA PLAYER",
-                search_placeholder: "ACCESS DATABASE: Cerca concetti (es. RAG, Agents)...",
-                btn_scan: "SCANSIONA",
-                init_title: "Inizializzazione...",
-                init_subtitle: "// ATTENDERE INPUT",
-                loading: "CARICAMENTO INTELLIGENCE...",
-                no_data: "NESSUN DATO TROVATO.",
-                no_result: "NESSUN RISULTATO.",
-                insight_label: "INSIGHT:",
-                rate_limit: "⚠️ RATE LIMIT GITHUB RAGGIUNTO.",
-                author_note: "SVILUPPATO DA:",
-                guide_btn: "GUIDA",
-                guide_title: "// MANUALE SISTEMA",
-                guide_intro: "Benvenuto in AI THINGS. Questa interfaccia è progettata per navigare rapidamente nell'ecosistema dell'Intelligenza Artificiale.",
-                guide_mode_1: "<strong>KNOWLEDGE EXPLORER:</strong> Trova le migliori librerie open-source, framework e risorse educative divise per categoria.",
-                guide_mode_2: "<strong>CORPORATE STACKS:</strong> Analizza gli stack tecnologici delle Big Tech (Google, Meta, Microsoft, ecc.) per capire cosa usano i giganti."
+                system_status: "STATO_SISTEMA: ONLINE", view_label: "MODALITÀ", select_player: "SELEZIONA PLAYER", search_placeholder: "ACCESS DATABASE: Cerca concetti...", init_title: "Inizializzazione...", init_subtitle: "// ATTENDERE INPUT", loading: "CARICAMENTO INTELLIGENCE...", no_data: "NESSUN DATO TROVATO.", no_result: "NESSUN RISULTATO.", insight_label: "INSIGHT:", rate_limit: "⚠️ RATE LIMIT GITHUB RAGGIUNTO.", author_note: "SVILUPPATO DA:", guide_btn: "GUIDA",
+                guide_title: "// MANUALE SISTEMA", guide_intro: "Benvenuto in AI THINGS. Naviga l'ecosistema AI.", guide_mode_1: "<strong>KNOWLEDGE EXPLORER:</strong> Librerie Open Source, Framework e Guide.", guide_mode_2: "<strong>CORPORATE STACKS:</strong> Analisi delle Big Tech.", guide_mode_3: "<strong>MCP PROTOCOL:</strong> Lo standard per connettere LLM a dati reali.", guide_mode_4: "<strong>OFFICIAL DOCS:</strong> Accesso rapido a manuali e API ufficiali.",
+                mcp_briefing: "MCP (Model Context Protocol) è uno standard aperto che agisce da ponte tra gli LLM (come Claude/GPT) e i tool reali. Ogni server MCP connette l'AI direttamente ad app, API e dati, trasformando i modelli da semplici chatbot ad agenti esecutivi.",
+                docs_briefing: "Accesso diretto alle 'Source of Truth'. Qui trovi i link ufficiali alla documentazione, le tipologie di modelli supportati e i dettagli sull'hosting per i principali provider AI.",
+                mcp_search_placeholder: "Cerca server MCP (es. file, slack, github)..."
             },
             en: {
-                system_status: "SYSTEM_STATUS: ONLINE",
-                view_label: "VIEW MODE",
-                select_player: "SELECT PLAYER",
-                search_placeholder: "ACCESS DATABASE: Search concepts (e.g. RAG, Agents)...",
-                btn_scan: "SCAN",
-                init_title: "Initializing...",
-                init_subtitle: "// AWAITING INPUT",
-                loading: "LOADING INTELLIGENCE...",
-                no_data: "NO DATA FOUND.",
-                no_result: "NO RESULTS.",
-                insight_label: "INSIGHT:",
-                rate_limit: "⚠️ GITHUB RATE LIMIT REACHED.",
-                author_note: "DEVELOPED BY:",
-                guide_btn: "GUIDE",
-                guide_title: "// SYSTEM MANUAL",
-                guide_intro: "Welcome to AI THINGS. This interface is designed to rapidly navigate the Artificial Intelligence ecosystem.",
-                guide_mode_1: "<strong>KNOWLEDGE EXPLORER:</strong> Find the best open-source libraries, frameworks, and educational resources by category.",
-                guide_mode_2: "<strong>CORPORATE STACKS:</strong> Analyze the tech stacks of Big Tech (Google, Meta, Microsoft, etc.) to understand what the giants use."
+                system_status: "SYSTEM_STATUS: ONLINE", view_label: "VIEW MODE", select_player: "SELECT PLAYER", search_placeholder: "ACCESS DATABASE: Search concepts...", init_title: "Initializing...", init_subtitle: "// AWAITING INPUT", loading: "LOADING INTELLIGENCE...", no_data: "NO DATA FOUND.", no_result: "NO RESULTS.", insight_label: "INSIGHT:", rate_limit: "⚠️ GITHUB RATE LIMIT REACHED.", author_note: "DEVELOPED BY:", guide_btn: "GUIDE",
+                guide_title: "// SYSTEM MANUAL", guide_intro: "Welcome to AI THINGS. Navigate the AI ecosystem.", guide_mode_1: "<strong>KNOWLEDGE EXPLORER:</strong> Open Source libs, Frameworks & Guides.", guide_mode_2: "<strong>CORPORATE STACKS:</strong> Big Tech analysis.", guide_mode_3: "<strong>MCP PROTOCOL:</strong> The standard bridging LLMs to real-world data.", guide_mode_4: "<strong>OFFICIAL DOCS:</strong> Rapid access to official manuals and APIs.",
+                mcp_briefing: "MCP (Model Context Protocol) is an open standard acting as a bridge between LLMs (like Claude/GPT) and real-world tools. Each MCP server connects AI directly to apps, APIs, and data — so agents don't just answer questions, they execute.",
+                docs_briefing: "Direct access to the 'Source of Truth'. Here you find official documentation links, supported model types, and hosting details for major AI providers.",
+                mcp_search_placeholder: "Search MCP Servers (e.g. file, slack, github)..."
             }
         };
+
+        // --- MCP DATA (Fixed Links) ---
+        const MCP_DATA = [
+            { title: "File System MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem", desc: {en: "Direct local file access (Read/Write). Automated file ops.", it: "Accesso diretto lettura/scrittura file locali. Operazioni file automatiche."} },
+            { title: "GitHub MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/github", desc: {en: "Code search, PRs & issue management inside dev pipeline.", it: "Ricerca codice, gestione PR e issue direttamente nel flusso dev."} },
+            { title: "Slack MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/slack", desc: {en: "Read threads, send messages & trigger channel workflows.", it: "Lettura thread, invio messaggi e attivazione workflow nei canali."} },
+            { title: "Google Maps MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/google-maps", desc: {en: "Access place data, routing & geolocation services.", it: "Accesso dati luoghi, routing e servizi di geolocalizzazione."} },
+            { title: "PostgreSQL MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres", desc: {en: "Inspect DB schemas & run secure read-only analytics.", it: "Ispezione schemi DB e analisi dati read-only sicura."} },
+            { title: "Google Drive MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/gdrive", desc: {en: "Search & read files/docs directly from Google Drive.", it: "Ricerca e lettura file/documenti direttamente da Google Drive."} },
+            { title: "Sentry MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/sentry", desc: {en: "Retrieve error logs & analyze stack traces.", it: "Recupero log errori e analisi stack trace."} },
+            { title: "GitLab MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/gitlab", desc: {en: "Manage repositories, merge requests & pipelines.", it: "Gestione repository, merge request e pipeline."} },
+            { title: "Memory MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory", desc: {en: "Graph-based persistent knowledge graph for agents.", it: "Grafo di conoscenza persistente per la memoria degli agenti."} },
+            { title: "Brave Search MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/brave-search", desc: {en: "Privacy-first web & local search via Brave API.", it: "Ricerca web e locale privacy-first tramite API Brave."} },
+            { title: "Puppeteer MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/puppeteer", desc: {en: "Browser automation for scraping & UI testing.", it: "Automazione browser per scraping e test UI."} },
+            { title: "Fetch MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch", desc: {en: "Scrape web pages & convert content to markdown.", it: "Scraping pagine web e conversione contenuti in markdown."} },
+            { title: "Redis MCP", link: "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/redis", desc: {en: "Key-value store operations.", it: "Operazioni store chiave-valore."} }
+        ];
+
+        // --- DOCS DATA (STATIC) ---
+        const DOCS_DATA = [
+            { name: "OpenAI", link: "https://platform.openai.com/docs", linkText: "platform.openai.com", models: "Chat, Vision, Audio, Tools", hosting: "Cloud OpenAI (API), Azure OpenAI" },
+            { name: "Google – Gemini API", link: "https://ai.google.dev/gemini-api/docs", linkText: "Google AI for Developers", models: "Multimodal native, JSON, realtime", hosting: "API standalone, Vertex AI" },
+            { name: "Anthropic – Claude", link: "https://docs.anthropic.com/", linkText: "docs.anthropic.com", models: "Claude 3.5 Sonnet/Opus", hosting: "Console, AWS Bedrock, Azure" },
+            { name: "Mistral AI", link: "https://docs.mistral.ai/", linkText: "docs.mistral.ai", models: "Mistral Large, Codestral", hosting: "La Plateforme, Azure" },
+            { name: "Cohere", link: "https://docs.cohere.com", linkText: "docs.cohere.com", models: "Command R+, Embed, Rerank", hosting: "Cohere Cloud, AWS" },
+            { name: "xAI – Grok", link: "https://docs.x.ai/", linkText: "docs.x.ai", models: "Grok 1.5, Vision", hosting: "Cloud xAI, Azure" },
+            { name: "Meta – Llama API", link: "https://llama.developer.meta.com/docs/overview", linkText: "llama.developer.meta.com", models: "Llama 3 (8B, 70B, 400B)", hosting: "Managed API, AWS, Azure" },
+            { name: "AWS – Bedrock", link: "https://docs.aws.amazon.com/bedrock/", linkText: "AWS Documentation", models: "Amazon Titan, Anthropic, Cohere", hosting: "Fully-managed AWS Service" },
+            { name: "Microsoft – Azure AI", link: "https://learn.microsoft.com/azure/ai-foundry/", linkText: "Microsoft Learn", models: "OpenAI, Anthropic, Meta", hosting: "Azure Cloud (Managed endpoints)" },
+            { name: "Google Cloud – Vertex AI", link: "https://docs.cloud.google.com/gemini/docs", linkText: "Google Cloud Docs", models: "Gemini, PaLM, Gemma", hosting: "Google Cloud managed platform" }
+        ];
 
         // --- DATA ---
         const REPO_THEMES = {
-            core: { 
-                label: "CORE_INDEX", 
-                desc: { it: "Fondamenta dell'AI Moderna (Full Stack)", en: "Modern AI Foundations (Full Stack)" },
-                briefing: { 
-                    it: "L'arsenale completo per iniziare. Include framework di Deep Learning, librerie LLM e strumenti di Data Science.", 
-                    en: "The complete arsenal to start. Includes Deep Learning frameworks, LLM libraries, and Data Science tools." 
-                },
-                items: [
-                    { id: "pytorch/pytorch", why: { it: "Il framework di DL più usato nella ricerca.", en: "The most used DL framework in research." } },
-                    { id: "tensorflow/tensorflow", why: { it: "Lo standard storico di Google per la produzione.", en: "Google's historic standard for production." } },
-                    { id: "huggingface/transformers", why: { it: "L'API universale per scaricare modelli.", en: "The universal API to download models." } },
-                    { id: "langchain-ai/langchain", why: { it: "Il collante per app LLM.", en: "The glue for LLM apps." } },
-                    { id: "run-llama/llama_index", why: { it: "Specializzato nel RAG.", en: "Specialized in RAG." } },
-                    { id: "numpy/numpy", why: { it: "La base matematica di Python AI.", en: "The math base of Python AI." } },
-                    { id: "pandas-dev/pandas", why: { it: "Manipolazione dati essenziale.", en: "Essential data manipulation." } },
-                    { id: "scikit-learn/scikit-learn", why: { it: "Imbattibile per ML classico.", en: "Unbeatable for classic ML." } },
-                    { id: "tiangolo/fastapi", why: { it: "Standard per API AI veloci.", en: "Standard for fast AI APIs." } },
-                    { id: "streamlit/streamlit", why: { it: "Frontend AI in puro Python.", en: "AI Frontend in pure Python." } }
-                ] 
-            },
-            databases: { 
-                label: "AI_DATABASES", 
-                desc: { it: "Vector Stores & Knowledge Graphs", en: "Vector Stores & Knowledge Graphs" },
-                briefing: { 
-                    it: "La memoria a lungo termine dell'AI. Essenziali per il RAG.", 
-                    en: "AI's long-term memory. Essential for RAG architectures." 
-                },
-                items: [
-                    { id: "milvus-io/milvus", why: { it: "DB vettoriale per scalare su miliardi.", en: "Vector DB to scale to billions." } },
-                    { id: "chroma-core/chroma", why: { it: "Facilissimo da usare con LangChain.", en: "Super easy to use with LangChain." } },
-                    { id: "qdrant/qdrant", why: { it: "Motore vettoriale veloce in Rust.", en: "Fast vector engine in Rust." } },
-                    { id: "weaviate/weaviate", why: { it: "Ricerca ibrida potente.", en: "Powerful hybrid search." } },
-                    { id: "facebookresearch/faiss", why: { it: "Libreria fondamentale di similarità.", en: "Fundamental similarity library." } },
-                    { id: "pgvector/pgvector", why: { it: "Estensione vettoriale per Postgres.", en: "Vector extension for Postgres." } },
-                    { id: "lancedb/lancedb", why: { it: "DB serverless per dati multimodali.", en: "Serverless DB for multimodal data." } },
-                    { id: "neo4j/neo4j", why: { it: "Il re dei Graph DB (GraphRAG).", en: "The king of Graph DBs (GraphRAG)." } }
-                ] 
-            },
-            learning: { 
-                label: "LEARNING", 
-                desc: { it: "Risorse Educative e Guide", en: "Educational Resources & Guides" },
-                briefing: { 
-                    it: "Corsi 'from scratch', guide universitarie e tutorial.", 
-                    en: "From-scratch courses, university guides, and tutorials." 
-                },
-                items: [
-                    { id: "rasbt/LLMs-from-scratch", why: { it: "Costruisci un GPT da zero.", en: "Build a GPT from scratch." } },
-                    { id: "huggingface/course", why: { it: "Corso ufficiale ecosistema HF.", en: "Official HF ecosystem course." } },
-                    { id: "karpathy/nanoGPT", why: { it: "GPT in 300 righe di codice.", en: "GPT in 300 lines of code." } },
-                    { id: "ageron/handson-ml3", why: { it: "Notebook del libro Hands-On ML.", en: "Hands-On ML book notebooks." } },
-                    { id: "fastai/fastai", why: { it: "Deep Learning accessibile top-down.", en: "Accessible top-down Deep Learning." } },
-                    { id: "d2l-ai/d2l-en", why: { it: "Libro interattivo completo.", en: "Complete interactive book." } },
-                    { id: "microsoft/ML-For-Beginners", why: { it: "Corso introduttivo di 12 settimane.", en: "12-week introductory course." } }
-                ] 
-            },
-            genai: { 
-                label: "GEN_AI", 
-                desc: { it: "Generazione Testo, Immagini & Audio", en: "Text, Image & Audio Generation" },
-                briefing: { 
-                    it: "La frontiera creativa. Generazione contenuti e serving locale.", 
-                    en: "The creative frontier. Content generation and local serving." 
-                },
-                items: [
-                    { id: "AUTOMATIC1111/stable-diffusion-webui", why: { it: "Interfaccia standard per SD.", en: "Standard interface for SD." } },
-                    { id: "comfyanonymous/ComfyUI", why: { it: "Interfaccia a nodi potente.", en: "Powerful node-based interface." } },
-                    { id: "openai/whisper", why: { it: "Miglior Speech-to-Text open.", en: "Best open Speech-to-Text." } },
-                    { id: "ollama/ollama", why: { it: "Esegui LLM locali facilmente.", en: "Run local LLMs easily." } },
-                    { id: "vllm-project/vllm", why: { it: "Serving engine ad alte prestazioni.", en: "High-performance serving engine." } },
-                    { id: "lm-sys/FastChat", why: { it: "Piattaforma per chatbot LLM.", en: "Platform for LLM chatbots." } },
-                    { id: "ggerganov/llama.cpp", why: { it: "LLM su CPU/MacBook.", en: "LLMs on CPU/MacBook." } },
-                    { id: "Stability-AI/generative-models", why: { it: "Modelli base Stability AI.", en: "Stability AI base models." } }
-                ] 
-            },
-            agentic: { 
-                label: "AGENTIC_AI", 
-                desc: { it: "Agenti Autonomi & Orchestrazione", en: "Autonomous Agents & Orchestration" },
-                briefing: { 
-                    it: "Framework per costruire agenti che agiscono e collaborano.", 
-                    en: "Frameworks to build agents that act and collaborate." 
-                },
-                items: [
-                    { id: "langchain-ai/langchain", why: { it: "Framework storico per agenti.", en: "Historic framework for agents." } },
-                    { id: "langchain-ai/langgraph", why: { it: "Agenti stateful e robusti.", en: "Stateful and robust agents." } },
-                    { id: "microsoft/autogen", why: { it: "Agenti conversazionali multipli.", en: "Multiple conversational agents." } },
-                    { id: "crewAIInc/crewAI", why: { it: "Orchestra team di agenti.", en: "Orchestrate agent teams." } },
-                    { id: "Significant-Gravitas/AutoGPT", why: { it: "Agente autonomo sperimentale.", en: "Experimental autonomous agent." } },
-                    { id: "OpenInterpreter/open-interpreter", why: { it: "Esegue codice localmente.", en: "Runs code locally." } },
-                    { id: "microsoft/semantic-kernel", why: { it: "SDK integrazione app.", en: "App integration SDK." } }
-                ] 
-            },
-            ml: { 
-                label: "MACHINE_LEARNING", 
-                desc: { it: "Fondamenta e Deep Learning", en: "Foundations & Deep Learning" },
-                briefing: { 
-                    it: "La matematica e gli algoritmi classici sotto il cofano.", 
-                    en: "Math and classic algorithms under the hood." 
-                },
-                items: [
-                    { id: "pytorch/pytorch", why: { it: "Framework dominante.", en: "Dominant framework." } },
-                    { id: "tensorflow/tensorflow", why: { it: "Colosso storico production.", en: "Historic production giant." } },
-                    { id: "scikit-learn/scikit-learn", why: { it: "Indispensabile ML classico.", en: "Indispensable classic ML." } },
-                    { id: "dmlc/xgboost", why: { it: "Re dei dati tabulari.", en: "King of tabular data." } },
-                    { id: "microsoft/LightGBM", why: { it: "Alternativa veloce a XGBoost.", en: "Fast alternative to XGBoost." } },
-                    { id: "numpy/numpy", why: { it: "Base calcolo scientifico.", en: "Scientific computing base." } },
-                    { id: "pandas-dev/pandas", why: { it: "Excel programmabile.", en: "Programmable Excel." } },
-                    { id: "google/jax", why: { it: "Calcolo numerico avanzato.", en: "Advanced numerical computing." } }
-                ] 
-            },
-            opensource: { 
-                label: "OPEN_SOURCE_AI", 
-                desc: { it: "Community Hub & Open Weights", en: "Community Hub & Open Weights" },
-                briefing: { 
-                    it: "Il cuore della community. Modelli e pesi aperti.", 
-                    en: "Heart of the community. Models and open weights." 
-                },
-                items: [
-                    { id: "huggingface/transformers", why: { it: "API modelli pre-addestrati.", en: "Pre-trained models API." } },
-                    { id: "huggingface/diffusers", why: { it: "Libreria generazione media.", en: "Media generation library." } },
-                    { id: "huggingface/peft", why: { it: "Fine-tuning efficiente.", en: "Efficient fine-tuning." } },
-                    { id: "facebookresearch/llama", why: { it: "Standard LLM open weights.", en: "Open weights LLM standard." } },
-                    { id: "mistralai/mistral-src", why: { it: "Codice riferimento Mistral.", en: "Mistral reference code." } },
-                    { id: "EleutherAI/gpt-neox", why: { it: "Training su scala massiva.", en: "Massive scale training." } },
-                    { id: "LAION-AI/Open-Assistant", why: { it: "Assistente chat open source.", en: "Open source chat assistant." } }
-                ] 
-            }
+            core: { label: "CORE_INDEX", desc: { it: "Fondamenta AI", en: "AI Foundations" }, briefing: { it: "L'arsenale completo: Framework DL, LLM e Data Science.", en: "The complete arsenal: DL Frameworks, LLMs, and Data Science." },
+                items: [{id: "pytorch/pytorch", why: {it: "Il motore matematico preferito dalla ricerca. Fondamentale per capire le reti neurali.", en: "Research's favorite mathematical engine. Essential for understanding neural nets."}}, {id: "tensorflow/tensorflow", why: {it: "La piattaforma storica di Google per il ML su larga scala e produzione.", en: "Google's historic platform for large-scale ML and production."}}, {id: "huggingface/transformers", why: {it: "Il 'GitHub dei Modelli'. Scarica migliaia di modelli con due righe di codice.", en: "The 'GitHub of Models'. Download thousands of models with two lines of code."}}, {id: "langchain-ai/langchain", why: {it: "Il framework per connettere gli LLM ai tuoi dati (PDF, DB) e creare app.", en: "Framework to connect LLMs to your data (PDFs, DBs) and build apps."}}, {id: "run-llama/llama_index", why: {it: "Specializzato nell'ingestione dati per il RAG. Ottimo per search su documenti.", en: "Specialized in data ingestion for RAG. Great for document search."}}, {id: "numpy/numpy", why: {it: "La base di tutto. Gestione array ad alta velocità per il calcolo scientifico.", en: "The foundation. High-speed array handling for scientific computing."}}, {id: "pandas-dev/pandas", why: {it: "Il 'Excel programmabile'. Essenziale per pulire e analizzare i dati prima del training.", en: "The 'Programmable Excel'. Essential for cleaning and analyzing data before training."}}, {id: "scikit-learn/scikit-learn", why: {it: "Imbattibile per algoritmi classici (non-Deep) come regressioni e clustering.", en: "Unbeatable for classic algorithms (non-Deep) like regressions and clustering."}}, {id: "tiangolo/fastapi", why: {it: "Lo standard moderno per creare API veloci e servire i tuoi modelli AI.", en: "The modern standard for building fast APIs and serving your AI models."}}, {id: "streamlit/streamlit", why: {it: "Crea interfacce web per le tue demo AI in puro Python, senza HTML/CSS.", en: "Create web interfaces for your AI demos in pure Python, no HTML/CSS needed."}}] },
+            databases: { label: "AI_DATABASES", desc: { it: "Memoria per AI", en: "AI Memory" }, briefing: { it: "Database vettoriali e a grafo: la memoria a lungo termine per il RAG.", en: "Vector and Graph databases: long-term memory for RAG." },
+                items: [{id: "milvus-io/milvus", why: {it: "DB vettoriale cloud-native per scalare su miliardi di vettori.", en: "Cloud-native vector DB scaling to billions of vectors."}}, {id: "chroma-core/chroma", why: {it: "Soluzione open-source 'AI-native', facilissima da integrare.", en: "'AI-native' open-source solution, super easy to integrate."}}, {id: "qdrant/qdrant", why: {it: "Motore vettoriale in Rust. Veloce, efficiente e supporta filtri complessi.", en: "Vector engine in Rust. Fast, efficient, supports complex filters."}}, {id: "weaviate/weaviate", why: {it: "DB vettoriale con moduli ML integrati e ricerca ibrida.", en: "Vector DB with integrated ML modules and hybrid search."}}, {id: "facebookresearch/faiss", why: {it: "La libreria fondamentale di Meta per la ricerca di similarità densa.", en: "Meta's fundamental library for dense similarity search."}}, {id: "pgvector/pgvector", why: {it: "Estensione per PostgreSQL. Perfetto se usi già Postgres.", en: "Extension for PostgreSQL. Perfect if you already use Postgres."}}, {id: "lancedb/lancedb", why: {it: "DB vettoriale serverless per dati multimodali (immagini, video).", en: "Serverless vector DB for multimodal data (images, video)."}}, {id: "neo4j/neo4j", why: {it: "Il database a grafo leader. Cruciale per il GraphRAG (relazioni tra concetti).", en: "The leading graph database. Crucial for GraphRAG (concept relationships)."}}] },
+            learning: { label: "LEARNING", desc: { it: "Risorse Educative", en: "Educational Resources" }, briefing: { it: "Impara dai migliori: corsi, tutorial e implementazioni da zero.", en: "Learn from the best: courses, tutorials, and from-scratch implementations." },
+                items: [{id: "rasbt/LLMs-from-scratch", why: {it: "Il miglior libro/repo per costruire un clone di GPT da zero. Illuminante.", en: "The best book/repo to build a GPT clone from scratch. Enlightening."}}, {id: "huggingface/course", why: {it: "Il corso ufficiale gratuito per padroneggiare l'ecosistema Transformers.", en: "Official free course to master the Transformers ecosystem."}}, {id: "karpathy/nanoGPT", why: {it: "Codice minimale di Andrej Karpathy per addestrare GPT. Un capolavoro didattico.", en: "Andrej Karpathy's minimal code to train GPT. An educational masterpiece."}}, {id: "ageron/handson-ml3", why: {it: "Notebook del libro 'Hands-On ML', la bibbia per iniziare con Scikit/TF.", en: "Notebooks from 'Hands-On ML', the bible for starting with Scikit/TF."}}, {id: "fastai/fastai", why: {it: "Approccio 'top-down' al Deep Learning. Ottieni risultati subito, poi capisci la teoria.", en: "'Top-down' approach to Deep Learning. Get results first, understand theory later."}}, {id: "d2l-ai/d2l-en", why: {it: "Dive into Deep Learning: libro interattivo completo con codice eseguibile.", en: "Dive into Deep Learning: complete interactive book with executable code."}}, {id: "microsoft/ML-For-Beginners", why: {it: "Curriculum di 12 settimane creato da Microsoft. Ottimo punto di partenza.", en: "12-week curriculum by Microsoft. Great starting point."}}] },
+            genai: { label: "GEN_AI", desc: { it: "Generazione Media", en: "Media Generation" }, briefing: { it: "Strumenti per creare immagini, audio e servire modelli LLM in locale.", en: "Tools to create images, audio, and serve LLMs locally." },
+                items: [{id: "AUTOMATIC1111/stable-diffusion-webui", why: {it: "L'interfaccia standard per generare immagini con Stable Diffusion. Piena di feature.", en: "Standard interface for generating images with Stable Diffusion. Feature-packed."}}, {id: "comfyanonymous/ComfyUI", why: {it: "Interfaccia a nodi per SD. Massima potenza e controllo per workflow complessi.", en: "Node-based UI for SD. Maximum power and control for complex workflows."}}, {id: "openai/whisper", why: {it: "Il miglior modello open per trascrivere audio (Speech-to-Text).", en: "Best open model for audio transcription (Speech-to-Text)."}}, {id: "ollama/ollama", why: {it: "Esegui Llama 3, Mistral e altri sul tuo PC con un comando. Zero config.", en: "Run Llama 3, Mistral, and others on your PC with one command. Zero config."}}, {id: "vllm-project/vllm", why: {it: "Il motore più veloce per servire LLM in produzione ad alto throughput.", en: "Fastest engine for serving high-throughput LLMs in production."}}, {id: "lm-sys/FastChat", why: {it: "Piattaforma aperta per addestrare, servire e valutare chatbot.", en: "Open platform for training, serving, and evaluating chatbots."}}, {id: "ggerganov/llama.cpp", why: {it: "Il miracolo che porta gli LLM su CPU e Apple Silicon.", en: "The miracle bringing LLMs to CPU and Apple Silicon."}}, {id: "Stability-AI/generative-models", why: {it: "Repo ufficiale per i modelli base di Stability AI (immagini, video, 3D).", en: "Official repo for Stability AI base models (images, video, 3D)."}}] },
+            agentic: { label: "AGENTIC_AI", desc: { it: "Agenti Autonomi", en: "Autonomous Agents" }, briefing: { it: "Framework per costruire agenti che ragionano e agiscono nel mondo reale.", en: "Frameworks to build agents that reason and act in the real world." },
+                items: [{id: "langchain-ai/langchain", why: {it: "Il framework storico per creare catene di pensiero e tool use.", en: "Historic framework for creating chains of thought and tool use."}}, {id: "langchain-ai/langgraph", why: {it: "L'evoluzione per creare agenti stateful, ciclici e robusti.", en: "Evolution for creating stateful, cyclic, and robust agents."}}, {id: "microsoft/autogen", why: {it: "Crea team di agenti che conversano tra loro per risolvere task.", en: "Create teams of agents conversing to solve tasks."}}, {id: "crewAIInc/crewAI", why: {it: "Orchestra agenti con ruoli specifici (es. Ricercatore, Scrittore).", en: "Orchestrate agents with specific roles (e.g., Researcher, Writer)."}}, {id: "Significant-Gravitas/AutoGPT", why: {it: "Uno dei primi agenti autonomi. Gli dai un obiettivo, lui prova a raggiungerlo.", en: "One of the first autonomous agents. Give it a goal, it tries to reach it."}}, {id: "OpenInterpreter/open-interpreter", why: {it: "Permette all'LLM di eseguire vero codice sul tuo computer per agire.", en: "Lets LLMs run real code on your computer to act."}}, {id: "microsoft/semantic-kernel", why: {it: "SDK leggero per integrare LLM in codice 'tradizionale' (C#, Python).", en: "Lightweight SDK to integrate LLMs into 'traditional' code (C#, Python)."}}] },
+            ml: { label: "MACHINE_LEARNING", desc: { it: "ML Classico", en: "Classic ML" }, briefing: { it: "Algoritmi classici, boosting e calcolo numerico.", en: "Classic algorithms, boosting, and numerical computing." },
+                items: [{id: "pytorch/pytorch", why: {it: "Framework dominante.", en: "Dominant framework."}}, {id: "tensorflow/tensorflow", why: {it: "Standard produzione.", en: "Production standard."}}, {id: "scikit-learn/scikit-learn", why: {it: "Strumenti semplici ed efficienti per l'analisi dati.", en: "Simple and efficient tools for data mining and data analysis."}}, {id: "dmlc/xgboost", why: {it: "Il re delle competizioni su dati tabulari.", en: "The king of tabular data competitions."}}, {id: "microsoft/LightGBM", why: {it: "Gradient boosting veloce ed efficiente.", en: "Fast and efficient gradient boosting."}}, {id: "numpy/numpy", why: {it: "Base del calcolo scientifico.", en: "Scientific computing base."}}, {id: "pandas-dev/pandas", why: {it: "Strumento potente per l'analisi e manipolazione dati.", en: "Powerful data analysis and manipulation tool."}}, {id: "google/jax", why: {it: "Autograd e XLA per calcolo ad alte prestazioni.", en: "Autograd and XLA for high-performance machine learning research."}}] },
+            opensource: { label: "OPEN_SOURCE_AI", desc: { it: "Hub & Modelli", en: "Hub & Models" }, briefing: { it: "Piattaforme e strumenti chiave per l'AI open source.", en: "Key platforms and tools for open source AI." },
+                items: [{id: "huggingface/transformers", why: {it: "Migliaia di modelli pre-addestrati pronti all'uso.", en: "Thousands of pre-trained models ready to use."}}, {id: "huggingface/diffusers", why: {it: "Modelli di diffusione per generazione immagini/audio.", en: "Diffusion models for image/audio generation."}}, {id: "huggingface/peft", why: {it: "Fine-tuning efficiente per modelli di grandi dimensioni.", en: "Efficient fine-tuning for large models."}}, {id: "facebookresearch/llama", why: {it: "Il modello che ha democratizzato gli LLM potenti.", en: "The model that democratized powerful LLMs."}}, {id: "mistralai/mistral-src", why: {it: "Modelli efficienti e performanti open weights.", en: "Efficient and high-performance open weights models."}}, {id: "EleutherAI/gpt-neox", why: {it: "Libreria per addestrare modelli trasformer su GPU.", en: "Library for training transformer models on GPUs."}}, {id: "LAION-AI/Open-Assistant", why: {it: "Assistente conversazionale open source.", en: "Open source conversational assistant."}}] }
         };
 
         const TITAN_THEMES = {
-            meta: { 
-                label: "META (FAIR)", 
-                desc: { it: "Open Weight Leadership", en: "Open Weight Leadership" },
-                briefing: { it: "Meta ha reso mainstream l'AI locale con Llama.", en: "Meta made local AI mainstream with Llama." },
+            meta: { label: "META (FAIR)", desc: {it: "Open Weight Leadership", en: "Open Weight Leadership"}, briefing: {it: "Leader dell'AI Open Source.", en: "Open Source AI Leader."}, items: [{id: "facebookresearch/llama", why: {it: "La famiglia di modelli open più influente.", en: "The most influential open model family."}}, {id: "pytorch/pytorch", why: {it: "Il framework preferito dalla ricerca.", en: "Research's favorite framework."}}, {id: "facebookresearch/segment-anything", why: {it: "Segmentazione immagini universale.", en: "Universal image segmentation."}}, {id: "facebookresearch/detectron2", why: {it: "Piattaforma next-gen per object detection.", en: "Next-gen platform for object detection."}}, {id: "facebookresearch/faiss", why: {it: "Ricerca di similarità efficiente.", en: "Efficient similarity search."}}, {id: "facebookresearch/dinov2", why: {it: "Vision transformer autosupervisionato.", en: "Self-supervised vision transformer."}}, {id: "facebookresearch/fastText", why: {it: "Classificazione testo efficiente.", en: "Efficient text classification."}}] },
+            microsoft: { label: "MICROSOFT", desc: {it: "Enterprise Agents", en: "Enterprise Agents"}, briefing: {it: "AI per l'azienda e produttività.", en: "AI for enterprise and productivity."}, items: [{id: "microsoft/autogen", why: {it: "Sviluppo agenti conversazionali.", en: "Conversational agent development."}}, {id: "microsoft/DeepSpeed", why: {it: "Ottimizzazione training deep learning.", en: "Deep learning training optimization."}}, {id: "microsoft/semantic-kernel", why: {it: "Integrazione LLM nelle app.", en: "Integrating LLMs into apps."}}, {id: "microsoft/graphrag", why: {it: "RAG potenziato da knowledge graph.", en: "Knowledge graph powered RAG."}}, {id: "microsoft/guidance", why: {it: "Linguaggio per controllare LLM.", en: "Language for controlling LLMs."}}, {id: "microsoft/playwright", why: {it: "Automazione web affidabile.", en: "Reliable web automation."}}, {id: "microsoft/LIDA", why: {it: "Visualizzazione dati automatica.", en: "Automatic data visualization."}}] },
+            google: { label: "GOOGLE", desc: {it: "Research", en: "Research"}, briefing: {it: "Pionieri della ricerca AI.", en: "AI Research Pioneers."}, items: [{id: "tensorflow/tensorflow", why: {it: "Piattaforma ML completa.", en: "Comprehensive ML platform."}}, {id: "google/jax", why: {it: "Calcolo numerico accelerato.", en: "Accelerated numerical computing."}}, {id: "google/gemma_pytorch", why: {it: "Modelli aperti leggeri.", en: "Lightweight open models."}}, {id: "google-research/bert", why: {it: "Pre-training bidirezionale per NLP.", en: "Bidirectional pre-training for NLP."}}, {id: "google/mediapipe", why: {it: "ML on-device multipiattaforma.", en: "Cross-platform on-device ML."}}, {id: "google/flax", why: {it: "Rete neurale flessibile per JAX.", en: "Flexible neural network library for JAX."}}, {id: "google/sentencepiece", why: {it: "Tokenizzatore non supervisionato.", en: "Unsupervised text tokenizer."}}] },
+            openai: { label: "OPENAI", desc: {it: "Generative SOTA", en: "Generative SOTA"}, briefing: {it: "Definiscono lo stato dell'arte.", en: "Defining the state of the art."}, items: [{id: "openai/whisper", why: {it: "Riconoscimento vocale robusto.", en: "Robust speech recognition."}}, {id: "openai/tiktoken", why: {it: "Tokenizzatore BPE veloce.", en: "Fast BPE tokenizer."}}, {id: "openai/clip", why: {it: "Apprendimento visuale trasferibile.", en: "Transferable visual learning."}}, {id: "openai/evals", why: {it: "Framework valutazione LLM.", en: "LLM evaluation framework."}}, {id: "openai/shap-e", why: {it: "Generazione oggetti 3D.", en: "3D object generation."}}, {id: "openai/point-e", why: {it: "Generazione nuvole di punti.", en: "Point cloud generation."}}, {id: "openai/openai-python", why: {it: "Libreria Python ufficiale.", en: "Official Python library."}}] },
+            huggingface: { label: "HUGGING FACE", desc: {it: "The Hub", en: "The Hub"}, briefing: {it: "La casa dell'AI open source.", en: "Home of open source AI."}, items: [{id: "huggingface/transformers", why: {it: "NLP all'avanguardia.", en: "State-of-the-art NLP."}}, {id: "huggingface/diffusers", why: {it: "Modelli di diffusione.", en: "Diffusion models."}}, {id: "huggingface/peft", why: {it: "Parameter-Efficient Fine-Tuning.", en: "Parameter-Efficient Fine-Tuning."}}, {id: "huggingface/datasets", why: {it: "Libreria per dataset ML.", en: "Library for ML datasets."}}, {id: "huggingface/accelerate", why: {it: "Training loop semplice.", en: "Simple training loop."}}, {id: "huggingface/tokenizers", why: {it: "Tokenizzatori veloci.", en: "Fast tokenizers."}}, {id: "huggingface/text-generation-inference", why: {it: "Toolkit per inferenza testo.", en: "Text inference toolkit."}}] },
+            nvidia: { label: "NVIDIA", desc: {it: "Hardware", en: "Hardware"}, briefing: {it: "Potenza di calcolo per l'AI.", en: "Computing power for AI."}, items: [{id: "NVIDIA/NeMo", why: {it: "Toolkit per AI conversazionale.", en: "Toolkit for conversational AI."}}, {id: "NVIDIA/TensorRT", why: {it: "Ottimizzatore per deep learning.", en: "Deep learning optimizer."}}, {id: "NVIDIA/dali", why: {it: "Libreria caricamento dati.", en: "Data loading library."}}, {id: "NVIDIA/cuda-samples", why: {it: "Esempi per CUDA.", en: "Samples for CUDA."}}, {id: "NVIDIA/Megatron-LM", why: {it: "Training modelli enormi.", en: "Training huge models."}}] },
+            mistral: { label: "CHALLENGERS", desc: {it: "New Powers", en: "New Powers"}, briefing: {it: "Nuovi attori emergenti.", en: "Emerging new players."}, items: [{id: "mistralai/mistral-src", why: {it: "Codice di riferimento.", en: "Reference code."}}, {id: "mistralai/mistral-inference", why: {it: "Codice inferenza Python.", en: "Python inference code."}}, {id: "xai-org/grok-1", why: {it: "Modello pesi aperti di xAI.", en: "xAI open weights model."}}, {id: "cohere-ai/cohere-python", why: {it: "SDK Python per Cohere.", en: "Cohere Python SDK."}}, {id: "Stability-AI/stablediffusion", why: {it: "Latent text-to-image diffusion.", en: "Latent text-to-image diffusion."}}] },
+            anthropic: { 
+                label: "ANTHROPIC", 
+                desc: { it: "Safety & Agents", en: "Safety & Agents" },
+                briefing: { it: "Creatori di Claude. Focus su sicurezza e tool agentici avanzati.", en: "Creators of Claude. Focus on safety and advanced agentic tools." },
                 items: [
-                    { id: "facebookresearch/llama", why: { it: "Il modello della rivoluzione.", en: "The revolution model." } },
-                    { id: "pytorch/pytorch", why: { it: "Standard Deep Learning.", en: "Deep Learning standard." } },
-                    { id: "facebookresearch/segment-anything", why: { it: "Vision fondamentale.", en: "Fundamental Vision." } },
-                    { id: "facebookresearch/detectron2", why: { it: "Object detection avanzata.", en: "Advanced object detection." } },
-                    { id: "facebookresearch/faiss", why: { it: "Ricerca similarità efficiente.", en: "Efficient similarity search." } },
-                    { id: "facebookresearch/dinov2", why: { it: "Vision self-supervised.", en: "Self-supervised Vision." } },
-                    { id: "facebookresearch/fastText", why: { it: "Classificazione testo veloce.", en: "Fast text classification." } }
-                ] 
-            },
-            microsoft: { 
-                label: "MICROSOFT", 
-                desc: { it: "Enterprise Agents & Infra", en: "Enterprise Agents & Infra" },
-                briefing: { it: "Focus su integrazione aziendale e scalabilità.", en: "Focus on enterprise integration and scalability." },
-                items: [
-                    { id: "microsoft/autogen", why: { it: "Sistemi multi-agente.", en: "Multi-agent systems." } },
-                    { id: "microsoft/DeepSpeed", why: { it: "Training modelli giganti.", en: "Giant model training." } },
-                    { id: "microsoft/semantic-kernel", why: { it: "Ponte codice-AI.", en: "Code-AI bridge." } },
-                    { id: "microsoft/graphrag", why: { it: "RAG con grafi conoscenza.", en: "Knowledge graph RAG." } },
-                    { id: "microsoft/guidance", why: { it: "Controllo flusso prompt.", en: "Prompt flow control." } },
-                    { id: "microsoft/playwright", why: { it: "Automazione browser.", en: "Browser automation." } },
-                    { id: "microsoft/LIDA", why: { it: "Visualizzazione dati auto.", en: "Auto data visualization." } }
-                ] 
-            },
-            google: { 
-                label: "GOOGLE", 
-                desc: { it: "Research & Efficiency", en: "Research & Efficiency" },
-                briefing: { it: "Inventori dei Transformers. Stack profondo e matematico.", en: "Inventors of Transformers. Deep math stack." },
-                items: [
-                    { id: "tensorflow/tensorflow", why: { it: "Colosso ML production.", en: "ML production giant." } },
-                    { id: "google/jax", why: { it: "Matematica high-perf.", en: "High-perf math." } },
-                    { id: "google-research/bert", why: { it: "Rivoluzione NLP pre-GPT.", en: "Pre-GPT NLP revolution." } },
-                    { id: "google/mediapipe", why: { it: "ML on-device veloce.", en: "Fast on-device ML." } },
-                    { id: "google-research/t5x", why: { it: "Framework modelli T5.", en: "T5 model framework." } },
-                    { id: "google/flax", why: { it: "Reti neurali su JAX.", en: "Neural nets on JAX." } },
-                    { id: "google/sentencepiece", why: { it: "Tokenizzatore universale.", en: "Universal tokenizer." } }
-                ] 
-            },
-            openai: { 
-                label: "OPENAI", 
-                desc: { it: "Generative SOTA", en: "Generative SOTA" },
-                briefing: { it: "Tool di supporto essenziali per l'industria.", en: "Essential industry support tools." },
-                items: [
-                    { id: "openai/whisper", why: { it: "Miglior Audio-to-Text.", en: "Best Audio-to-Text." } },
-                    { id: "openai/tiktoken", why: { it: "Tokenizer velocissimo.", en: "Fastest tokenizer." } },
-                    { id: "openai/clip", why: { it: "Ponte testo-immagini.", en: "Text-image bridge." } },
-                    { id: "openai/evals", why: { it: "Testing per LLM.", en: "LLM testing." } },
-                    { id: "openai/shap-e", why: { it: "Generazione asset 3D.", en: "3D asset generation." } },
-                    { id: "openai/point-e", why: { it: "Nuvole punti 3D.", en: "3D point clouds." } },
-                    { id: "openai/openai-python", why: { it: "Libreria client ufficiale.", en: "Official client library." } }
-                ] 
-            },
-            huggingface: { 
-                label: "HUGGING FACE", 
-                desc: { it: "The Community Hub", en: "The Community Hub" },
-                briefing: { it: "La piazza del mercato dell'AI open source.", en: "The open source AI marketplace." },
-                items: [
-                    { id: "huggingface/transformers", why: { it: "Accesso a tutti i modelli.", en: "Access all models." } },
-                    { id: "huggingface/diffusers", why: { it: "Generazione media.", en: "Media generation." } },
-                    { id: "huggingface/peft", why: { it: "Adattamento modelli grandi.", en: "Large model adaptation." } },
-                    { id: "huggingface/datasets", why: { it: "Gestione dataset enormi.", en: "Huge dataset management." } },
-                    { id: "huggingface/accelerate", why: { it: "Training multi-GPU facile.", en: "Easy multi-GPU training." } },
-                    { id: "huggingface/tokenizers", why: { it: "Tokenizzatori Rust.", en: "Rust tokenizers." } },
-                    { id: "huggingface/text-generation-inference", why: { it: "Server inferenza prod.", en: "Prod inference server." } }
-                ] 
-            },
-            nvidia: { 
-                label: "NVIDIA", 
-                desc: { it: "Hardware & Acceleration", en: "Hardware & Acceleration" },
-                briefing: { it: "Software per spremere potenza dalle GPU.", en: "Software to squeeze GPU power." },
-                items: [
-                    { id: "NVIDIA/NeMo", why: { it: "Toolkit modelli enterprise.", en: "Enterprise model toolkit." } },
-                    { id: "NVIDIA/TensorRT", why: { it: "Compilatore inferenza.", en: "Inference compiler." } },
-                    { id: "NVIDIA/dali", why: { it: "Accelerazione dati GPU.", en: "GPU data acceleration." } },
-                    { id: "NVIDIA/cuda-samples", why: { it: "Esempi programmazione GPU.", en: "GPU programming examples." } },
-                    { id: "NVIDIA/Megatron-LM", why: { it: "Training modelli massivi.", en: "Massive model training." } }
-                ] 
-            },
-            mistral: { 
-                label: "CHALLENGERS", 
-                desc: { it: "Mistral, xAI & Emerging", en: "Mistral, xAI & Emerging" },
-                briefing: { it: "Nuove potenze: efficienza e modelli senza filtri.", en: "New powers: efficiency and unfiltered models." },
-                items: [
-                    { id: "mistralai/mistral-src", why: { it: "Riferimento Mistral.", en: "Mistral reference." } },
-                    { id: "mistralai/mistral-inference", why: { it: "Inferenza Mistral.", en: "Mistral inference." } },
-                    { id: "xai-org/grok-1", why: { it: "Modello gigante xAI.", en: "Giant xAI model." } },
-                    { id: "cohere-ai/cohere-python", why: { it: "Client Cohere RAG.", en: "Cohere RAG client." } },
-                    { id: "Stability-AI/stablediffusion", why: { it: "Repo originale SD.", en: "Original SD repo." } }
+                    { id: "anthropics/claude-code", why: { it: "Agente di coding autonomo da terminale. Un assistente capace di comprendere e modificare codebase complesse.", en: "Autonomous coding agent in your terminal. An assistant capable of understanding and modifying complex codebases." } },
+                    { id: "anthropics/skills", why: { it: "Raccolta ufficiale di tool per agenti Claude. Include integrazioni pronte per API e servizi.", en: "Official collection of tools for Claude agents. Includes ready-made API and service integrations." } },
+                    { id: "anthropics/prompt-eng-interactive-tutorial", why: { it: "Il miglior punto di partenza pratico per imparare a scrivere prompt efficaci per Claude.", en: "The best practical starting point to learn how to write effective prompts for Claude." } },
+                    { id: "anthropics/anthropic-sdk-python", why: { it: "Libreria fondamentale per integrare Claude 3.5 e successivi nelle tue applicazioni Python.", en: "Fundamental library for integrating Claude 3.5 and later into your Python applications." } },
+                    { id: "anthropics/anthropic-cookbook", why: { it: "Repository essenziale con esempi di codice avanzati (RAG, Citations, Vision).", en: "Essential repository with advanced code examples (RAG, Citations, Vision)." } },
+                    { id: "anthropics/courses", why: { it: "Materiale educativo approfondito sulla sicurezza AI e l'allineamento dei modelli.", en: "In-depth educational material on AI safety and model alignment." } }
                 ] 
             }
         };
 
         // --- DOM ---
         const dom = {
-            viewSelector: document.getElementById('view-selector'),
-            viewExplorer: document.getElementById('view-explorer'),
-            viewTitans: document.getElementById('view-titans'),
-            searchInput: document.getElementById('search-input'),
-            executeButton: document.getElementById('execute-query-button'),
-            expButtonsContainer: document.getElementById('category-buttons'),
-            titansButtonsContainer: document.getElementById('titans-buttons'),
-            resultsContainer: document.getElementById('results-container'),
-            titansContainer: document.getElementById('titans-container'),
-            resultsTitle: document.getElementById('results-title'),
-            resultsSubtitle: document.getElementById('results-subtitle'),
-            explorerBriefing: document.getElementById('explorer-briefing'),
-            explorerBriefingText: document.getElementById('explorer-briefing-text'),
-            titanBriefing: document.getElementById('titan-briefing'),
-            titanBriefingTitle: document.getElementById('titan-briefing-title'),
-            titanBriefingText: document.getElementById('titan-briefing-text'),
-            titanHeaderName: document.getElementById('titan-header-name'),
-            titanLogo: document.getElementById('titan-logo-placeholder'),
-            spinnerExp: document.getElementById('loading-spinner-exp'),
-            spinnerTitans: document.getElementById('loading-spinner-titans'),
-            apiStatusDot: document.getElementById('api-status-dot'),
-            langEn: document.getElementById('lang-en'),
-            langIt: document.getElementById('lang-it'),
-            modalGuide: document.getElementById('guide-modal'),
-            btnOpenGuide: document.getElementById('btn-open-guide'),
-            btnCloseGuide: document.getElementById('btn-close-guide')
+            viewSelector: document.getElementById('view-selector'), viewExplorer: document.getElementById('view-explorer'), viewTitans: document.getElementById('view-titans'), viewMcp: document.getElementById('view-mcp'), viewDocs: document.getElementById('view-docs'),
+            searchInput: document.getElementById('search-input'), executeButton: document.getElementById('execute-query-button'),
+            expButtonsContainer: document.getElementById('category-buttons'), titansButtonsContainer: document.getElementById('titans-buttons'),
+            resultsContainer: document.getElementById('results-container'), titansContainer: document.getElementById('titans-container'), mcpContainer: document.getElementById('mcp-container'), docsContainer: document.getElementById('docs-container'),
+            resultsTitle: document.getElementById('results-title'), resultsSubtitle: document.getElementById('results-subtitle'),
+            explorerBriefing: document.getElementById('explorer-briefing'), explorerBriefingText: document.getElementById('explorer-briefing-text'),
+            titanBriefing: document.getElementById('titan-briefing'), titanBriefingTitle: document.getElementById('titan-briefing-title'), titanBriefingText: document.getElementById('titan-briefing-text'),
+            mcpBriefingText: document.getElementById('mcp-briefing-text'), docsBriefingText: document.getElementById('docs-briefing-text'),
+            titanHeaderName: document.getElementById('titan-header-name'), titanLogo: document.getElementById('titan-logo-placeholder'),
+            spinnerExp: document.getElementById('loading-spinner-exp'), spinnerTitans: document.getElementById('loading-spinner-titans'),
+            apiStatusDot: document.getElementById('api-status-dot'), langEn: document.getElementById('lang-en'), langIt: document.getElementById('lang-it'),
+            modalGuide: document.getElementById('guide-modal'), btnOpenGuide: document.getElementById('btn-open-guide'), btnCloseGuide: document.getElementById('btn-close-guide')
         };
 
         // --- LANGUAGE LOGIC ---
-        function detectLanguage() {
-            const userLang = navigator.language || navigator.userLanguage;
-            if (userLang.startsWith('it')) {
-                setLanguage('it');
-            } else {
-                setLanguage('en');
-            }
-        }
-
+        function detectLanguage() { const userLang = navigator.language || navigator.userLanguage; setLanguage(userLang.startsWith('it') ? 'it' : 'en'); }
+        
         function setLanguage(lang) {
             currentLang = lang;
-            
-            // Update UI Toggles
-            dom.langEn.classList.toggle('active', lang === 'en');
-            dom.langIt.classList.toggle('active', lang === 'it');
-
-            // Update Static Strings
+            dom.langEn.classList.toggle('active', lang === 'en'); dom.langIt.classList.toggle('active', lang === 'it');
             const texts = I18N[lang];
+            
             document.querySelector('[data-i18n="system_status"]').textContent = texts.system_status;
             document.querySelector('[data-i18n="view_label"]').textContent = texts.view_label;
             document.querySelector('[data-i18n="select_player"]').textContent = texts.select_player;
@@ -702,31 +552,42 @@
             document.querySelector('[data-i18n="author_note"]').textContent = texts.author_note;
             document.querySelector('[data-i18n="guide_btn"]').textContent = texts.guide_btn;
             
-            // Modal Strings
             document.querySelector('[data-i18n="guide_title"]').textContent = texts.guide_title;
             document.querySelector('[data-i18n="guide_intro"]').textContent = texts.guide_intro;
             document.querySelector('[data-i18n="guide_mode_1"]').innerHTML = texts.guide_mode_1;
             document.querySelector('[data-i18n="guide_mode_2"]').innerHTML = texts.guide_mode_2;
+            document.querySelector('[data-i18n="guide_mode_3"]').innerHTML = texts.guide_mode_3;
+            document.querySelector('[data-i18n="guide_mode_4"]').innerHTML = texts.guide_mode_4;
+            
+            if(dom.mcpBriefingText) dom.mcpBriefingText.textContent = texts.mcp_briefing;
+            if(dom.docsBriefingText) dom.docsBriefingText.textContent = texts.docs_briefing;
 
             dom.searchInput.placeholder = texts.search_placeholder;
-            dom.executeButton.textContent = texts.btn_scan;
 
-            // Refresh current view content without API call if possible
             const activeCategory = document.querySelector('.btn-category.active');
             if (activeCategory) {
                 const key = activeCategory.dataset.key;
-                if (!dom.viewExplorer.classList.contains('hidden')) {
-                    updateExplorerContent(key);
-                } else {
-                    updateTitanContent(key);
-                }
+                if (!dom.viewExplorer.classList.contains('hidden')) updateExplorerContent(key);
+                else if (!dom.viewTitans.classList.contains('hidden')) updateTitanContent(key);
             }
+            
+            if (!dom.viewMcp.classList.contains('hidden')) renderMCPGrid();
+            if (!dom.viewDocs.classList.contains('hidden')) renderDocsGrid();
+            
+            updateSearchPlaceholder();
         }
 
-        // --- FETCH ---
+        function updateSearchPlaceholder() {
+             if (!dom.viewMcp.classList.contains('hidden')) {
+                 dom.searchInput.placeholder = I18N[currentLang].mcp_search_placeholder;
+             } else {
+                 dom.searchInput.placeholder = I18N[currentLang].search_placeholder;
+             }
+        }
+
         async function fetchGithubRepos(repoIds) {
             try {
-                const queryParts = repoIds.map(r => `repo:${r}`).join(' ');
+                const queryParts = repoIds.map(r => `repo:${r.id || r}`).join(' '); 
                 const url = `https://api.github.com/search/repositories?q=${encodeURIComponent(queryParts)}&per_page=50`;
                 const response = await fetch(url);
                 if (response.status === 403) throw new Error("RATE_LIMIT");
@@ -743,58 +604,86 @@
             }
         }
 
-        // --- RENDER ---
         function renderRepoCard(repo, whyTextObj, index = 0) {
-            const stars = repo.stargazers_count >= 1000 ? (repo.stargazers_count / 1000).toFixed(1) + 'k' : repo.stargazers_count;
+            const stars = repo.stargazers_count >= 1000 ? (repo.stargazers_count/1000).toFixed(1)+'k' : repo.stargazers_count;
             let desc = repo.description || "---";
             if(desc.length > 90) desc = desc.substring(0, 87) + "...";
-            
             const delay = index * 50; 
-            
-            // Insight HTML
             let insightHtml = '';
             if (whyTextObj && whyTextObj[currentLang]) {
-                insightHtml = `
-                <div class="insight-box mt-3 rounded">
-                    <span class="text-yellow-500 font-bold uppercase text-[10px]">${I18N[currentLang].insight_label}</span><br>
-                    ${whyTextObj[currentLang]}
-                </div>`;
+                insightHtml = `<div class="insight-box mt-3 rounded"><span class="text-yellow-500 font-bold uppercase text-[10px]">${I18N[currentLang].insight_label}</span><br>${whyTextObj[currentLang]}</div>`;
             }
-
             return `
             <a href="${repo.html_url}" target="_blank" class="block group animate-entry h-full" style="animation-delay: ${delay}ms">
                 <div class="bg-interactive p-5 rounded-lg h-full flex flex-col justify-between hover:border-cyan-400">
                     <div>
-                        <div class="flex items-center gap-2 mb-2 opacity-70">
-                            <span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span>
-                            <span class="text-[10px] text-cyan-300 font-mono uppercase tracking-wider">${repo.owner.login}</span>
-                        </div>
+                        <div class="flex items-center gap-2 mb-2 opacity-70"><span class="w-1.5 h-1.5 bg-cyan-500 rounded-full"></span><span class="text-[10px] text-cyan-300 font-mono uppercase tracking-wider">${repo.owner.login}</span></div>
                         <h3 class="text-lg font-bold text-white group-hover:text-cyan-400 font-mono leading-tight mb-2 transition-colors">${repo.name}</h3>
                         <p class="text-xs text-gray-400 leading-relaxed font-sans border-b border-gray-800 pb-3 mb-1">${desc}</p>
                         ${insightHtml}
                     </div>
-                    <div class="mt-3 flex items-center justify-between pt-1">
-                        <div class="flex gap-2">
-                             ${repo.language ? `<span class="px-2 py-1 text-[10px] bg-gray-800 text-cyan-200 rounded border border-gray-600 font-bold uppercase">${repo.language}</span>` : ''}
-                        </div>
-                        <span class="text-yellow-400 font-bold text-sm font-mono flex items-center gap-1">★ ${stars}</span>
-                    </div>
+                    <div class="mt-3 flex items-center justify-between pt-1"><div class="flex gap-2">${repo.language ? `<span class="px-2 py-1 text-[10px] bg-gray-800 text-cyan-200 rounded border border-gray-600 font-bold uppercase">${repo.language}</span>` : ''}</div><span class="text-yellow-400 font-bold text-sm font-mono flex items-center gap-1">★ ${stars}</span></div>
                 </div>
             </a>`;
         }
+        
+        function renderMCPGrid() {
+            dom.mcpContainer.innerHTML = MCP_DATA.map((item, idx) => {
+                const delay = idx * 50;
+                return `
+                <a href="${item.link}" target="_blank" class="block group animate-entry h-full" style="animation-delay: ${delay}ms">
+                    <div class="bg-interactive p-5 rounded-lg h-full flex flex-col justify-between hover:border-yellow-400" style="border-left: 3px solid #FFD700;">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2 opacity-70">
+                                <span class="w-1.5 h-1.5 bg-yellow-500 rounded-full"></span>
+                                <span class="text-[10px] text-yellow-300 font-mono uppercase tracking-wider">MCP SERVER</span>
+                            </div>
+                            <h3 class="text-lg font-bold text-white group-hover:text-yellow-400 font-mono leading-tight mb-2 transition-colors">${item.title}</h3>
+                            <p class="text-xs text-gray-400 leading-relaxed font-sans pb-3 mb-1">${item.desc[currentLang]}</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between pt-1">
+                            <span class="px-2 py-1 text-[10px] bg-yellow-900/30 text-yellow-200 rounded border border-yellow-700/50 font-bold uppercase">PROTOCOL</span>
+                            <span class="text-gray-500 text-[10px] font-mono flex items-center gap-1">SOURCE ↗</span>
+                        </div>
+                    </div>
+                </a>`;
+            }).join('');
+        }
 
-        // --- LOGIC ---
+        function renderDocsGrid() {
+            dom.docsContainer.innerHTML = DOCS_DATA.map((item, idx) => {
+                const delay = idx * 50;
+                return `
+                <a href="${item.link}" target="_blank" class="block group animate-entry h-full" style="animation-delay: ${delay}ms">
+                    <div class="bg-interactive p-5 rounded-lg h-full flex flex-col justify-between hover:border-purple-500" style="border-left: 3px solid #A855F7;">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2 opacity-70">
+                                <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                                <span class="text-[10px] text-purple-300 font-mono uppercase tracking-wider truncate">${item.linkText}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white group-hover:text-purple-400 font-mono tracking-wide mb-1 transition-colors">${item.name}</h3>
+                            
+                            <div class="text-xs text-gray-400 leading-relaxed font-sans border-b border-gray-800 pb-3 mb-1">
+                                <p class="mb-2"><strong class="text-purple-400/70 uppercase text-[9px]">Models:</strong> ${item.models}</p>
+                                <p><strong class="text-purple-400/70 uppercase text-[9px]">Hosting:</strong> ${item.hosting}</p>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between pt-1">
+                            <span class="px-2 py-1 text-[10px] bg-purple-900/30 text-purple-200 rounded border border-purple-700/50 font-bold uppercase">MANUAL</span>
+                            <span class="text-gray-500 text-[10px] font-mono flex items-center gap-1">VISIT DOCS ↗</span>
+                        </div>
+                    </div>
+                </a>`;
+            }).join('');
+        }
+
         function updateExplorerContent(key) {
             const theme = REPO_THEMES[key];
-            if (!theme) return; // Search mode handling separate
-
+            if (!theme) return;
             dom.resultsTitle.textContent = theme.label;
             dom.resultsSubtitle.textContent = `// ${theme.desc[currentLang]}`;
-            
             dom.explorerBriefing.classList.remove('hidden');
             dom.explorerBriefingText.textContent = theme.briefing[currentLang];
-            
-            // Re-render cache with new lang
             if(CACHE[key]) {
                 dom.resultsContainer.innerHTML = CACHE[key].map((r, i) => {
                     const itemData = theme.items.find(item => item.id.toLowerCase() === r.full_name.toLowerCase());
@@ -804,46 +693,29 @@
         }
 
         async function loadExplorerCategory(key) {
-            // UI
-            document.querySelectorAll('#category-buttons .btn-category').forEach(b => {
-                b.dataset.key === key ? b.classList.add('active') : b.classList.remove('active');
-            });
-            
-            // If we have cache, just update text (language switch)
-            if(CACHE[key]) {
-                updateExplorerContent(key);
-                return;
-            }
-
+            document.querySelectorAll('#category-buttons .btn-category').forEach(b => { b.dataset.key === key ? b.classList.add('active') : b.classList.remove('active'); });
+            if(CACHE[key]) { updateExplorerContent(key); return; }
             const theme = REPO_THEMES[key];
-            updateExplorerContent(key); // Set headers even if loading
+            updateExplorerContent(key);
             dom.resultsContainer.innerHTML = "";
             dom.spinnerExp.classList.remove('hidden');
-
-            const ids = theme.items.map(i => i.id);
-            const repos = await fetchGithubRepos(ids);
+            const repos = await fetchGithubRepos(theme.items);
             dom.spinnerExp.classList.add('hidden');
-            
             if(repos.length) {
                 repos.sort((a,b) => b.stargazers_count - a.stargazers_count);
                 CACHE[key] = repos;
-                updateExplorerContent(key); // Render
-            } else {
-                dom.resultsContainer.innerHTML = `<div class='text-gray-500 font-mono p-4'>${I18N[currentLang].no_data}</div>`;
-            }
+                updateExplorerContent(key);
+            } else { dom.resultsContainer.innerHTML = `<div class='text-gray-500 font-mono p-4'>${I18N[currentLang].no_data}</div>`; }
         }
 
         function updateTitanContent(key) {
             const theme = TITAN_THEMES[key];
             if(!theme) return;
-
             dom.titanHeaderName.textContent = theme.label;
             dom.titanLogo.textContent = theme.label.substring(0,2);
-            
             dom.titanBriefing.classList.remove('hidden');
             dom.titanBriefingTitle.textContent = `// ${theme.label} STRATEGY`;
             dom.titanBriefingText.textContent = theme.briefing[currentLang];
-
             const cacheKey = `titan_${key}`;
             if(CACHE[cacheKey]) {
                 dom.titansContainer.innerHTML = CACHE[cacheKey].map((r, i) => {
@@ -854,37 +726,32 @@
         }
 
         async function loadTitanCategory(key) {
-             document.querySelectorAll('#titans-buttons .btn-category').forEach(b => {
-                b.dataset.key === key ? b.classList.add('active') : b.classList.remove('active');
-            });
-
+             document.querySelectorAll('#titans-buttons .btn-category').forEach(b => { b.dataset.key === key ? b.classList.add('active') : b.classList.remove('active'); });
             const cacheKey = `titan_${key}`;
-            if(CACHE[cacheKey]) {
-                updateTitanContent(key);
-                return;
-            }
-
+            if(CACHE[cacheKey]) { updateTitanContent(key); return; }
             const theme = TITAN_THEMES[key];
-            updateTitanContent(key); // Set text
+            updateTitanContent(key);
             dom.titansContainer.innerHTML = "";
             dom.spinnerTitans.classList.remove('hidden');
-
-            const ids = theme.items.map(i => i.id);
-            const repos = await fetchGithubRepos(ids);
+            const repos = await fetchGithubRepos(theme.items);
             dom.spinnerTitans.classList.add('hidden');
-
             if(repos.length) {
                 repos.sort((a,b) => b.stargazers_count - a.stargazers_count);
                 CACHE[cacheKey] = repos;
                 updateTitanContent(key);
-            } else {
-                dom.titansContainer.innerHTML = `<div class='text-gray-500 font-mono p-4'>${I18N[currentLang].no_data}</div>`;
-            }
+            } else { dom.titansContainer.innerHTML = `<div class='text-gray-500 font-mono p-4'>${I18N[currentLang].no_data}</div>`; }
         }
 
         function handleSearch() {
             const q = dom.searchInput.value.trim();
             if(!q) return;
+
+            if (!dom.viewMcp.classList.contains('hidden')) {
+                 const mcpQuery = `${q} "mcp server" OR "model context protocol"`;
+                 window.open(`https://github.com/search?q=${encodeURIComponent(mcpQuery)}&type=repositories`, '_blank');
+                 return;
+            }
+
             document.querySelectorAll('#category-buttons .btn-category').forEach(b => b.classList.remove('active'));
             dom.resultsTitle.textContent = "DATABASE SEARCH";
             dom.resultsSubtitle.textContent = `// QUERY: "${q}"`;
@@ -908,63 +775,47 @@
                 });
         }
 
-        // --- MODAL LOGIC ---
-        function toggleGuide() {
-            if (dom.modalGuide.classList.contains('hidden')) {
-                dom.modalGuide.classList.remove('hidden');
-            } else {
-                dom.modalGuide.classList.add('hidden');
-            }
-        }
-
         // --- INIT ---
         function init() {
             // Setup View Switch
             dom.viewSelector.addEventListener('change', (e) => {
-                if (e.target.value === 'explorer') {
-                    dom.viewTitans.classList.add('hidden');
+                const val = e.target.value;
+                dom.viewExplorer.classList.add('hidden');
+                dom.viewTitans.classList.add('hidden');
+                dom.viewMcp.classList.add('hidden');
+                dom.viewDocs.classList.add('hidden');
+
+                if (val === 'explorer') {
                     dom.viewExplorer.classList.remove('hidden');
-                } else {
-                    dom.viewExplorer.classList.add('hidden');
+                } else if (val === 'titans') {
                     dom.viewTitans.classList.remove('hidden');
-                    if(!document.querySelector('#titans-buttons .active')) {
-                        loadTitanCategory('meta'); 
-                    }
+                    if(!document.querySelector('#titans-buttons .active')) loadTitanCategory('meta');
+                } else if (val === 'mcp') {
+                    dom.viewMcp.classList.remove('hidden');
+                    renderMCPGrid();
+                    dom.mcpBriefingText.textContent = I18N[currentLang].mcp_briefing;
+                } else if (val === 'docs') {
+                    dom.viewDocs.classList.remove('hidden');
+                    renderDocsGrid();
+                    dom.docsBriefingText.textContent = I18N[currentLang].docs_briefing;
                 }
+                updateSearchPlaceholder();
             });
 
-            // Modal Listeners
-            dom.btnOpenGuide.addEventListener('click', toggleGuide);
-            dom.btnCloseGuide.addEventListener('click', toggleGuide);
-            // Close on outside click
-            dom.modalGuide.addEventListener('click', (e) => {
-                if (e.target === dom.modalGuide) toggleGuide();
-            });
+            dom.btnOpenGuide.addEventListener('click', () => dom.modalGuide.classList.remove('hidden'));
+            dom.btnCloseGuide.addEventListener('click', () => dom.modalGuide.classList.add('hidden'));
+            dom.modalGuide.addEventListener('click', (e) => { if (e.target === dom.modalGuide) dom.modalGuide.classList.add('hidden'); });
 
-
-            // Buttons
             Object.keys(REPO_THEMES).forEach(key => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-category';
-                btn.textContent = REPO_THEMES[key].label.replace(/_/g, ' ');
-                btn.dataset.key = key;
-                btn.onclick = () => loadExplorerCategory(key);
-                dom.expButtonsContainer.appendChild(btn);
+                const btn = document.createElement('button'); btn.className = 'btn-category'; btn.textContent = REPO_THEMES[key].label.replace(/_/g, ' '); btn.dataset.key = key; btn.onclick = () => loadExplorerCategory(key); dom.expButtonsContainer.appendChild(btn);
             });
-
             Object.keys(TITAN_THEMES).forEach(key => {
-                const btn = document.createElement('button');
-                btn.className = 'btn-category';
-                btn.textContent = TITAN_THEMES[key].label;
-                btn.dataset.key = key;
-                btn.onclick = () => loadTitanCategory(key);
-                dom.titansButtonsContainer.appendChild(btn);
+                const btn = document.createElement('button'); btn.className = 'btn-category'; btn.textContent = TITAN_THEMES[key].label; btn.dataset.key = key; btn.onclick = () => loadTitanCategory(key); dom.titansButtonsContainer.appendChild(btn);
             });
 
             dom.executeButton.onclick = handleSearch;
             dom.searchInput.onkeydown = (e) => { if(e.key==='Enter') handleSearch(); };
 
-            // Start
             detectLanguage();
             loadExplorerCategory('core');
         }
