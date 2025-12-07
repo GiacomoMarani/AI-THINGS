@@ -499,27 +499,476 @@
         };
 
         const TITAN_THEMES = {
-            meta: { label: "META (FAIR)", desc: {it: "Open Weight Leadership", en: "Open Weight Leadership"}, briefing: {it: "Leader dell'AI Open Source.", en: "Open Source AI Leader."}, items: [{id: "facebookresearch/llama", why: {it: "La famiglia di modelli open più influente.", en: "The most influential open model family."}}, {id: "pytorch/pytorch", why: {it: "Il framework preferito dalla ricerca.", en: "Research's favorite framework."}}, {id: "facebookresearch/segment-anything", why: {it: "Segmentazione immagini universale.", en: "Universal image segmentation."}}, {id: "facebookresearch/detectron2", why: {it: "Piattaforma next-gen per object detection.", en: "Next-gen platform for object detection."}}, {id: "facebookresearch/faiss", why: {it: "Ricerca di similarità efficiente.", en: "Efficient similarity search."}}, {id: "facebookresearch/dinov2", why: {it: "Vision transformer autosupervisionato.", en: "Self-supervised vision transformer."}}, {id: "facebookresearch/fastText", why: {it: "Classificazione testo efficiente.", en: "Efficient text classification."}}] },
-            microsoft: { label: "MICROSOFT", desc: {it: "Enterprise Agents", en: "Enterprise Agents"}, briefing: {it: "AI per l'azienda e produttività.", en: "AI for enterprise and productivity."}, items: [{id: "microsoft/autogen", why: {it: "Sviluppo agenti conversazionali.", en: "Conversational agent development."}}, {id: "microsoft/DeepSpeed", why: {it: "Ottimizzazione training deep learning.", en: "Deep learning training optimization."}}, {id: "microsoft/semantic-kernel", why: {it: "Integrazione LLM nelle app.", en: "Integrating LLMs into apps."}}, {id: "microsoft/graphrag", why: {it: "RAG potenziato da knowledge graph.", en: "Knowledge graph powered RAG."}}, {id: "microsoft/guidance", why: {it: "Linguaggio per controllare LLM.", en: "Language for controlling LLMs."}}, {id: "microsoft/playwright", why: {it: "Automazione web affidabile.", en: "Reliable web automation."}}, {id: "microsoft/LIDA", why: {it: "Visualizzazione dati automatica.", en: "Automatic data visualization."}}] },
-            google: { label: "GOOGLE", desc: {it: "Research", en: "Research"}, briefing: {it: "Pionieri della ricerca AI.", en: "AI Research Pioneers."}, items: [{id: "tensorflow/tensorflow", why: {it: "Piattaforma ML completa.", en: "Comprehensive ML platform."}}, {id: "google/jax", why: {it: "Calcolo numerico accelerato.", en: "Accelerated numerical computing."}}, {id: "google/gemma_pytorch", why: {it: "Modelli aperti leggeri.", en: "Lightweight open models."}}, {id: "google-research/bert", why: {it: "Pre-training bidirezionale per NLP.", en: "Bidirectional pre-training for NLP."}}, {id: "google/mediapipe", why: {it: "ML on-device multipiattaforma.", en: "Cross-platform on-device ML."}}, {id: "google/flax", why: {it: "Rete neurale flessibile per JAX.", en: "Flexible neural network library for JAX."}}, {id: "google/sentencepiece", why: {it: "Tokenizzatore non supervisionato.", en: "Unsupervised text tokenizer."}}] },
-            openai: { label: "OPENAI", desc: {it: "Generative SOTA", en: "Generative SOTA"}, briefing: {it: "Definiscono lo stato dell'arte.", en: "Defining the state of the art."}, items: [{id: "openai/whisper", why: {it: "Riconoscimento vocale robusto.", en: "Robust speech recognition."}}, {id: "openai/tiktoken", why: {it: "Tokenizzatore BPE veloce.", en: "Fast BPE tokenizer."}}, {id: "openai/clip", why: {it: "Apprendimento visuale trasferibile.", en: "Transferable visual learning."}}, {id: "openai/evals", why: {it: "Framework valutazione LLM.", en: "LLM evaluation framework."}}, {id: "openai/shap-e", why: {it: "Generazione oggetti 3D.", en: "3D object generation."}}, {id: "openai/point-e", why: {it: "Generazione nuvole di punti.", en: "Point cloud generation."}}, {id: "openai/openai-python", why: {it: "Libreria Python ufficiale.", en: "Official Python library."}}] },
-            huggingface: { label: "HUGGING FACE", desc: {it: "The Hub", en: "The Hub"}, briefing: {it: "La casa dell'AI open source.", en: "Home of open source AI."}, items: [{id: "huggingface/transformers", why: {it: "NLP all'avanguardia.", en: "State-of-the-art NLP."}}, {id: "huggingface/diffusers", why: {it: "Modelli di diffusione.", en: "Diffusion models."}}, {id: "huggingface/peft", why: {it: "Parameter-Efficient Fine-Tuning.", en: "Parameter-Efficient Fine-Tuning."}}, {id: "huggingface/datasets", why: {it: "Libreria per dataset ML.", en: "Library for ML datasets."}}, {id: "huggingface/accelerate", why: {it: "Training loop semplice.", en: "Simple training loop."}}, {id: "huggingface/tokenizers", why: {it: "Tokenizzatori veloci.", en: "Fast tokenizers."}}, {id: "huggingface/text-generation-inference", why: {it: "Toolkit per inferenza testo.", en: "Text inference toolkit."}}] },
-            nvidia: { label: "NVIDIA", desc: {it: "Hardware", en: "Hardware"}, briefing: {it: "Potenza di calcolo per l'AI.", en: "Computing power for AI."}, items: [{id: "NVIDIA/NeMo", why: {it: "Toolkit per AI conversazionale.", en: "Toolkit for conversational AI."}}, {id: "NVIDIA/TensorRT", why: {it: "Ottimizzatore per deep learning.", en: "Deep learning optimizer."}}, {id: "NVIDIA/dali", why: {it: "Libreria caricamento dati.", en: "Data loading library."}}, {id: "NVIDIA/cuda-samples", why: {it: "Esempi per CUDA.", en: "Samples for CUDA."}}, {id: "NVIDIA/Megatron-LM", why: {it: "Training modelli enormi.", en: "Training huge models."}}] },
-            mistral: { label: "CHALLENGERS", desc: {it: "New Powers", en: "New Powers"}, briefing: {it: "Nuovi attori emergenti.", en: "Emerging new players."}, items: [{id: "mistralai/mistral-src", why: {it: "Codice di riferimento.", en: "Reference code."}}, {id: "mistralai/mistral-inference", why: {it: "Codice inferenza Python.", en: "Python inference code."}}, {id: "xai-org/grok-1", why: {it: "Modello pesi aperti di xAI.", en: "xAI open weights model."}}, {id: "cohere-ai/cohere-python", why: {it: "SDK Python per Cohere.", en: "Cohere Python SDK."}}, {id: "Stability-AI/stablediffusion", why: {it: "Latent text-to-image diffusion.", en: "Latent text-to-image diffusion."}}] },
-            anthropic: { 
-                label: "ANTHROPIC", 
-                desc: { it: "Safety & Agents", en: "Safety & Agents" },
-                briefing: { it: "Creatori di Claude. Focus su sicurezza e tool agentici avanzati.", en: "Creators of Claude. Focus on safety and advanced agentic tools." },
-                items: [
-                    { id: "anthropics/claude-code", why: { it: "Agente di coding autonomo da terminale. Un assistente capace di comprendere e modificare codebase complesse.", en: "Autonomous coding agent in your terminal. An assistant capable of understanding and modifying complex codebases." } },
-                    { id: "anthropics/skills", why: { it: "Raccolta ufficiale di tool per agenti Claude. Include integrazioni pronte per API e servizi.", en: "Official collection of tools for Claude agents. Includes ready-made API and service integrations." } },
-                    { id: "anthropics/prompt-eng-interactive-tutorial", why: { it: "Il miglior punto di partenza pratico per imparare a scrivere prompt efficaci per Claude.", en: "The best practical starting point to learn how to write effective prompts for Claude." } },
-                    { id: "anthropics/anthropic-sdk-python", why: { it: "Libreria fondamentale per integrare Claude 3.5 e successivi nelle tue applicazioni Python.", en: "Fundamental library for integrating Claude 3.5 and later into your Python applications." } },
-                    { id: "anthropics/anthropic-cookbook", why: { it: "Repository essenziale con esempi di codice avanzati (RAG, Citations, Vision).", en: "Essential repository with advanced code examples (RAG, Citations, Vision)." } },
-                    { id: "anthropics/courses", why: { it: "Materiale educativo approfondito sulla sicurezza AI e l'allineamento dei modelli.", en: "In-depth educational material on AI safety and model alignment." } }
-                ] 
+    meta: {
+        label: "META (FAIR)",
+        desc: {
+            it: "Open Weights, Vision & Retrieval",
+            en: "Open Weights, Vision & Retrieval"
+        },
+        briefing: {
+            it: "Il team FAIR di Meta è uno dei motori principali dell'AI open-weight: Llama per il linguaggio, SAM e Detectron2 per la visione, FAISS per la ricerca vettoriale. Qui trovi i mattoni fondamentali per costruire sistemi completi (LLM + Vision + Retrieval).",
+            en: "Meta’s FAIR team is one of the main drivers of open-weight AI: Llama for language, SAM and Detectron2 for vision, FAISS for vector search. This is the toolbox for building full systems (LLM + Vision + Retrieval)."
+        },
+        items: [
+            {
+                id: "facebookresearch/llama",
+                why: {
+                    it: "La famiglia di modelli open più influente degli ultimi anni: ha sbloccato ecosistemi interi (fine-tuning, inference, strumenti, UI) su hardware accessibile.",
+                    en: "The most influential open model family in recent years: it unlocked entire ecosystems (fine-tuning, inference, tools, UIs) on accessible hardware."
+                }
+            },
+            {
+                id: "pytorch/pytorch",
+                why: {
+                    it: "Il framework preferito dalla ricerca e da gran parte dell’industria: se leggi un paper moderno, è molto probabile che l’implementazione sia in PyTorch.",
+                    en: "The framework of choice for research and a big part of industry: if you read a modern paper, chances are the reference implementation is in PyTorch."
+                }
+            },
+            {
+                id: "facebookresearch/segment-anything",
+                why: {
+                    it: "Segment Anything Model (SAM): segmentazione immagini universale, pensata per funzionare out-of-the-box su una grande varietà di scenari.",
+                    en: "Segment Anything Model (SAM): universal image segmentation, designed to work out-of-the-box in a wide variety of scenarios."
+                }
+            },
+            {
+                id: "facebookresearch/detectron2",
+                why: {
+                    it: "Piattaforma next-gen per object detection e instance segmentation: ancora un riferimento per sistemi di visione classici e ibridi.",
+                    en: "Next-gen platform for object detection and instance segmentation: still a reference point for classic and hybrid vision systems."
+                }
+            },
+            {
+                id: "facebookresearch/faiss",
+                why: {
+                    it: "Libreria chiave per la ricerca di similarità su grandi collezioni di vettori: alla base di tanti motori di RAG e recommendation.",
+                    en: "Key library for similarity search on large vector collections: underpins many RAG engines and recommendation systems."
+                }
+            },
+            {
+                id: "facebookresearch/dinov2",
+                why: {
+                    it: "Vision transformer autosupervisionato che fornisce embedding robusti per task downstream (classification, retrieval, segmentation).",
+                    en: "Self-supervised vision transformer providing robust embeddings for downstream tasks (classification, retrieval, segmentation)."
+                }
+            },
+            {
+                id: "facebookresearch/fastText",
+                why: {
+                    it: "Classificazione e rappresentazione del testo veloce e leggera: ideale per baseline solide e sistemi in cui latenza e risorse contano.",
+                    en: "Fast and lightweight text classification and representation: ideal for solid baselines and systems where latency and resources matter."
+                }
             }
-        };
+        ]
+    },
+
+    microsoft: {
+        label: "MICROSOFT",
+        desc: {
+            it: "Enterprise, Agents & Knowledge",
+            en: "Enterprise, Agents & Knowledge"
+        },
+        briefing: {
+            it: "Microsoft spinge forte su agenti multi-LLM, integrazione con ecosistemi enterprise (Azure, M365) e gestione della conoscenza (GraphRAG). Qui trovi gli strumenti per costruire sistemi agentici robusti dentro contesti aziendali reali.",
+            en: "Microsoft is pushing on multi-LLM agents, enterprise integration (Azure, M365) and knowledge-centric systems (GraphRAG). This is the toolbox for building robust agentic systems inside real organizations."
+        },
+        items: [
+            {
+                id: "microsoft/autogen",
+                why: {
+                    it: "Framework per creare team di agenti che collaborano tra loro: utile per orchestrare ruoli diversi (planner, coder, critico) su task complessi.",
+                    en: "Framework for creating teams of collaborating agents: useful to orchestrate different roles (planner, coder, critic) on complex tasks."
+                }
+            },
+            {
+                id: "microsoft/DeepSpeed",
+                why: {
+                    it: "Stack di ottimizzazione per addestrare modelli di grandi dimensioni in modo efficiente (parallelismo, memory saving, throughput elevato).",
+                    en: "Optimization stack for training large models efficiently (parallelism, memory savings, high throughput)."
+                }
+            },
+            {
+                id: "microsoft/semantic-kernel",
+                why: {
+                    it: "SDK leggero per integrare LLM in app esistenti (C#, Python, Java, ecc.): perfetto per portare AI in sistemi enterprise già in produzione.",
+                    en: "Lightweight SDK to integrate LLMs into existing apps (C#, Python, Java, etc.): ideal to bring AI into existing enterprise systems."
+                }
+            },
+            {
+                id: "microsoft/graphrag",
+                why: {
+                    it: "Approccio RAG basato su knowledge graph: permette di strutturare, navigare e interrogare la conoscenza in modo più robusto del semplice “chunking”.",
+                    en: "Graph-based RAG approach: lets you structure, navigate and query knowledge more robustly than naïve chunking."
+                }
+            },
+            {
+                id: "microsoft/guidance",
+                why: {
+                    it: "Linguaggio dichiarativo per controllare il comportamento degli LLM (template, vincoli, strutture). Utile quando serve output molto deterministico.",
+                    en: "Declarative language to control LLM behavior (templates, constraints, structures). Useful when you need highly deterministic outputs."
+                }
+            },
+            {
+                id: "microsoft/playwright",
+                why: {
+                    it: "Automazione browser moderna e affidabile: fondamentale per agenti che devono interagire con web app reali end-to-end.",
+                    en: "Modern, reliable browser automation: essential for agents that must interact with real web apps end-to-end."
+                }
+            },
+            {
+                id: "microsoft/LIDA",
+                why: {
+                    it: "Strumento per generare visualizzazioni dati e insight guidati dagli LLM: collega direttamente analisi e storytelling visivo.",
+                    en: "Tool for generating data visualizations and insights with LLMs: directly connects analysis and visual storytelling."
+                }
+            }
+        ]
+    },
+
+    google: {
+        label: "GOOGLE",
+        desc: {
+            it: "Research & Agents",
+            en: "Research & Agents"
+        },
+        briefing: {
+            it: "Pionieri della ricerca AI (da BERT a JAX), oggi sempre più focalizzati su agenti e workflow produttivi con Gemini e ADK. Qui ci sono gli strumenti chiave per passare dalla ricerca al prodotto.",
+            en: "AI research pioneers (from BERT to JAX), now heavily focused on agents and production workflows with Gemini and ADK. These are the key tools to move from research to product."
+        },
+        items: [
+            {
+                id: "google/adk-python",
+                why: {
+                    it: "Agent Development Kit: il framework ufficiale per progettare, orchestrare e mettere in produzione agenti avanzati (ottimizzato per Gemini, ma model-agnostic).",
+                    en: "Agent Development Kit: the official framework to design, orchestrate and deploy advanced agents (optimized for Gemini, but model-agnostic)."
+                }
+            },
+            {
+                id: "google-gemini/gemini-cli",
+                why: {
+                    it: "Un agente Gemini pronto nel terminale: esempio concreto di utilizzo quotidiano per coding, refactor e debugging del codice.",
+                    en: "A Gemini-powered agent in your terminal: concrete everyday usage example for coding, refactors and debugging."
+                }
+            },
+            {
+                id: "GoogleCloudPlatform/agent-starter-pack",
+                why: {
+                    it: "Starter pack per agenti in produzione su Google Cloud: infrastruttura, CI/CD, logging e sicurezza già impostati secondo best practice.",
+                    en: "Starter pack for production-grade agents on Google Cloud: infra, CI/CD, logging and security wired in following best practices."
+                }
+            },
+            {
+                id: "google-deepmind/gemma",
+                why: {
+                    it: "Libreria ufficiale Gemma: modelli LLM open-weight di Google pensati per essere usati e fine-tunati in applicazioni reali, non solo per benchmark.",
+                    en: "Official Gemma library: Google’s open-weight LLMs designed to be used and fine-tuned in real applications, not just for benchmarks."
+                }
+            },
+            {
+                id: "google/gemma.cpp",
+                why: {
+                    it: "Motore di inferenza C++ leggero per Gemma, in stile llama.cpp: ideale per portare LLM open su laptop e dispositivi edge.",
+                    en: "Lightweight C++ inference engine for Gemma, llama.cpp-style: ideal for running open LLMs on laptops and edge devices."
+                }
+            },
+            {
+                id: "google/jax",
+                why: {
+                    it: "Il laboratorio numerico di Google: autograd + XLA per ricerca e training ad alte prestazioni su TPU e GPU.",
+                    en: "Google’s numerical lab: autograd + XLA for high-performance research and training on TPUs and GPUs."
+                }
+            },
+            {
+                id: "google-ai-edge/ai-edge-apis",
+                why: {
+                    it: "SDK e API per portare GenAI e ML direttamente in app mobile/web con esecuzione on-device: perfetto per esperienze low-latency.",
+                    en: "SDKs and APIs to bring GenAI and ML directly into mobile/web apps with on-device execution: ideal for low-latency experiences."
+                }
+            }
+        ]
+    },
+
+    openai: {
+        label: "OPENAI",
+        desc: {
+            it: "Generative Models & Tooling",
+            en: "Generative Models & Tooling"
+        },
+        briefing: {
+            it: "Definiscono (o spostano) regolarmente lo stato dell’arte su linguaggio, multimodale e strumenti di produzione. Qui trovi i pezzi principali per lavorare con l’ecosistema OpenAI oltre la semplice chiamata API.",
+            en: "They regularly define (or push) the state of the art in language, multimodal and production tooling. These are the main pieces to work with the OpenAI ecosystem beyond a simple API call."
+        },
+        items: [
+            {
+                id: "openai/whisper",
+                why: {
+                    it: "Modello di speech-to-text robusto, multilingua, usatissimo per trascrizioni, subtitling e analisi conversazionali.",
+                    en: "Robust, multilingual speech-to-text model widely used for transcription, subtitling and conversational analytics."
+                }
+            },
+            {
+                id: "openai/tiktoken",
+                why: {
+                    it: "Tokenizzatore BPE veloce e ottimizzato per i modelli OpenAI: fondamentale per stimare costi, lunghezze di contesto e controllare l’input.",
+                    en: "Fast BPE tokenizer optimized for OpenAI models: essential to estimate cost, context length and control the input."
+                }
+            },
+            {
+                id: "openai/clip",
+                why: {
+                    it: "Modello che collega testo e immagini in uno spazio comune: base concettuale per tante applicazioni vision-language moderne.",
+                    en: "Model that connects text and images in a shared space: conceptual base for many modern vision-language applications."
+                }
+            },
+            {
+                id: "openai/evals",
+                why: {
+                    it: "Framework per valutare LLM in modo sistematico (task custom, dataset, metriche): utile quando devi davvero misurare qualità, non solo “sensazioni”.",
+                    en: "Framework to systematically evaluate LLMs (custom tasks, datasets, metrics): useful when you need real measurement, not just vibes."
+                }
+            },
+            {
+                id: "openai/shap-e",
+                why: {
+                    it: "Modello per generare oggetti 3D a partire da testo o immagini: ponte tra GenAI e pipeline 3D/CAD.",
+                    en: "Model to generate 3D objects from text or images: bridge between GenAI and 3D/CAD pipelines."
+                }
+            },
+            {
+                id: "openai/point-e",
+                why: {
+                    it: "Generazione di nuvole di punti 3D: interessante per prototipi rapidi nel mondo 3D e robotics.",
+                    en: "3D point cloud generation: useful for quick prototyping in 3D and robotics contexts."
+                }
+            },
+            {
+                id: "openai/openai-python",
+                why: {
+                    it: "Libreria Python ufficiale: il modo più diretto e stabile per integrare le API OpenAI in backend, script e pipeline.",
+                    en: "Official Python library: the most direct and stable way to integrate OpenAI APIs into backends, scripts and pipelines."
+                }
+            }
+        ]
+    },
+
+    huggingface: {
+        label: "HUGGING FACE",
+        desc: {
+            it: "The AI Hub & Ecosystem",
+            en: "The AI Hub & Ecosystem"
+        },
+        briefing: {
+            it: "La casa dell’AI open: modelli, dataset, spazio di deploy e librerie per training, fine-tuning e serving. Qui trovi gli strumenti che tengono in piedi mezza AI open source moderna.",
+            en: "Home of open AI: models, datasets, deployment space and libraries for training, fine-tuning and serving. These are the tools that power half of modern open-source AI."
+        },
+        items: [
+            {
+                id: "huggingface/transformers",
+                why: {
+                    it: "Libreria di riferimento per usare modelli Transformer (NLP, visione, audio) con poche righe di codice: lo standard de facto.",
+                    en: "Reference library to use Transformer models (NLP, vision, audio) with just a few lines of code: the de facto standard."
+                }
+            },
+            {
+                id: "huggingface/diffusers",
+                why: {
+                    it: "Toolkit per modelli di diffusione (immagini, audio, video): il modo più semplice per sperimentare con generazione moderna.",
+                    en: "Toolkit for diffusion models (images, audio, video): the easiest way to experiment with modern generative models."
+                }
+            },
+            {
+                id: "huggingface/peft",
+                why: {
+                    it: "Parameter-Efficient Fine-Tuning: permette di adattare LLM e modelli grossi con poche risorse e senza toccare tutti i pesi.",
+                    en: "Parameter-Efficient Fine-Tuning: lets you adapt LLMs and large models with limited resources, without touching all weights."
+                }
+            },
+            {
+                id: "huggingface/datasets",
+                why: {
+                    it: "Libreria per scaricare, preparare e condividere dataset ML in modo standardizzato: fondamentale per esperimenti riproducibili.",
+                    en: "Library to download, prepare and share ML datasets in a standardized way: essential for reproducible experiments."
+                }
+            },
+            {
+                id: "huggingface/accelerate",
+                why: {
+                    it: "Astrazione per training distribuito e multi-device: rende più semplice scalare senza dover riscrivere mezzo training loop.",
+                    en: "Abstraction for distributed and multi-device training: simplifies scaling without rewriting half your training loop."
+                }
+            },
+            {
+                id: "huggingface/tokenizers",
+                why: {
+                    it: "Tokenizzatori veloci scritti in Rust con binding Python: indispensabili quando il preprocessing diventa un collo di bottiglia.",
+                    en: "Fast tokenizers written in Rust with Python bindings: indispensable when preprocessing becomes a bottleneck."
+                }
+            },
+            {
+                id: "huggingface/text-generation-inference",
+                why: {
+                    it: "Toolkit di serving ottimizzato per LLM (quantizzazione, batching, multi-GPU): pensato per portare modelli open in produzione.",
+                    en: "Optimized serving toolkit for LLMs (quantization, batching, multi-GPU): designed to bring open models into production."
+                }
+            }
+        ]
+    },
+
+    nvidia: {
+        label: "NVIDIA",
+        desc: {
+            it: "Compute, Inference & Optimization",
+            en: "Compute, Inference & Optimization"
+        },
+        briefing: {
+            it: "Il layer hardware e runtime sotto gran parte dell’AI moderna. Da TensorRT a NeMo, questi strumenti sono ciò che ti permette di sfruttare davvero le GPU oltre il semplice training naïf.",
+            en: "The hardware and runtime layer under most modern AI. From TensorRT to NeMo, these tools let you actually leverage GPUs beyond naïve training."
+        },
+        items: [
+            {
+                id: "NVIDIA/NeMo",
+                why: {
+                    it: "Toolkit per costruire, addestrare e deployare modelli conversazionali e multimodali di grandi dimensioni, con pipeline già strutturate.",
+                    en: "Toolkit to build, train and deploy large conversational and multimodal models, with structured pipelines."
+                }
+            },
+            {
+                id: "NVIDIA/TensorRT",
+                why: {
+                    it: "Piattaforma di ottimizzazione e inferenza ad alte prestazioni per modelli deep: essenziale quando la latenza va abbassata al minimo.",
+                    en: "High-performance optimization and inference platform for deep models: essential when you need to squeeze latency down."
+                }
+            },
+            {
+                id: "NVIDIA/dali",
+                why: {
+                    it: "Libreria per data loading e preprocessing accelerato su GPU: evita che il caricamento dati diventi il vero collo di bottiglia.",
+                    en: "Library for data loading and preprocessing accelerated on GPU: prevents data loading from becoming the real bottleneck."
+                }
+            },
+            {
+                id: "NVIDIA/cuda-samples",
+                why: {
+                    it: "Collezione di esempi ufficiali per CUDA: ottimo punto di partenza per capire come sfruttare davvero le GPU a basso livello.",
+                    en: "Collection of official CUDA examples: great starting point to understand how to really use GPUs at a low level."
+                }
+            },
+            {
+                id: "NVIDIA/Megatron-LM",
+                why: {
+                    it: "Framework per addestrare LLM enormi con parallelismo avanzato (tensor, pipeline, data parallel): riferimento per training su scala massiva.",
+                    en: "Framework for training huge LLMs with advanced parallelism (tensor, pipeline, data parallel): a reference for training at massive scale."
+                }
+            }
+        ]
+    },
+
+    mistral: {
+        label: "CHALLENGERS",
+        desc: {
+            it: "New Powers & Open Models",
+            en: "New Powers & Open Models"
+        },
+        briefing: {
+            it: "Nuovi attori che si muovono veloci: Mistral, xAI, Cohere, Stability. Qui ci sono modelli e tool che spesso arrivano per primi su efficienza, qualità open-weight e sperimentazione.",
+            en: "New fast-moving players: Mistral, xAI, Cohere, Stability. These models and tools often lead on efficiency, open-weight quality and experimentation."
+        },
+        items: [
+            {
+                id: "mistralai/mistral-src",
+                why: {
+                    it: "Codice di riferimento dei modelli Mistral: utile per capire come sono strutturati e come integrarli a basso livello.",
+                    en: "Reference code for Mistral models: useful to understand their structure and integrate them at a low level."
+                }
+            },
+            {
+                id: "mistralai/mistral-inference",
+                why: {
+                    it: "Libreria di inferenza Python per i modelli Mistral: pensata per portare rapidamente i loro LLM in produzione.",
+                    en: "Python inference library for Mistral models: designed to quickly bring their LLMs into production."
+                }
+            },
+            {
+                id: "xai-org/grok-1",
+                why: {
+                    it: "Modello open-weight di xAI: focalizzato su reasoning e contesto ampio, interessante per chi vuole esplorare alternative ai soliti noti.",
+                    en: "xAI’s open-weight model: focused on reasoning and large context, interesting if you want alternatives to the usual suspects."
+                }
+            },
+            {
+                id: "cohere-ai/cohere-python",
+                why: {
+                    it: "SDK Python ufficiale per i modelli Cohere (Command, Embed, Rerank): utile per costruire pipeline di search e applicazioni enterprise.",
+                    en: "Official Python SDK for Cohere models (Command, Embed, Rerank): useful for building search pipelines and enterprise applications."
+                }
+            },
+            {
+                id: "Stability-AI/stablediffusion",
+                why: {
+                    it: "Implementazione storica di Stable Diffusion: la base da cui è esplosa la generazione di immagini open source.",
+                    en: "Historical Stable Diffusion implementation: the base from which open-source image generation exploded."
+                }
+            }
+        ]
+    },
+
+    anthropic: {
+        label: "ANTHROPIC",
+        desc: {
+            it: "Safety, Claude & Agents",
+            en: "Safety, Claude & Agents"
+        },
+        briefing: {
+            it: "Creatori di Claude, molto focalizzati su sicurezza, affidabilità e tool agentici. Qui trovi sia le librerie per usare i modelli, sia il materiale per capire come progettarli e valutarli in modo responsabile.",
+            en: "Creators of Claude, heavily focused on safety, reliability and agentic tools. Here you find both the libraries to use the models and the material to design and evaluate them responsibly."
+        },
+        items: [
+            {
+                id: "anthropics/claude-code",
+                why: {
+                    it: "Agente di coding autonomo da terminale: mostra come un modello tipo Claude può comprendere, navigare e modificare codebase complesse in modo iterativo.",
+                    en: "Autonomous coding agent in your terminal: shows how a model like Claude can understand, navigate and modify complex codebases iteratively."
+                }
+            },
+            {
+                id: "anthropics/skills",
+                why: {
+                    it: "Raccolta ufficiale di tool per agenti Claude (API, servizi, integrazioni): ottimo punto di partenza per costruire agenti utili nella pratica.",
+                    en: "Official collection of tools for Claude agents (APIs, services, integrations): great starting point to build practically useful agents."
+                }
+            },
+            {
+                id: "anthropics/prompt-eng-interactive-tutorial",
+                why: {
+                    it: "Tutorial interattivo di prompt engineering: ti porta, passo dopo passo, da prompt naïf a pattern più robusti e riutilizzabili.",
+                    en: "Interactive prompt engineering tutorial: walks you step-by-step from naïve prompts to more robust and reusable patterns."
+                }
+            },
+            {
+                id: "anthropics/anthropic-sdk-python",
+                why: {
+                    it: "SDK Python ufficiale per integrare Claude (3.5 e successivi) in backend, script e pipeline dati.",
+                    en: "Official Python SDK to integrate Claude (3.5 and later) into backends, scripts and data pipelines."
+                }
+            },
+            {
+                id: "anthropics/anthropic-cookbook",
+                why: {
+                    it: "Repository essenziale con esempi avanzati (RAG, citazioni con fonti, Vision, tool use): perfetto come “laboratorio” per progetti seri.",
+                    en: "Essential repo with advanced examples (RAG, cited answers, Vision, tool use): perfect as a 'lab' for real projects."
+                }
+            },
+            {
+                id: "anthropics/courses",
+                why: {
+                    it: "Materiale educativo su sicurezza, allineamento e best practice di utilizzo: utile per chi vuole andare oltre la semplice integrazione tecnica.",
+                    en: "Educational material on safety, alignment and usage best practices: useful if you want to go beyond plain technical integration."
+                }
+            }
+        ]
+    }
+};
+
 
         // --- DOM ---
         const dom = {
