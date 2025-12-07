@@ -1,4 +1,4 @@
-# AI THINGS // Cyberpunk Knowledge Explorer
+# AI THINGS // Knowledge Explorer
 
 A cyberpunk-themed interactive knowledge explorer for the AI ecosystem. Navigate through core repositories, Big Tech stacks, and AI resources in a visually stunning interface.
 
