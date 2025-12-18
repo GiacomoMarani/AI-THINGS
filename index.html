@@ -1510,6 +1510,7 @@
                 const input = document.getElementById('api-key-input');
                 const btnSave = document.getElementById('btn-save-key');
                 const btnCancel = document.getElementById('btn-cancel-key');
+                const btnDelete = document.getElementById('btn-delete-key');
 
                 if (!modal) {
                     const k = prompt("Enter Gemini API Key:");
@@ -1522,10 +1523,18 @@
                 input.value = '';
                 input.focus();
 
+                // Show/Hide Disconnect based on current key
+                if (localStorage.getItem('gemini_api_key')) {
+                    btnDelete.classList.remove('hidden');
+                } else {
+                    btnDelete.classList.add('hidden');
+                }
+
                 const cleanup = () => {
                     modal.classList.add('hidden');
                     btnSave.removeEventListener('click', onSave);
                     btnCancel.removeEventListener('click', onCancel);
+                    if (btnDelete) btnDelete.removeEventListener('click', onDelete);
                 };
 
                 const onSave = () => {
@@ -1533,6 +1542,7 @@
                     if (val) {
                         localStorage.setItem('gemini_api_key', val);
                         cleanup();
+                        location.reload(); // Apply key
                         resolve(val);
                     }
                 };
@@ -1542,8 +1552,16 @@
                     resolve(null);
                 };
 
+                const onDelete = () => {
+                    localStorage.removeItem('gemini_api_key');
+                    cleanup();
+                    location.reload();
+                    resolve(null);
+                };
+
                 btnSave.addEventListener('click', onSave);
                 btnCancel.addEventListener('click', onCancel);
+                if (btnDelete) btnDelete.addEventListener('click', onDelete);
 
                 input.onkeydown = (e) => {
                     if (e.key === 'Enter') onSave();
@@ -1957,31 +1975,12 @@ Keep it concise.`;
                 await getApiKeyFromUser();
             });
 
-            // NEW: Delete Key Logic
-            const btnDeleteKey = document.getElementById('btn-delete-key');
-            if (btnDeleteKey) {
-                btnDeleteKey.addEventListener('click', () => {
-                    localStorage.removeItem('gemini_api_key');
-                    dom.apiKeyModal.classList.add('hidden');
-                    dom.apiStatusDot.classList.replace('bg-green-400', 'bg-red-500');
-                    dom.apiStatusDot.classList.replace('shadow-[0_0_10px_#4ade80]', 'shadow-[0_0_10px_#ef4444]');
-                    alert("API Key Removed.");
-                    location.reload(); // Simple reload to reset state
-                });
-            }
-
             // Config Button Logic
             const btnConfigApi = document.getElementById('btn-config-api');
             if (btnConfigApi) {
-                btnConfigApi.addEventListener('click', (e) => {
+                btnConfigApi.addEventListener('click', async (e) => {
                     e.preventDefault();
-                    dom.apiKeyModal.classList.remove('hidden');
-                    // Toggle delete button visibility based on key existence
-                    if (localStorage.getItem('gemini_api_key')) {
-                        btnDeleteKey.classList.remove('hidden');
-                    } else {
-                        btnDeleteKey.classList.add('hidden');
-                    }
+                    await getApiKeyFromUser();
                 });
             }
             dom.executeButton.onclick = handleSearch;
