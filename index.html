@@ -622,6 +622,12 @@
 
                 <!-- VIEW 4: DOCS -->
                 <section id="view-docs" class="view-section hidden animate-entry">
+                    <div class="mb-6 overflow-x-auto">
+                        <div id="docs-buttons"
+                            class="flex flex-wrap gap-x-6 gap-y-4 border-b border-gray-800 pb-6 justify-center">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
                     <div id="docs-briefing" class="briefing-panel"
                         style="border-left-color: #A855F7; background: rgba(168, 85, 247, 0.05);">
                         <span class="briefing-title" style="color: #A855F7;">// DOCS HUB</span>
@@ -1032,6 +1038,7 @@
                     { id: "crewAIInc/crewAI", why: { it: "Orchestra agenti con ruoli specifici (es. Ricercatore, Scrittore, Strategist) e flussi di lavoro coordinati.", en: "Orchestrates agents with specific roles (e.g., Researcher, Writer, Strategist) and coordinated workflows." } },
                     { id: "Significant-Gravitas/AutoGPT", why: { it: "Uno dei primi agenti autonomi 'goal-driven': gli dai un obiettivo e lui prova a decomporlo in passi e azioni.", en: "One of the first 'goal-driven' autonomous agents: you give it a goal and it tries to decompose it into steps and actions." } },
                     { id: "OpenInterpreter/open-interpreter", why: { it: "Permette a un LLM di eseguire vero codice sul tuo computer (shell, Python, ecc.): ponte diretto tra modello e ambiente locale.", en: "Lets an LLM execute real code on your machine (shell, Python, etc.): a direct bridge between model and local environment." } },
+                    { id: "davila7/claude-code-templates", why: { it: "Raccolta di template per Claude Code per avviare workflow di coding (review, debug, refactor) in modo rapido e coerente.", en: "Template collection for Claude Code to kickstart coding workflows (review, debug, refactor) quickly and consistently." } },
                     { id: "microsoft/semantic-kernel", why: { it: "SDK leggero per integrare LLM in codice 'tradizionale' (C#, Python): perfetto per agenti che vivono dentro servizi esistenti.", en: "Lightweight SDK to integrate LLMs into 'traditional' code (C#, Python): perfect for agents living inside existing services." } },
                     { id: "deepset-ai/haystack", why: { it: "Framework end-to-end per RAG e sistemi agentici production-ready: pipeline, integrazioni, eval e deployment in un unico stack.", en: "End-to-end framework for RAG and production-ready agentic systems: pipelines, integrations, eval and deployment in a single stack." } },
                     { id: "strands-agents/sdk-python", why: { it: "SDK model-driven per costruire agenti AI in poche righe di codice. Supporta Bedrock, Anthropic, Gemini, Ollama, OpenAI e altri provider, con supporto nativo per MCP e sistemi multi-agente.", en: "Model-driven SDK to build AI agents in just a few lines of code. Supports Bedrock, Anthropic, Gemini, Ollama, OpenAI and other providers, with native MCP support and multi-agent systems." } }
@@ -1138,6 +1145,7 @@
                 },
                 items: [
                     { id: "openai/whisper", why: { it: "Modello di speech-to-text robusto, multilingua, usatissimo per trascrizioni, subtitling e analisi conversazionali.", en: "Robust, multilingual speech-to-text model widely used for transcription, subtitling and conversational analytics." } },
+                    { id: "openai/codex", why: { it: "Agent CLI per navigare, capire e modificare codebase con AI: utile per coding assistito, refactor e automazioni su repo reali.", en: "Agentic CLI to navigate, understand, and edit codebases with AI: useful for assisted coding, refactors, and automations on real repos." } },
                     { id: "openai/tiktoken", why: { it: "Tokenizzatore BPE veloce e ottimizzato per i modelli OpenAI: fondamentale per stimare costi, lunghezze di contesto e controllare l’input.", en: "Fast BPE tokenizer optimized for OpenAI models: essential to estimate cost, context length and control the input." } },
                     { id: "openai/clip", why: { it: "Modello che collega testo e immagini in uno spazio comune: base concettuale per tante applicazioni vision-language moderne.", en: "Model that connects text and images in a shared space: conceptual base for many modern vision-language applications." } },
                     { id: "openai/evals", why: { it: "Framework per valutare LLM in modo sistematico (task custom, dataset, metriche): utile quando devi davvero misurare qualità, non solo “sensazioni”.", en: "Framework to systematically evaluate LLMs (custom tasks, datasets, metrics): useful when you need real measurement, not just vibes." } },
@@ -1250,9 +1258,50 @@
             { name: "Microsoft Semantic Kernel", link: "https://learn.microsoft.com/en-us/semantic-kernel", linkText: "learn.microsoft.com", models: "OpenAI, Anthropic, Meta", hosting: "Azure Cloud" },
             { name: "Pinecone", link: "https://docs.pinecone.io", linkText: "docs.pinecone.io", models: "Vector Database", hosting: "Managed Cloud" },
             { name: "Vercel SDK", link: "https://sdk.vercel.ai/docs", linkText: "sdk.vercel.ai", models: "Adapter for all major providers", hosting: "Vercel, Next.js" },
+            { name: "MDN Web Docs", link: "https://developer.mozilla.org/en-US/", linkText: "developer.mozilla.org", models: "Web platform reference", hosting: "Mozilla" },
+            { name: "VS Code", link: "https://code.visualstudio.com/", linkText: "code.visualstudio.com", models: "Extensions, Copilot, AI chat", hosting: "Desktop, Web", group: "ide" },
+            { name: "Cursor", link: "https://www.cursor.com/", linkText: "cursor.com", models: "AI-first editor, chat, refactor", hosting: "Desktop", group: "ide" },
+            { name: "Windsurf (Codeium)", link: "https://codeium.com/windsurf", linkText: "codeium.com/windsurf", models: "AI-first IDE, agent workflows", hosting: "Desktop", group: "ide" },
+            { name: "JetBrains IDEs", link: "https://www.jetbrains.com/ai/", linkText: "jetbrains.com/ai", models: "AI Assistant across IDEs", hosting: "Desktop", group: "ide" },
+            { name: "Zed", link: "https://zed.dev/", linkText: "zed.dev", models: "Fast editor with AI features", hosting: "Desktop", group: "ide" },
+            { name: "Replit", link: "https://replit.com/", linkText: "replit.com", models: "AI coding in browser", hosting: "Cloud", group: "ide" },
+            { name: "Visual Studio", link: "https://visualstudio.microsoft.com/", linkText: "visualstudio.microsoft.com", models: "Enterprise IDE with AI", hosting: "Desktop", group: "ide" },
+            { name: "Claude Code", link: "https://claude.com/product/claude-code", linkText: "claude.com/product/claude-code", models: "Agentic coding workflows", hosting: "Desktop app, CLI", group: "ide" },
+            { name: "Google Antigravity", link: "https://antigravity.google/", linkText: "antigravity.google", models: "Experimental IDE concepts", hosting: "Desktop", group: "ide" },
+            { name: "Google Colab", link: "https://colab.research.google.com/", linkText: "colab.research.google.com", models: "Notebook + AI prototyping", hosting: "Cloud", group: "ide" },
+            { name: "GitHub Copilot", link: "https://docs.github.com/en/copilot", linkText: "docs.github.com/copilot", models: "Autocomplete, chat, refactor", hosting: "VS Code, JetBrains, Neovim", group: "ide" },
+            { name: "Codeium", link: "https://codeium.com/docs", linkText: "codeium.com/docs", models: "Autocomplete, chat, commands", hosting: "VS Code, JetBrains, Vim", group: "ide" },
+            { name: "Tabnine", link: "https://www.tabnine.com/docs", linkText: "tabnine.com/docs", models: "Autocomplete, chat", hosting: "VS Code, JetBrains, Neovim", group: "ide" },
+            { name: "Sourcegraph Cody", link: "https://sourcegraph.com/docs/cody", linkText: "sourcegraph.com/docs/cody", models: "Chat, codebase search, fixes", hosting: "VS Code, JetBrains, Web", group: "ide" },
+            { name: "Continue", link: "https://docs.continue.dev/", linkText: "docs.continue.dev", models: "Local or remote models, chat", hosting: "VS Code, JetBrains", group: "ide" },
+            { name: "Amazon Q Developer", link: "https://docs.aws.amazon.com/amazonq/latest/qdeveloper-ug/what-is.html", linkText: "docs.aws.amazon.com/amazonq", models: "Chat, code gen, AWS help", hosting: "VS Code, JetBrains, AWS Console", group: "ide" },
+            { name: "Gemini Code Assist", link: "https://cloud.google.com/gemini/docs/codeassist/overview", linkText: "cloud.google.com/gemini/codeassist", models: "Chat, code completion, fixes", hosting: "VS Code, JetBrains, Cloud Shell", group: "ide" },
+            { name: "Cline", link: "https://github.com/cline/cline", linkText: "github.com/cline/cline", models: "Agentic coding in VS Code", hosting: "VS Code", group: "ide" },
+            { name: "Tabby", link: "https://github.com/TabbyML/tabby", linkText: "github.com/TabbyML/tabby", models: "Self-hosted code assistant", hosting: "Self-hosted, IDE plugins", group: "ide" },
             { name: "Ollama", link: "https://github.com/ollama/ollama/blob/main/docs/api.md", linkText: "github.com/ollama", models: "Llama 3, Mistral, Gemma", hosting: "Localhost, Docker" },
             { name: "Model Context Protocol", link: "https://modelcontextprotocol.io", linkText: "modelcontextprotocol.io", models: "Standard for connecting AI to data", hosting: "Open Protocol" }
         ];
+
+        const DOCS_THEMES = {
+            core: {
+                label: "CORE_DOCS",
+                briefing: {
+                    it: "Link ufficiali per piattaforme, API e framework. Usa questa sezione come source of truth.",
+                    en: "Official links for platforms, APIs, and frameworks. Use this section as the source of truth."
+                }
+            },
+            ide: {
+                label: "IDE_TOOLS",
+                briefing: {
+                    it: "IDE e assistenti per iniziare con AI: editor, plugin e agenti di coding.",
+                    en: "IDEs and assistants to get started with AI: editors, plugins, and coding agents."
+                }
+            }
+        };
+
+        const DOCS_STATE = {
+            activeKey: 'core'
+        };
 
         // --- CONSTANTS & STATE ---
         let currentLang = 'en';
@@ -1275,6 +1324,7 @@
             expButtonsContainer: document.getElementById('category-buttons'),
             titansButtonsContainer: document.getElementById('titans-buttons'),
             mcpButtonsContainer: document.getElementById('mcp-buttons'),
+            docsButtonsContainer: document.getElementById('docs-buttons'),
             resultsContainer: document.getElementById('results-container'),
             titansContainer: document.getElementById('titans-container'),
             mcpContainer: document.getElementById('mcp-container'),
@@ -1395,7 +1445,7 @@
                 if (activeMcp) updateMcpContent(activeMcp);
                 else loadMcpCategory('official');
             }
-            if (!dom.viewDocs.classList.contains('hidden')) renderDocsGrid();
+            if (!dom.viewDocs.classList.contains('hidden')) loadDocsCategory(DOCS_STATE.activeKey);
             updateCodeReviewTexts();
         }
 
@@ -1895,8 +1945,7 @@
                 if (activeMcp) updateMcpContent(activeMcp);
                 else loadMcpCategory('official');
             } else if (targetId === 'view-docs') {
-                renderDocsGrid();
-                dom.docsBriefingText.textContent = I18N[currentLang].docs_briefing;
+                loadDocsCategory(DOCS_STATE.activeKey);
             } else if (targetId === 'view-titans') {
                 if (!document.querySelector('#titans-buttons .active')) {
                     loadTitanCategory('meta');
@@ -2407,9 +2456,49 @@
             loadMcpRegistry({ search: MCP_STATE.query, append: true });
         }
 
-        function renderDocsGrid() {
-            dom.docsContainer.innerHTML = DOCS_DATA.map((item, idx) => {
+        function getDocsItems(key) {
+            return DOCS_DATA.filter(item => (item.group || 'core') === key);
+        }
+
+        function updateDocsBriefing(key) {
+            const theme = DOCS_THEMES[key];
+            const fallback = I18N[currentLang].docs_briefing;
+            if (!theme || !theme.briefing) {
+                dom.docsBriefingText.textContent = fallback;
+                return;
+            }
+            dom.docsBriefingText.textContent = theme.briefing[currentLang] || theme.briefing.en || fallback;
+        }
+
+        function loadDocsCategory(key) {
+            DOCS_STATE.activeKey = key;
+            document.querySelectorAll('#docs-buttons .btn-category').forEach(b => {
+                b.classList.toggle('active', b.dataset.key === key);
+            });
+            updateDocsBriefing(key);
+            renderDocsGrid(key);
+        }
+
+        function renderDocsGrid(key = DOCS_STATE.activeKey) {
+            const items = getDocsItems(key);
+            dom.docsContainer.innerHTML = items.map((item, idx) => {
                 const delay = idx * 50;
+                if (item.type === 'header') {
+                    const subtitle = item.subtitle
+                        ? `<p class="text-xs text-gray-400 mt-1">${item.subtitle}</p>`
+                        : '';
+                    return `
+                    <div class="md:col-span-2 animate-entry" style="animation-delay: ${delay}ms">
+                        <div class="bg-glass p-4 rounded-lg border border-purple-500/20">
+                            <div class="flex items-center gap-2 text-purple-300 text-[10px] font-mono uppercase tracking-widest">
+                                <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                                ${item.kicker || 'SECTION'}
+                            </div>
+                            <h3 class="text-lg font-bold text-white mt-1">${item.title}</h3>
+                            ${subtitle}
+                        </div>
+                    </div>`;
+                }
                 return `
                     <a href="${item.link}" target="_blank" class="block group animate-entry h-full" style="animation-delay: ${delay}ms">
                         <div class="bg-interactive p-5 rounded-lg h-full flex flex-col justify-between hover:border-purple-500" style="border-left: 3px solid #A855F7;">
@@ -2907,6 +2996,15 @@ Keep it concise.`;
                 btn.dataset.key = key;
                 btn.onclick = () => loadMcpCategory(key);
                 dom.mcpButtonsContainer.appendChild(btn);
+            });
+
+            Object.keys(DOCS_THEMES).forEach(key => {
+                const btn = document.createElement('button');
+                btn.className = 'btn-category';
+                btn.textContent = DOCS_THEMES[key].label.replace(/_/g, ' ');
+                btn.dataset.key = key;
+                btn.onclick = () => loadDocsCategory(key);
+                dom.docsButtonsContainer.appendChild(btn);
             });
 
             // Listeners
