@@ -1,5 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const modules = [
+  { num: "01", tag: "EXPLORER",     title: "Repository Intelligence",        desc: "Category browsing and free search with tactical insights on each repo.", href: "/explorer" },
+  { num: "02", tag: "TITANS",       title: "Big Tech Stack Mapping",          desc: "Curated repo sets by company. Compare strategic AI directions at a glance.", href: "/titans" },
+  { num: "03", tag: "MCP",          title: "MCP Registry Layer",              desc: "Search official MCP servers and inspect protocol metadata.", href: "/mcp" },
+  { num: "04", tag: "DOCS",         title: "Source-of-Truth Documentation",   desc: "Direct access to official docs for models, APIs, and frameworks.", href: "/docs" },
+  { num: "05", tag: "CODE REVIEW",  title: "GitHub Review Workflow",          desc: "AI-powered review across refactor, docs, efficiency and security.", href: "/code-review" },
+];
 ---
 
 <BaseLayout title="AI THINGS - Home" description="AI things: esplora il mondo AI in costante evoluzione.">
@@ -8,7 +16,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   <section id="section-hero" class="home-hero-block animate-entry">
     <div class="home-hero-grid">
 
-      <!-- Left column -->
       <div class="home-hero-left">
         <p class="home-hero-kicker">AI THINGS / MISSION</p>
         <h2 class="home-hero-title">
@@ -19,75 +26,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           From discovery to implementation — always the right context.
         </p>
         <div class="home-hero-actions">
-          <a href="#section-explorer" class="home-cta home-cta--primary" data-i18n-home="explore">Start exploring</a>
+          <a href="#section-modules" class="home-cta home-cta--primary">Start exploring</a>
           <a href="/explorer" class="home-cta">Open Explorer</a>
         </div>
       </div>
 
-      <!-- Right column: What you find here -->
       <aside class="home-highlights-panel" aria-label="What you find here">
         <p class="home-highlights-label">WHAT YOU FIND HERE</p>
         <ul class="home-highlights-list">
-          <li class="home-highlight-item">
-            <span class="home-highlight-num">01</span>
-            <span>Curated AI repos with tactical insight</span>
-          </li>
-          <li class="home-highlight-item">
-            <span class="home-highlight-num">02</span>
-            <span>Big-tech AI stacks mapped by player</span>
-          </li>
-          <li class="home-highlight-item">
-            <span class="home-highlight-num">03</span>
-            <span>Official MCP servers &amp; protocol registry</span>
-          </li>
-          <li class="home-highlight-item">
-            <span class="home-highlight-num">04</span>
-            <span>Source-of-truth docs &amp; code quality review</span>
-          </li>
+          <li class="home-highlight-item"><span class="home-highlight-num">01</span><span>Curated AI repos with tactical insight</span></li>
+          <li class="home-highlight-item"><span class="home-highlight-num">02</span><span>Big-tech AI stacks mapped by player</span></li>
+          <li class="home-highlight-item"><span class="home-highlight-num">03</span><span>Official MCP servers &amp; protocol registry</span></li>
+          <li class="home-highlight-item"><span class="home-highlight-num">04</span><span>Source-of-truth docs &amp; code quality review</span></li>
         </ul>
       </aside>
 
     </div>
   </section>
 
-  <!-- MODULE CARDS — each row is a full clickable link -->
-  <div class="home-modules" id="section-explorer">
+  <!-- MODULE CARDS -->
+  <div class="home-modules" id="section-modules">
+    {modules.map((m) => (
+      <div class="home-module-card">
+        {/* stretch overlay link — covers the full card */}
+        <a href={m.href} class="home-module-link" aria-label={m.title} tabindex="-1" aria-hidden="true"></a>
 
-    <a href="/explorer" class="home-module-card">
-      <span class="home-module-kicker"><span class="home-module-num">01</span> / EXPLORER</span>
-      <span class="home-module-title">Repository Intelligence</span>
-      <span class="home-module-desc">Category browsing and free search with tactical insights on each repo.</span>
-      <span class="home-module-arrow">→</span>
-    </a>
+        <span class="home-module-kicker">
+          <span class="home-module-num">{m.num}</span> / {m.tag}
+        </span>
+        <span class="home-module-title">{m.title}</span>
+        <span class="home-module-desc">{m.desc}</span>
 
-    <a href="/titans" class="home-module-card">
-      <span class="home-module-kicker"><span class="home-module-num">02</span> / TITANS</span>
-      <span class="home-module-title">Big Tech Stack Mapping</span>
-      <span class="home-module-desc">Curated repo sets by company. Compare strategic AI directions at a glance.</span>
-      <span class="home-module-arrow">→</span>
-    </a>
-
-    <a href="/mcp" class="home-module-card">
-      <span class="home-module-kicker"><span class="home-module-num">03</span> / MCP</span>
-      <span class="home-module-title">MCP Registry Layer</span>
-      <span class="home-module-desc">Search official MCP servers and inspect protocol metadata.</span>
-      <span class="home-module-arrow">→</span>
-    </a>
-
-    <a href="/docs" class="home-module-card">
-      <span class="home-module-kicker"><span class="home-module-num">04</span> / DOCS</span>
-      <span class="home-module-title">Source-of-Truth Documentation</span>
-      <span class="home-module-desc">Direct access to official docs for models, APIs, and frameworks.</span>
-      <span class="home-module-arrow">→</span>
-    </a>
-
-    <a href="/code-review" class="home-module-card">
-      <span class="home-module-kicker"><span class="home-module-num">05</span> / CODE REVIEW</span>
-      <span class="home-module-title">GitHub Review Workflow</span>
-      <span class="home-module-desc">AI-powered review across refactor, docs, efficiency and security.</span>
-      <span class="home-module-arrow">→</span>
-    </a>
-
+        <div class="home-module-actions">
+          <a href={m.href} class="home-module-go">Open →</a>
+          {m.href !== "/code-review" && (
+            <a href="/code-review" class="home-module-cr" title="Review this domain in Code Review">
+              ⌥ Code Review
+            </a>
+          )}
+        </div>
+      </div>
+    ))}
   </div>
 
 </BaseLayout>
