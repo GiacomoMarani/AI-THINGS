@@ -123,11 +123,9 @@ body {
   width: 12%;
   height: 120%;
   transform: translateX(-50%);
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(255, 231, 216, 0.82) 0 18px,
-    transparent 18px 56px
-  );
+  background: repeating-linear-gradient(180deg,
+      rgba(255, 231, 216, 0.82) 0 18px,
+      transparent 18px 56px);
   opacity: 0.52;
   animation: homeRoadDash 3.1s linear infinite;
 }
@@ -529,7 +527,7 @@ p {
 }
 
 .page-slot {
-  margin-top: 22px;
+  margin-top: 28px;
   min-height: 68vh;
 }
 
@@ -539,27 +537,28 @@ p {
 
 .view-canvas {
   display: grid;
-  gap: 14px;
+  gap: 20px;
 }
 
 .view-head {
   display: grid;
   gap: 8px;
   margin-bottom: 2px;
+  padding-top: clamp(10px, 2vw, 20px);
 }
 
 .view-kicker {
   color: var(--accent-soft);
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .view-title {
   margin: 0;
-  font-size: clamp(1.85rem, 3.2vw, 3.15rem);
-  line-height: 0.95;
+  font-size: clamp(1.5rem, 2.4vw, 2.4rem);
+  line-height: 0.97;
   text-transform: uppercase;
   letter-spacing: 0.02em;
   color: #e9fbff;
@@ -1069,11 +1068,9 @@ p {
 
 .hero-btn-primary {
   border-color: transparent;
-  background: linear-gradient(
-    135deg,
-    var(--visual-accent, #22d3ee),
-    var(--visual-secondary, #ff7fca)
-  );
+  background: linear-gradient(135deg,
+      var(--visual-accent, #22d3ee),
+      var(--visual-secondary, #ff7fca));
   color: #061116;
 }
 
@@ -1235,11 +1232,9 @@ p {
   width: 14%;
   height: 130%;
   transform: translateX(-50%);
-  background: repeating-linear-gradient(
-    180deg,
-    rgba(255, 226, 208, 0.8) 0 18px,
-    transparent 18px 54px
-  );
+  background: repeating-linear-gradient(180deg,
+      rgba(255, 226, 208, 0.8) 0 18px,
+      transparent 18px 54px);
   opacity: 0.58;
   animation: tokyoRoadDash 2.8s linear infinite;
 }
@@ -2459,7 +2454,7 @@ p {
     0 16px 30px rgba(0, 0, 0, 0.24);
 }
 
-.card-hover-fx > * {
+.card-hover-fx>* {
   position: relative;
   z-index: 1;
 }
@@ -3478,6 +3473,7 @@ a.intel-source-link:hover,
     transform: scale(0.98);
     opacity: 0.75;
   }
+
   to {
     transform: scale(1.03);
     opacity: 1;
@@ -3485,10 +3481,12 @@ a.intel-source-link:hover,
 }
 
 @keyframes cueFloat {
+
   0%,
   100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(4px);
   }
@@ -3499,6 +3497,7 @@ a.intel-source-link:hover,
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -3513,6 +3512,7 @@ a.intel-source-link:hover,
       0 0 7px rgba(255, 104, 90, 0.66),
       0 0 16px rgba(231, 47, 35, 0.46);
   }
+
   50% {
     color: #ff3f33;
     text-shadow:
@@ -3520,6 +3520,7 @@ a.intel-source-link:hover,
       0 0 10px rgba(255, 96, 81, 0.84),
       0 0 24px rgba(238, 45, 32, 0.62);
   }
+
   100% {
     color: #ff5648;
     text-shadow:
@@ -3530,10 +3531,12 @@ a.intel-source-link:hover,
 }
 
 @keyframes loaderLogoDrift {
+
   0%,
   100% {
     transform: translate3d(0, 0, 0) scale(1);
   }
+
   50% {
     transform: translate3d(0, -2px, 0) scale(1.012);
   }
@@ -3544,9 +3547,11 @@ a.intel-source-link:hover,
     transform: translate3d(0, 0, 0);
     opacity: 0.12;
   }
+
   40% {
     opacity: 0.64;
   }
+
   to {
     transform: translate3d(460%, 0, 0);
     opacity: 0.1;
@@ -3554,6 +3559,7 @@ a.intel-source-link:hover,
 }
 
 @keyframes neonFlickerSoft {
+
   0%,
   18%,
   22%,
@@ -3566,6 +3572,7 @@ a.intel-source-link:hover,
       0 0 12px rgba(221, 61, 46, 0.64),
       0 0 28px rgba(139, 20, 18, 0.42);
   }
+
   20%,
   60% {
     opacity: 0.96;
@@ -3585,6 +3592,7 @@ a.intel-source-link:hover,
     opacity: 0.08;
     transform: scale(0.995);
   }
+
   to {
     opacity: 0.14;
     transform: scale(1.01);
@@ -3595,6 +3603,7 @@ a.intel-source-link:hover,
   from {
     transform: scale(1.06) translate3d(-0.7%, -0.5%, 0);
   }
+
   to {
     transform: scale(1.08) translate3d(0.8%, 0.4%, 0);
   }
@@ -3604,6 +3613,7 @@ a.intel-source-link:hover,
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: 0 122px;
   }
@@ -3613,6 +3623,7 @@ a.intel-source-link:hover,
   from {
     background-position: 0 0, 12px 8px, 5px 3px;
   }
+
   to {
     background-position: -16px 38px, 4px 28px, -10px 22px;
   }
@@ -3622,6 +3633,7 @@ a.intel-source-link:hover,
   from {
     transform: translate3d(-1.2%, 0, 0) scale(1.03);
   }
+
   to {
     transform: translate3d(1.1%, 0.8%, 0) scale(1.06);
   }
@@ -3631,16 +3643,19 @@ a.intel-source-link:hover,
   from {
     transform: translate3d(1.4%, -0.5%, 0) scale(1.04);
   }
+
   to {
     transform: translate3d(-1.5%, 0.8%, 0) scale(1.08);
   }
 }
 
 @keyframes homeSignFlicker {
+
   0%,
   100% {
     opacity: 0.84;
   }
+
   50% {
     opacity: 1;
   }
@@ -3650,6 +3665,7 @@ a.intel-source-link:hover,
   from {
     transform: translate3d(0, 0, 0);
   }
+
   to {
     transform: translate3d(0, 12px, 0);
   }
@@ -3659,6 +3675,7 @@ a.intel-source-link:hover,
   from {
     transform: translate3d(0, 0, 0);
   }
+
   to {
     transform: translate3d(0, 10px, 0);
   }
@@ -3668,6 +3685,7 @@ a.intel-source-link:hover,
   from {
     opacity: 0.9;
   }
+
   to {
     opacity: 1;
   }
@@ -3677,6 +3695,7 @@ a.intel-source-link:hover,
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: 0 118px;
   }
@@ -3686,26 +3705,31 @@ a.intel-source-link:hover,
   from {
     background-position: 0 0, 12px 7px, 4px 4px;
   }
+
   to {
     background-position: -18px 42px, 6px 30px, -10px 24px;
   }
 }
 
 @keyframes tokyoSignPulse {
+
   0%,
   100% {
     opacity: 0.88;
   }
+
   50% {
     opacity: 1;
   }
 }
 
 @keyframes tokyoBuildingPulse {
+
   0%,
   100% {
     opacity: 0.68;
   }
+
   50% {
     opacity: 0.8;
   }
@@ -3715,17 +3739,20 @@ a.intel-source-link:hover,
   0% {
     left: -36%;
   }
+
   100% {
     left: 110%;
   }
 }
 
 @keyframes signalDot {
+
   0%,
   100% {
     opacity: 0.6;
     transform: scale(0.9);
   }
+
   50% {
     opacity: 1;
     transform: scale(1.1);
@@ -3737,6 +3764,7 @@ a.intel-source-link:hover,
     transform: translateY(0);
     opacity: 1;
   }
+
   to {
     transform: translateY(-18px);
     opacity: 0;
@@ -3748,6 +3776,7 @@ a.intel-source-link:hover,
     transform: translateY(18px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -3755,6 +3784,7 @@ a.intel-source-link:hover,
 }
 
 @media (min-width: 900px) {
+
   #results-container,
   #titans-container,
   #mcp-container,
@@ -3768,6 +3798,7 @@ a.intel-source-link:hover,
 }
 
 @media (min-width: 1200px) {
+
   #results-container,
   #titans-container,
   #mcp-container,
@@ -3934,6 +3965,7 @@ a.intel-source-link:hover,
 }
 
 @media (max-width: 620px) {
+
   .search-row,
   .review-row {
     grid-template-columns: 1fr;
@@ -4136,6 +4168,7 @@ a.intel-source-link:hover,
 }
 
 @media (max-width: 620px) {
+
   .home-page .hero-title,
   .home-page .story-section--hero .hero-title {
     font-size: clamp(2rem, 10.2vw, 2.9rem);
@@ -4418,13 +4451,11 @@ a.intel-source-link:hover,
   --highlight-glow: 0.2;
   display: block;
   width: fit-content;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 239, 235, 1) 0%,
-    rgba(255, 239, 235, 1) var(--highlight-progress),
-    rgba(255, 203, 193, 0.34) var(--highlight-progress),
-    rgba(255, 203, 193, 0.34) 100%
-  );
+  background-image: linear-gradient(90deg,
+      rgba(255, 239, 235, 1) 0%,
+      rgba(255, 239, 235, 1) var(--highlight-progress),
+      rgba(255, 203, 193, 0.34) var(--highlight-progress),
+      rgba(255, 203, 193, 0.34) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -4434,13 +4465,11 @@ a.intel-source-link:hover,
 .scroll-highlight-copy {
   --highlight-progress: 0%;
   --highlight-glow: 0.2;
-  background-image: linear-gradient(
-    90deg,
-    rgba(225, 236, 252, 1) 0%,
-    rgba(225, 236, 252, 1) var(--highlight-progress),
-    rgba(165, 177, 203, 0.48) var(--highlight-progress),
-    rgba(165, 177, 203, 0.48) 100%
-  );
+  background-image: linear-gradient(90deg,
+      rgba(225, 236, 252, 1) 0%,
+      rgba(225, 236, 252, 1) var(--highlight-progress),
+      rgba(165, 177, 203, 0.48) var(--highlight-progress),
+      rgba(165, 177, 203, 0.48) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -4572,13 +4601,11 @@ a.intel-source-link:hover,
   text-transform: uppercase;
   line-height: 1;
   background: rgba(9, 12, 18, 0.3);
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 242, 235, 0.95) 0%,
-    rgba(255, 242, 235, 0.95) var(--highlight-progress),
-    rgba(255, 187, 171, 0.4) var(--highlight-progress),
-    rgba(255, 187, 171, 0.4) 100%
-  );
+  background-image: linear-gradient(90deg,
+      rgba(255, 242, 235, 0.95) 0%,
+      rgba(255, 242, 235, 0.95) var(--highlight-progress),
+      rgba(255, 187, 171, 0.4) var(--highlight-progress),
+      rgba(255, 187, 171, 0.4) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -4726,13 +4753,11 @@ a.intel-source-link:hover,
 .home-page [data-scroll-highlight]:not(.scroll-highlight-line):not(.scroll-highlight-copy):not(.home-scroll-bg__tag) {
   --highlight-progress: 0%;
   --highlight-glow: 0.2;
-  background-image: linear-gradient(
-    90deg,
-    rgba(233, 240, 252, 0.96) 0%,
-    rgba(233, 240, 252, 0.96) var(--highlight-progress),
-    rgba(157, 170, 196, 0.48) var(--highlight-progress),
-    rgba(157, 170, 196, 0.48) 100%
-  );
+  background-image: linear-gradient(90deg,
+      rgba(233, 240, 252, 0.96) 0%,
+      rgba(233, 240, 252, 0.96) var(--highlight-progress),
+      rgba(157, 170, 196, 0.48) var(--highlight-progress),
+      rgba(157, 170, 196, 0.48) 100%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -4889,6 +4914,7 @@ a.intel-source-link:hover,
 }
 
 @media (max-width: 620px) {
+
   .home-page .hero-title,
   .home-page .story-section--hero .hero-title {
     font-size: clamp(1.54rem, 7.2vw, 2.12rem);
@@ -4909,6 +4935,7 @@ a.intel-source-link:hover,
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .home-scroll-bg__tag,
   .home-page [data-scroll-highlight]:not(.scroll-highlight-line):not(.scroll-highlight-copy) {
     --highlight-progress: 100%;
@@ -5031,6 +5058,7 @@ a.intel-source-link:hover,
 }
 
 @media (max-width: 620px) {
+
   .home-page .hero-title,
   .home-page .story-section--hero .hero-title {
     font-size: clamp(1.58rem, 7.8vw, 2.2rem);
@@ -5474,6 +5502,7 @@ a.intel-source-link:hover,
       0 0 6px rgba(255, 96, 78, 0.58),
       0 0 14px rgba(236, 58, 46, 0.4);
   }
+
   50% {
     color: #ff3f35;
     text-shadow:
@@ -5481,6 +5510,7 @@ a.intel-source-link:hover,
       0 0 9px rgba(255, 87, 71, 0.74),
       0 0 20px rgba(241, 50, 39, 0.52);
   }
+
   100% {
     color: #ff5446;
     text-shadow:
@@ -5494,6 +5524,7 @@ a.intel-source-link:hover,
   from {
     transform: translate3d(-2%, -2%, 0);
   }
+
   to {
     transform: translate3d(2%, 2%, 0);
   }
@@ -5503,6 +5534,7 @@ a.intel-source-link:hover,
   from {
     transform: translate3d(2%, -1%, 0);
   }
+
   to {
     transform: translate3d(-1.5%, 2.5%, 0);
   }
@@ -5519,6 +5551,7 @@ a.intel-source-link:hover,
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   .home-scroll-bg__overlay::before,
   .home-scroll-bg__overlay::after {
     animation: none !important;
@@ -5766,3 +5799,65 @@ a.intel-source-link:hover,
   }
 }
 
+/* ================================================================
+   UX IMPROVEMENTS – P4: Briefing panel unified border
+   ================================================================ */
+
+.briefing-panel {
+  border-left: 2px solid var(--accent-cyan);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: 14px 16px;
+  background: rgba(34, 211, 238, 0.04);
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.6;
+  color: #c8d4e8;
+}
+
+.briefing-panel.briefing-gold {
+  border-left-color: var(--accent-gold);
+  background: rgba(255, 209, 102, 0.04);
+}
+
+.briefing-panel.briefing-violet {
+  border-left-color: var(--accent-violet);
+  background: rgba(168, 85, 247, 0.04);
+}
+
+.briefing-title {
+  display: block;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-cyan);
+  opacity: 0.78;
+  margin-bottom: 6px;
+}
+
+.briefing-panel.briefing-gold .briefing-title {
+  color: var(--accent-gold);
+}
+
+.briefing-panel.briefing-violet .briefing-title {
+  color: var(--accent-violet);
+}
+
+/* ================================================================
+   UX IMPROVEMENTS – P6: Home module row – 1080px breakpoint
+   ================================================================ */
+
+@media (max-width: 1080px) and (min-width: 721px) {
+  .home-module-inner {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+  }
+
+  .home-module-desc {
+    grid-column: 1 / -1;
+  }
+
+  .home-module-inner .home-cta {
+    grid-column: 1 / -1;
+    justify-self: start;
+  }
+}
