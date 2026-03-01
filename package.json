@@ -1,0 +1,18 @@
+{
+  "name": "ai-things-atn",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "node ./node_modules/astro/astro.js dev",
+    "build": "node ./node_modules/astro/astro.js build",
+    "preview": "node ./node_modules/astro/astro.js preview",
+    "test:smoke": "node ./scripts/smoke-test.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.17.2"
+  },
+  "devDependencies": {
+    "playwright": "^1.58.2"
+  }
+}

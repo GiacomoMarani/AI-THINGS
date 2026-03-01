@@ -1,0 +1,40 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="AI THINGS - Titans" description="Stack e modelli delle big tech.">
+  <section id="view-titans" class="view-section view-canvas animate-entry">
+    <header class="view-head">
+      <p class="view-kicker">Strategic Intelligence</p>
+      <h2 class="view-title">Titans</h2>
+      <p class="view-desc">
+        Confronta gli stack dei player principali e scopri i repository che guidano le loro strategie AI.
+      </p>
+    </header>
+
+    <div class="panel filter-panel">
+      <p class="panel-label">Players</p>
+      <div id="titans-buttons" class="button-row"></div>
+    </div>
+
+    <div id="titan-briefing" class="briefing-panel hidden">
+      <span id="titan-briefing-title" class="briefing-title">// INTEL</span>
+      <p id="titan-briefing-text">...</p>
+    </div>
+
+    <div class="panel titan-header">
+      <div id="titan-logo-placeholder" class="titan-logo">TG</div>
+      <h3 id="titan-header-name">...</h3>
+    </div>
+
+    <section class="panel results-panel">
+      <div id="loading-spinner-titans" class="spinner-wrap hidden">
+        <div class="loader-ring"></div>
+        <p>LOADING STACKS...</p>
+      </div>
+
+      <div id="titans-container"></div>
+      <div id="titans-extra"></div>
+    </section>
+  </section>
+</BaseLayout>

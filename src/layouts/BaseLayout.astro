@@ -1,0 +1,372 @@
+﻿---
+import "../styles/global.css";
+import { readdirSync } from "node:fs";
+import { join } from "node:path";
+
+const { title = "AI THINGS", description = "" } = Astro.props;
+const pathname = Astro.url.pathname;
+const activePath = pathname === "/" ? "/" : pathname.replace(/\/$/, "");
+const isHome = activePath === "/";
+
+const homeBgImages = (() => {
+  if (!isHome) return [];
+
+  const getOrder = (fileName) => {
+    const match = fileName.match(/^(\d+)/);
+    return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
+  };
+
+  try {
+    const homeDir = join(process.cwd(), "public", "assets", "home");
+    const images = readdirSync(homeDir)
+      .filter((fileName) => /\.(png|jpe?g|webp|avif)$/i.test(fileName))
+      .sort((a, b) => {
+        const orderDiff = getOrder(a) - getOrder(b);
+        if (orderDiff !== 0) return orderDiff;
+        return a.localeCompare(b, "it");
+      })
+      .map((fileName) => `/assets/home/${encodeURIComponent(fileName)}`);
+    const limitedImages = images.slice(0, 2);
+
+    return limitedImages.length ? limitedImages : ["/assets/tokyo-night-abstract.svg"];
+  } catch {
+    return ["/assets/tokyo-night-abstract.svg"];
+  }
+})();
+const firstHomeBgImage = homeBgImages[0];
+---
+<!doctype html>
+<html lang="it" data-visual="neon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/logo.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="/logo.ico" type="image/x-icon" />
+    {isHome && firstHomeBgImage && <link rel="preload" as="image" href={firstHomeBgImage} fetchpriority="high" />}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=IBM+Plex+Mono:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Newsreader:opsz,wght@6..72,500;6..72,700&display=swap"
+    />
+  </head>
+  <body class={isHome ? "home-page" : undefined}>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div id="site-loader" class="site-loader">
+      <div class="site-loader-logo">AI THINGS</div>
+    </div>
+    <div class="scroll-progress">
+      <span id="scroll-progress-bar"></span>
+    </div>
+    {isHome && (
+      <div class="home-scroll-bg" aria-hidden="true">
+        {homeBgImages.map((imageSrc, index) => (
+          <div
+            class={`home-scroll-bg__slide ${index === 0 ? "is-active" : ""}`}
+            data-home-bg-slide
+            data-home-bg-src={imageSrc}
+          >
+          </div>
+        ))}
+        <div class="home-scroll-bg__overlay"></div>
+      </div>
+    )}
+    <div class="ambient-layer" aria-hidden="true"></div>
+    <div class="shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <h1 class="brand-title">
+            <a href="/">AI THINGS</a>
+          </h1>
+          <p class="brand-subtitle">Knowledge Explorer / Dynamic Intelligence Console</p>
+        </div>
+
+        <div class="controls-block">
+          <div class="status-row">
+            <span id="api-status-dot" class="status-dot bg-green-400"></span>
+            <span class="status-text" data-i18n="system_status">SYSTEM: ONLINE</span>
+          </div>
+          <button
+            id="btn-open-scene-nav"
+            class="command-btn"
+            type="button"
+            aria-controls="scene-nav-modal"
+            aria-expanded="false"
+          >
+            NAV FX
+          </button>
+          <button
+            id="btn-open-manual"
+            class="command-btn"
+            type="button"
+            aria-controls="manual-modal"
+            aria-expanded="false"
+          >
+            [?] <span data-i18n="guide_btn">GUIDE</span>
+          </button>
+          <button id="btn-config-api" class="command-btn" type="button">SET API KEY</button>
+          <div class="lang-switch">
+            <button id="lang-en" type="button">EN</button>
+            <span>/</span>
+            <button id="lang-it" type="button">IT</button>
+          </div>
+        </div>
+      </header>
+
+      <nav class="route-nav" id="main-nav" aria-label="Primary">
+        <a class={`nav-tab-btn ${activePath === "/" ? "active" : ""}`} href="/">HOME</a>
+        <a class={`nav-tab-btn ${activePath === "/explorer" ? "active" : ""}`} href="/explorer">
+          <span data-i18n="nav_explorer">EXPLORER</span>
+        </a>
+        <a class={`nav-tab-btn ${activePath === "/titans" ? "active" : ""}`} href="/titans">
+          <span data-i18n="nav_titans">TITANS</span>
+        </a>
+        <a class={`nav-tab-btn ${activePath === "/mcp" ? "active" : ""}`} href="/mcp">
+          <span data-i18n="nav_mcp">MCP</span>
+        </a>
+        <a class={`nav-tab-btn ${activePath === "/docs" ? "active" : ""}`} href="/docs">
+          <span data-i18n="nav_docs">DOCS</span>
+        </a>
+        <a class={`nav-tab-btn ${activePath === "/code-review" ? "active" : ""}`} href="/code-review">
+          CODE REVIEW
+        </a>
+      </nav>
+
+      <main id="main-content" class="page-slot" tabindex="-1">
+        <slot />
+      </main>
+
+      <footer class="site-footer">
+        SYSTEM ARCHITECT:
+        <a href="https://www.linkedin.com/in/giacomo-marani-3a4532121/" target="_blank" rel="noreferrer">
+          GIACOMO MARANI
+        </a>
+      </footer>
+
+      <div id="error-container" class="error-toast hidden" aria-live="assertive"></div>
+    </div>
+
+    <button
+      id="btn-open-chat"
+      class="btn-floating-chat"
+      title="Talk to AI"
+      type="button"
+      aria-label="Open chat assistant"
+      aria-controls="chat-modal"
+      aria-expanded="false"
+    >
+      <img src="/assets/tongue.png" alt="Chat" />
+    </button>
+
+    <div
+      id="chat-modal"
+      class="chat-modal hidden animate-entry"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="chat-modal-title"
+    >
+      <div class="chat-header handle">
+        <h2 id="chat-modal-title" class="neon-blue">NEXUS AI</h2>
+        <div class="chat-actions">
+          <button id="btn-expand-chat" title="Expand" type="button" aria-label="Expand chat">[ ]</button>
+          <button id="btn-close-chat" type="button" aria-label="Close chat">&times;</button>
+        </div>
+      </div>
+      <div id="chat-messages" class="chat-body">
+        <div class="chat-message ai bg-gray-800/50 p-3 rounded-lg border border-gray-700 text-sm">
+          Greetings. I am Nexus. <br />System ready.
+        </div>
+      </div>
+      <div class="chat-input-wrap">
+        <div class="chat-input-row">
+          <input type="text" id="chat-input" placeholder="Query..." class="input-cyber" />
+          <button id="btn-chat-send" class="chat-send" type="button">SEND</button>
+        </div>
+        <div class="chat-meta">
+          <span>POWERED BY GEMINI</span>
+          <button id="btn-set-key" type="button">SET API KEY</button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="api-key-modal"
+      class="overlay-modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="api-key-modal-title"
+    >
+      <div class="modal-card">
+        <h2 id="api-key-modal-title">AUTHENTICATION</h2>
+        <p>Enter Gemini API Key to enable chat. Keys are stored locally.</p>
+        <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer">
+          Get free API Key from Google AI Studio ->
+        </a>
+        <input type="password" id="api-key-input" class="input-cyber" placeholder="sk-..." />
+        <div class="modal-actions">
+          <button id="btn-cancel-key" type="button">CANCEL</button>
+          <button id="btn-delete-key" class="danger hidden" type="button">DISCONNECT</button>
+          <button id="btn-save-key" type="button">CONNECT</button>
+        </div>
+      </div>
+    </div>
+
+    <div
+      id="manual-modal"
+      class="overlay-modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="manual-modal-title"
+    >
+      <div class="modal-card modal-large">
+        <div class="manual-head">
+          <h2 id="manual-modal-title">MANUAL</h2>
+          <button id="btn-close-manual" type="button" aria-label="Close manual">&times;</button>
+        </div>
+        <div id="manual-content"></div>
+      </div>
+    </div>
+
+    <div
+      id="scene-nav-modal"
+      class="scene-nav-modal hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-hidden="true"
+      aria-labelledby="scene-nav-title"
+    >
+      <div class="scene-nav-card">
+        <div class="scene-nav-head">
+          <h2 id="scene-nav-title">NAVIGATOR</h2>
+          <button id="btn-close-scene-nav" type="button" aria-label="Close navigation">&times;</button>
+        </div>
+        <div class="scene-nav-body">
+          <div id="scene-nav-slider" class="hz-slider">
+            <div class="hz-slides">
+              <div class="hz-slide is-current" data-route="/" data-title="Home">
+                <div class="hz-slide-img" style="background-image: url('/assets/preview.png')"></div>
+              </div>
+              <div class="hz-slide" data-route="/explorer" data-title="Explorer">
+                <div class="hz-slide-img" style="background-image: url('/assets/preview.png')"></div>
+              </div>
+              <div class="hz-slide" data-route="/titans" data-title="Titans">
+                <div class="hz-slide-img" style="background-image: url('/assets/CodereviewHub.png')"></div>
+              </div>
+              <div class="hz-slide" data-route="/mcp" data-title="MCP">
+                <div class="hz-slide-img" style="background-image: url('/assets/mcpsearchtab.png')"></div>
+              </div>
+              <div class="hz-slide" data-route="/docs" data-title="Docs">
+                <div class="hz-slide-img" style="background-image: url('/assets/asknexus.png')"></div>
+              </div>
+              <div class="hz-slide" data-route="/code-review" data-title="Code Review">
+                <div class="hz-slide-img" style="background-image: url('/assets/CodereviewHub.png')"></div>
+              </div>
+            </div>
+            <div class="hz-ui">
+              <p class="hz-hint">scroll or drag</p>
+              <div class="hz-counter">
+                <button class="hz-nav hz-prev" type="button" aria-label="Previous slide">&lt;&lt;</button>
+                <div class="hz-counter-display">
+                  <span class="hz-current">01</span>
+                  <span class="hz-divider">//</span>
+                  <span class="hz-total">06</span>
+                </div>
+                <button class="hz-nav hz-next" type="button" aria-label="Next slide">&gt;&gt;</button>
+              </div>
+              <div class="hz-title-wrap">
+                <div class="hz-title">Home</div>
+              </div>
+              <div class="hz-lines" aria-hidden="true"></div>
+              <div class="hz-thumbs" aria-label="Slide thumbnails"></div>
+            </div>
+          </div>
+        </div>
+        <div class="scene-nav-actions">
+          <button id="btn-scene-nav-go" type="button">APRI SEZIONE</button>
+        </div>
+      </div>
+    </div>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/Observer.min.js"></script>
+    <script type="module" src="/scripts/scene-nav.js"></script>
+    <script type="module" src="/scripts/app.js"></script>
+    <script type="module" src="/scripts/ux-effects.js"></script>
+    <script type="module" src="/scripts/home-scroll-bg.js"></script>
+    <script is:inline>
+      const loaderStart = performance.now();
+      const isHomePage = document.body?.classList.contains("home-page");
+      const minLoaderMs = isHomePage ? 1200 : 320;
+      const failSafeMs = isHomePage ? 3800 : 1800;
+      let domReady = document.readyState !== "loading";
+      let homeReady = !isHomePage;
+      let hidden = false;
+
+      const hideLoaderNow = () => {
+        if (hidden) return;
+        hidden = true;
+        const loader = document.getElementById("site-loader");
+        if (!loader) return;
+        loader.classList.add("is-hidden");
+        setTimeout(() => loader.remove(), 700);
+      };
+
+      const hideLoader = () => {
+        const elapsed = performance.now() - loaderStart;
+        const wait = Math.max(0, minLoaderMs - elapsed);
+        window.setTimeout(hideLoaderNow, wait);
+      };
+
+      const maybeHideLoader = () => {
+        if (!domReady || !homeReady) return;
+        hideLoader();
+      };
+
+      if (document.readyState === "loading") {
+        document.addEventListener(
+          "DOMContentLoaded",
+          () => {
+            domReady = true;
+            maybeHideLoader();
+          },
+          { once: true }
+        );
+      }
+
+      if (isHomePage) {
+        window.addEventListener(
+          "home:ready",
+          () => {
+            homeReady = true;
+            maybeHideLoader();
+          },
+          { once: true }
+        );
+      }
+
+      window.addEventListener(
+        "load",
+        () => {
+          domReady = true;
+          homeReady = true;
+          maybeHideLoader();
+        },
+        { once: true }
+      );
+
+      window.setTimeout(() => {
+        domReady = true;
+        homeReady = true;
+        maybeHideLoader();
+      }, failSafeMs);
+
+      maybeHideLoader();
+    </script>
+  </body>
+</html>

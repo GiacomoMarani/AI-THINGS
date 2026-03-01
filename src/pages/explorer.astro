@@ -1,0 +1,59 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="AI THINGS - Explorer" description="Ricerca e scopri repository AI.">
+  <section id="view-explorer" class="view-section view-canvas animate-entry" data-card-fx="off">
+    <header class="view-head">
+      <p class="view-kicker">Repository Intelligence</p>
+      <h2 class="view-title">Explorer</h2>
+      <p class="view-desc">
+        Naviga per tema o lancia una query libera. Ogni risultato include insight rapido e accesso diretto.
+      </p>
+    </header>
+
+    <div class="repo-browser">
+      <div class="repo-browser-toolbar">
+        <div class="repo-search-wrap">
+          <span class="repo-search-icon" aria-hidden="true">&#128269;</span>
+          <input type="text" id="search-input" placeholder="Search database..." class="repo-search-input" />
+        </div>
+        <div class="repo-sort-group" role="group" aria-label="Sort repositories">
+          <button id="repo-sort-stars" class="repo-sort-btn is-active" type="button" data-i18n="sort_most_stars">
+            Most Stars
+          </button>
+          <button id="repo-sort-updated" class="repo-sort-btn" type="button" data-i18n="sort_recently_updated">
+            Recently Updated
+          </button>
+        </div>
+        <button id="execute-query-button" class="repo-run-btn" type="button">Run</button>
+      </div>
+
+      <div class="repo-category-row-wrap">
+        <div id="category-buttons" class="repo-category-row"></div>
+      </div>
+
+      <div id="explorer-briefing" class="briefing-panel repo-briefing hidden">
+        <span class="briefing-title">// BRIEFING</span>
+        <p id="explorer-briefing-text">...</p>
+      </div>
+
+      <section class="results-panel repo-results-panel">
+        <div class="split-head repo-split-head">
+          <div>
+            <h3 id="results-title">...</h3>
+            <p id="results-subtitle">...</p>
+          </div>
+        </div>
+
+        <div id="loading-spinner-exp" class="spinner-wrap hidden">
+          <div class="loader-ring"></div>
+          <p>ACCESSING GITHUB...</p>
+        </div>
+
+        <div id="results-container"></div>
+        <div id="results-extra"></div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

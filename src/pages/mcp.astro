@@ -1,0 +1,38 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="AI THINGS - MCP" description="Registry MCP e strumenti.">
+  <section id="view-mcp" class="view-section view-canvas animate-entry">
+    <header class="view-head">
+      <p class="view-kicker">Protocol Layer</p>
+      <h2 class="view-title">MCP Servers</h2>
+      <p class="view-desc">
+        Esplora i server ufficiali del Model Context Protocol e cerca integrazioni aggiornate dal registry.
+      </p>
+    </header>
+
+    <div class="panel filter-panel">
+      <p class="panel-label">Registry Views</p>
+      <div id="mcp-buttons" class="button-row"></div>
+    </div>
+
+    <div class="panel panel-search">
+      <p class="panel-label">Search MCP Registry</p>
+      <div class="search-row">
+        <input type="text" id="mcp-search-input" placeholder="Search MCP servers..." class="input-cyber" />
+        <button id="mcp-search-button" class="search-btn" type="button">Find</button>
+      </div>
+    </div>
+
+    <div id="mcp-briefing" class="briefing-panel briefing-gold">
+      <span class="briefing-title">// MCP PROTOCOL</span>
+      <p id="mcp-briefing-text">...</p>
+    </div>
+
+    <section class="panel results-panel">
+      <div id="mcp-container"></div>
+      <div id="mcp-extra"></div>
+    </section>
+  </section>
+</BaseLayout>

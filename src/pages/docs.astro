@@ -1,0 +1,29 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="AI THINGS - Docs" description="Documentazione ufficiale e risorse.">
+  <section id="view-docs" class="view-section view-canvas animate-entry">
+    <header class="view-head">
+      <p class="view-kicker">Source of Truth</p>
+      <h2 class="view-title">Documentation Hub</h2>
+      <p class="view-desc">
+        Raccoglie link ufficiali e riferimenti pratici per modelli, API, framework e piattaforme.
+      </p>
+    </header>
+
+    <div class="panel filter-panel">
+      <p class="panel-label">Documentation Domains</p>
+      <div id="docs-buttons" class="button-row"></div>
+    </div>
+
+    <div id="docs-briefing" class="briefing-panel briefing-violet">
+      <span class="briefing-title">// DOCS HUB</span>
+      <p id="docs-briefing-text">...</p>
+    </div>
+
+    <section class="panel results-panel">
+      <div id="docs-container"></div>
+    </section>
+  </section>
+</BaseLayout>

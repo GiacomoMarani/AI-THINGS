@@ -1,0 +1,46 @@
+<section id="view-code-review" class="view-section hidden">
+                    <div class="bg-gray-900/40 border border-gray-800 rounded-xl p-4 sm:p-6">
+                        <div class="flex flex-col lg:flex-row lg:items-center gap-3">
+                            <input id="code-review-url" type="text" placeholder="https://github.com/owner/repo"
+                                class="input-cyber w-full px-4 py-3 rounded-lg text-sm bg-black border border-gray-700" />
+                            <button id="code-review-run"
+                                class="text-xs font-bold bg-cyan-900/50 text-cyan-400 px-4 py-3 rounded border border-cyan-700 hover:bg-cyan-900 uppercase tracking-widest">
+                                ANALYZE
+                            </button>
+                        </div>
+                        <div id="code-review-status" class="text-xs text-gray-500 mt-3 font-mono"></div>
+                    </div>
+
+                    <div id="code-review-overview"
+                        class="mt-6 bg-gray-900/40 border border-gray-800 rounded-xl p-4 sm:p-6 text-sm text-gray-300">
+                    </div>
+
+                    <div id="code-review-tabs" class="mt-6 flex flex-wrap gap-2">
+                        <button class="btn-category cr-tab" data-tab="refactor">Refactor</button>
+                        <button class="btn-category cr-tab" data-tab="documentation">Documentation</button>
+                        <button class="btn-category cr-tab" data-tab="efficiency">Efficiency</button>
+                        <button class="btn-category cr-tab" data-tab="security">Security</button>
+                    </div>
+
+                    <div id="code-review-spinner" class="hidden text-center py-12">
+                        <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-cyan-400 mx-auto">
+                        </div>
+                        <p class="text-cyan-500 mt-4 text-xs font-mono animate-pulse">ANALYZING...</p>
+                    </div>
+
+                    <div id="code-review-output" class="mt-6 space-y-4">
+                        <div id="code-review-log"
+                            class="bg-gray-900/40 border border-gray-800 rounded-lg p-4 text-xs text-gray-400 font-mono hidden">
+                        </div>
+                        <div id="code-review-summary"
+                            class="bg-gray-900/50 border border-gray-800 rounded-lg p-4 text-sm text-gray-300 hidden">
+                            <span class="text-cyan-400 font-bold text-xs tracking-widest uppercase">Summary</span>
+                            <p class="mt-2 whitespace-pre-line" id="code-review-summary-text"></p>
+                        </div>
+                        <div id="code-review-list" class="space-y-4"></div>
+                        <div id="code-review-empty"
+                            class="text-gray-500 font-mono text-xs border border-dashed border-gray-800 rounded-lg p-6 text-center hidden">
+                            No suggestions yet. Run analysis to see results.
+                        </div>
+                    </div>
+                </section>

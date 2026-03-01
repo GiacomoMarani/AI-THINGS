@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="AI THINGS - Home" description="AI things: esplora il mondo AI in costante evoluzione.">
+
+  <!-- HERO: 2-column layout → left: title + CTA | right: FLOW HIGHLIGHTS -->
+  <section id="section-hero" class="home-hero-block animate-entry" data-progress-section>
+    <div class="home-hero-grid">
+
+      <!-- Left column -->
+      <div class="home-hero-left">
+        <p class="home-hero-kicker">AI THINGS OPERATIONS</p>
+        <h2 class="home-hero-title">
+          One vertical<br />flow for tools,<br />data, and<br />execution.
+        </h2>
+        <p class="home-hero-desc">
+          Scroll once and inspect all modules: Explorer, Titans, MCP,
+          Docs, Code Review. Each section keeps the same design language
+          and direct call-to-action.
+        </p>
+        <div class="home-hero-actions">
+          <a href="#section-explorer" class="home-cta home-cta--primary">Start vertical tour</a>
+          <a href="/explorer" class="home-cta">Open Explorer</a>
+        </div>
+      </div>
+
+      <!-- Right column: Flow Highlights -->
+      <aside class="home-highlights-panel" aria-label="Flow highlights">
+        <p class="home-highlights-label">FLOW HIGHLIGHTS</p>
+        <ul class="home-highlights-list">
+          <li class="home-highlight-item">
+            <span class="home-highlight-num">01</span>
+            <span>Focused section-by-section journey</span>
+          </li>
+          <li class="home-highlight-item">
+            <span class="home-highlight-num">02</span>
+            <span>Faster scan of every module</span>
+          </li>
+          <li class="home-highlight-item">
+            <span class="home-highlight-num">03</span>
+            <span>Same interaction model across pages</span>
+          </li>
+          <li class="home-highlight-item">
+            <span class="home-highlight-num">04</span>
+            <span>Two visual variants: Neon / Flux</span>
+          </li>
+        </ul>
+      </aside>
+
+    </div>
+  </section>
+
+  <!-- MODULE ROWS -->
+  <div class="home-modules">
+
+    <section id="section-explorer" class="home-module-row" data-progress-section>
+      <div class="home-module-inner">
+        <p class="home-module-kicker"><span class="home-module-num">01</span> / EXPLORER</p>
+        <h3 class="home-module-title">Repository Intelligence</h3>
+        <p class="home-module-desc">Category-based browsing and free query search with tactical insights and star/language signals.</p>
+        <a href="/explorer" class="home-cta home-cta--primary">Go to Explorer</a>
+      </div>
+    </section>
+
+    <section id="section-titans" class="home-module-row" data-progress-section>
+      <div class="home-module-inner">
+        <p class="home-module-kicker"><span class="home-module-num">02</span> / TITANS</p>
+        <h3 class="home-module-title">Big Tech Stack Mapping</h3>
+        <p class="home-module-desc">Read curated repo sets by company and compare strategic directions from one consistent grid.</p>
+        <a href="/titans" class="home-cta home-cta--primary">Go to Titans</a>
+      </div>
+    </section>
+
+    <section id="section-mcp" class="home-module-row" data-progress-section>
+      <div class="home-module-inner">
+        <p class="home-module-kicker"><span class="home-module-num">03</span> / MCP</p>
+        <h3 class="home-module-title">MCP Registry Layer</h3>
+        <p class="home-module-desc">Search official MCP servers, inspect metadata, and keep protocol discovery in the same workflow.</p>
+        <a href="/mcp" class="home-cta home-cta--primary">Go to MCP</a>
+      </div>
+    </section>
+
+    <section id="section-docs" class="home-module-row" data-progress-section>
+      <div class="home-module-inner">
+        <p class="home-module-kicker"><span class="home-module-num">04</span> / DOCS</p>
+        <h3 class="home-module-title">Source-of-Truth Documentation</h3>
+        <p class="home-module-desc">Centralized docs cards for models, APIs and frameworks without switching context.</p>
+        <a href="/docs" class="home-cta home-cta--primary">Go to Docs</a>
+      </div>
+    </section>
+
+    <section id="section-code-review" class="home-module-row" data-progress-section>
+      <div class="home-module-inner">
+        <p class="home-module-kicker"><span class="home-module-num">05</span> / CODE REVIEW</p>
+        <h3 class="home-module-title">GitHub Review Workflow</h3>
+        <p class="home-module-desc">Run structured AI review over repository files with tabs for refactor, docs, efficiency and security.</p>
+        <a href="/code-review" class="home-cta home-cta--primary">Go to Code Review</a>
+      </div>
+    </section>
+
+  </div>
+
+</BaseLayout>

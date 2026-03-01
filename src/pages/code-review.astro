@@ -1,0 +1,57 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="AI THINGS - Code Review" description="Analisi repository e report.">
+  <section id="view-code-review" class="view-section view-canvas animate-entry" data-card-fx="off">
+    <header class="view-head">
+      <p class="view-kicker">Quality Workflow</p>
+      <h2 class="view-title">Code Review Hub</h2>
+      <p class="view-desc">
+        Inserisci un repository GitHub e genera suggerimenti su refactor, documentazione, efficienza e sicurezza.
+      </p>
+    </header>
+
+    <div class="panel review-entry">
+      <div class="search-row review-row">
+        <input
+          id="code-review-url"
+          type="text"
+          placeholder="https://github.com/owner/repo"
+          class="input-cyber"
+        />
+        <button id="code-review-run" class="search-btn" type="button">Analyze</button>
+      </div>
+      <div id="code-review-status" class="review-status"></div>
+    </div>
+
+    <div id="code-review-overview" class="panel review-overview"></div>
+
+    <div id="code-review-tabs" class="panel review-tabs">
+      <button class="btn-category cr-tab" data-tab="refactor" type="button">Refactor</button>
+      <button class="btn-category cr-tab" data-tab="documentation" type="button">Documentation</button>
+      <button class="btn-category cr-tab" data-tab="efficiency" type="button">Efficiency</button>
+      <button class="btn-category cr-tab" data-tab="security" type="button">Security</button>
+    </div>
+
+    <section id="code-review-output" class="panel review-output">
+      <div id="code-review-spinner" class="spinner-wrap hidden">
+        <div class="loader-ring"></div>
+        <p>ANALYZING REPOSITORY...</p>
+      </div>
+
+      <div id="code-review-log" class="review-log hidden"></div>
+
+      <div id="code-review-summary" class="review-summary hidden">
+        <span>Summary</span>
+        <p id="code-review-summary-text"></p>
+      </div>
+
+      <div id="code-review-list" class="review-list"></div>
+
+      <div id="code-review-empty" class="review-empty hidden">
+        No suggestions yet. Run analysis to see results.
+      </div>
+    </section>
+  </section>
+</BaseLayout>
