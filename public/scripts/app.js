@@ -1386,6 +1386,7 @@ function renderExplorerTerminalCard(repo, whyTextObj) {
                         <span class="repo-terminal-date">${updatedAt}</span>
                         <div class="repo-terminal-actions">
                             ${scanBtn}
+                            ${repoFullNameRaw ? `<a href="/code-review?repo=${encodeURIComponent(repoFullNameRaw)}" class="repo-cr-btn" title="Open in Code Review">⌥ CR</a>` : ''}
                             <a href="${repoUrl}" target="_blank" rel="noreferrer" class="repo-terminal-open" aria-label="Open ${repoName} on GitHub">↗</a>
                         </div>
                     </footer>
@@ -2628,6 +2629,17 @@ function init() {
     detectLanguage();
     if (dom.mcpContainer || dom.viewMcp) {
         loadMcpRegistry({ search: '' });
+    }
+
+    // Auto-populate Code Review from ?repo= query param (e.g. from repo card shortcut)
+    if (dom.viewCodeReview && dom.codeReviewUrl) {
+        const params = new URLSearchParams(window.location.search);
+        const repoParam = params.get('repo');
+        if (repoParam) {
+            dom.codeReviewUrl.value = `https://github.com/${repoParam}`;
+            // small delay so UI is ready
+            setTimeout(() => runCodeReview(dom.codeReviewUrl.value), 300);
+        }
     }
 
     // Start

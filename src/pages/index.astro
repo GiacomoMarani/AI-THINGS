@@ -44,28 +44,15 @@ const modules = [
     </div>
   </section>
 
-  <!-- MODULE CARDS -->
+  <!-- MODULE CARDS — each row is a full clickable link -->
   <div class="home-modules" id="section-modules">
     {modules.map((m) => (
-      <div class="home-module-card">
-        {/* stretch overlay link — covers the full card */}
-        <a href={m.href} class="home-module-link" aria-label={m.title} tabindex="-1" aria-hidden="true"></a>
-
-        <span class="home-module-kicker">
-          <span class="home-module-num">{m.num}</span> / {m.tag}
-        </span>
+      <a href={m.href} class="home-module-card">
+        <span class="home-module-kicker"><span class="home-module-num">{m.num}</span> / {m.tag}</span>
         <span class="home-module-title">{m.title}</span>
         <span class="home-module-desc">{m.desc}</span>
-
-        <div class="home-module-actions">
-          <a href={m.href} class="home-module-go">Open →</a>
-          {m.href !== "/code-review" && (
-            <a href="/code-review" class="home-module-cr" title="Review this domain in Code Review">
-              ⌥ Code Review
-            </a>
-          )}
-        </div>
-      </div>
+        <span class="home-module-arrow">→</span>
+      </a>
     ))}
   </div>
 
