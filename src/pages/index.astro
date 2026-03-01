@@ -4,8 +4,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 <BaseLayout title="AI THINGS - Home" description="AI things: esplora il mondo AI in costante evoluzione.">
 
-  <!-- HERO: 2-column layout → left: title + CTA | right: FLOW HIGHLIGHTS -->
-  <section id="section-hero" class="home-hero-block animate-entry" data-progress-section>
+  <!-- HERO: 2-column layout -->
+  <section id="section-hero" class="home-hero-block animate-entry">
     <div class="home-hero-grid">
 
       <!-- Left column -->
@@ -19,13 +19,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           From discovery to implementation — always the right context.
         </p>
         <div class="home-hero-actions">
-          <a href="#section-explorer" class="home-cta home-cta--primary">Start exploring</a>
+          <a href="#section-explorer" class="home-cta home-cta--primary" data-i18n-home="explore">Start exploring</a>
           <a href="/explorer" class="home-cta">Open Explorer</a>
         </div>
       </div>
 
-      <!-- Right column: Flow Highlights -->
-      <aside class="home-highlights-panel" aria-label="Flow highlights">
+      <!-- Right column: What you find here -->
+      <aside class="home-highlights-panel" aria-label="What you find here">
         <p class="home-highlights-label">WHAT YOU FIND HERE</p>
         <ul class="home-highlights-list">
           <li class="home-highlight-item">
@@ -38,11 +38,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           </li>
           <li class="home-highlight-item">
             <span class="home-highlight-num">03</span>
-            <span>Official MCP servers & protocol registry</span>
+            <span>Official MCP servers &amp; protocol registry</span>
           </li>
           <li class="home-highlight-item">
             <span class="home-highlight-num">04</span>
-            <span>Source-of-truth docs & code quality review</span>
+            <span>Source-of-truth docs &amp; code quality review</span>
           </li>
         </ul>
       </aside>
@@ -50,53 +50,43 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- MODULE ROWS -->
-  <div class="home-modules">
+  <!-- MODULE CARDS — each row is a full clickable link -->
+  <div class="home-modules" id="section-explorer">
 
-    <section id="section-explorer" class="home-module-row" data-progress-section>
-      <div class="home-module-inner">
-        <p class="home-module-kicker"><span class="home-module-num">01</span> / EXPLORER</p>
-        <h3 class="home-module-title">Repository Intelligence</h3>
-        <p class="home-module-desc">Category-based browsing and free query search with tactical insights and star/language signals.</p>
-        <a href="/explorer" class="home-cta home-cta--primary">Go to Explorer</a>
-      </div>
-    </section>
+    <a href="/explorer" class="home-module-card">
+      <span class="home-module-kicker"><span class="home-module-num">01</span> / EXPLORER</span>
+      <span class="home-module-title">Repository Intelligence</span>
+      <span class="home-module-desc">Category browsing and free search with tactical insights on each repo.</span>
+      <span class="home-module-arrow">→</span>
+    </a>
 
-    <section id="section-titans" class="home-module-row" data-progress-section>
-      <div class="home-module-inner">
-        <p class="home-module-kicker"><span class="home-module-num">02</span> / TITANS</p>
-        <h3 class="home-module-title">Big Tech Stack Mapping</h3>
-        <p class="home-module-desc">Read curated repo sets by company and compare strategic directions from one consistent grid.</p>
-        <a href="/titans" class="home-cta home-cta--primary">Go to Titans</a>
-      </div>
-    </section>
+    <a href="/titans" class="home-module-card">
+      <span class="home-module-kicker"><span class="home-module-num">02</span> / TITANS</span>
+      <span class="home-module-title">Big Tech Stack Mapping</span>
+      <span class="home-module-desc">Curated repo sets by company. Compare strategic AI directions at a glance.</span>
+      <span class="home-module-arrow">→</span>
+    </a>
 
-    <section id="section-mcp" class="home-module-row" data-progress-section>
-      <div class="home-module-inner">
-        <p class="home-module-kicker"><span class="home-module-num">03</span> / MCP</p>
-        <h3 class="home-module-title">MCP Registry Layer</h3>
-        <p class="home-module-desc">Search official MCP servers, inspect metadata, and keep protocol discovery in the same workflow.</p>
-        <a href="/mcp" class="home-cta home-cta--primary">Go to MCP</a>
-      </div>
-    </section>
+    <a href="/mcp" class="home-module-card">
+      <span class="home-module-kicker"><span class="home-module-num">03</span> / MCP</span>
+      <span class="home-module-title">MCP Registry Layer</span>
+      <span class="home-module-desc">Search official MCP servers and inspect protocol metadata.</span>
+      <span class="home-module-arrow">→</span>
+    </a>
 
-    <section id="section-docs" class="home-module-row" data-progress-section>
-      <div class="home-module-inner">
-        <p class="home-module-kicker"><span class="home-module-num">04</span> / DOCS</p>
-        <h3 class="home-module-title">Source-of-Truth Documentation</h3>
-        <p class="home-module-desc">Centralized docs cards for models, APIs and frameworks without switching context.</p>
-        <a href="/docs" class="home-cta home-cta--primary">Go to Docs</a>
-      </div>
-    </section>
+    <a href="/docs" class="home-module-card">
+      <span class="home-module-kicker"><span class="home-module-num">04</span> / DOCS</span>
+      <span class="home-module-title">Source-of-Truth Documentation</span>
+      <span class="home-module-desc">Direct access to official docs for models, APIs, and frameworks.</span>
+      <span class="home-module-arrow">→</span>
+    </a>
 
-    <section id="section-code-review" class="home-module-row" data-progress-section>
-      <div class="home-module-inner">
-        <p class="home-module-kicker"><span class="home-module-num">05</span> / CODE REVIEW</p>
-        <h3 class="home-module-title">GitHub Review Workflow</h3>
-        <p class="home-module-desc">Run structured AI review over repository files with tabs for refactor, docs, efficiency and security.</p>
-        <a href="/code-review" class="home-cta home-cta--primary">Go to Code Review</a>
-      </div>
-    </section>
+    <a href="/code-review" class="home-module-card">
+      <span class="home-module-kicker"><span class="home-module-num">05</span> / CODE REVIEW</span>
+      <span class="home-module-title">GitHub Review Workflow</span>
+      <span class="home-module-desc">AI-powered review across refactor, docs, efficiency and security.</span>
+      <span class="home-module-arrow">→</span>
+    </a>
 
   </div>
 

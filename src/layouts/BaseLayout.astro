@@ -88,16 +88,6 @@ const firstHomeBgImage = homeBgImages[0];
             <span id="api-status-dot" class="status-dot bg-green-400"></span>
             <span class="status-text" data-i18n="system_status">SYSTEM: ONLINE</span>
           </div>
-
-          <button
-            id="btn-open-manual"
-            class="command-btn"
-            type="button"
-            aria-controls="manual-modal"
-            aria-expanded="false"
-          >
-            [?] <span data-i18n="guide_btn">GUIDE</span>
-          </button>
           <button id="btn-config-api" class="command-btn" type="button">SET API KEY</button>
           <div class="lang-switch">
             <button id="lang-en" type="button">EN</button>
@@ -359,6 +349,28 @@ const firstHomeBgImage = homeBgImages[0];
       }, failSafeMs);
 
       maybeHideLoader();
+    </script>
+
+    <!-- Language switch: wire buttons to app.js setLanguage() -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedLang = localStorage.getItem('ai_things_lang') || 'en';
+        if (typeof setLanguage === 'function') setLanguage(savedLang);
+
+        const btnEn = document.getElementById('lang-en');
+        const btnIt = document.getElementById('lang-it');
+        function activateLang(lang) {
+          localStorage.setItem('ai_things_lang', lang);
+          if (typeof setLanguage === 'function') setLanguage(lang);
+          // visual active state
+          if (btnEn) btnEn.classList.toggle('lang-active', lang === 'en');
+          if (btnIt) btnIt.classList.toggle('lang-active', lang === 'it');
+        }
+        if (btnEn) btnEn.addEventListener('click', () => activateLang('en'));
+        if (btnIt) btnIt.addEventListener('click', () => activateLang('it'));
+        // set initial visual state
+        activateLang(savedLang);
+      });
     </script>
   </body>
 </html>
