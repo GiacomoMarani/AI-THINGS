@@ -49,7 +49,16 @@ const I18N = {
         show_all: "MOSTRA TUTTI",
         show_less: "MOSTRA MENO",
         sort_most_stars: "Più stelle",
-        sort_recently_updated: "Aggiornati di recente"
+        sort_recently_updated: "Aggiornati di recente",
+        home_kicker: "AI THINGS / MISSIONE",
+        home_title: "La tua mappa nel mondo AI<br />in costante evoluzione.",
+        home_desc: "Un'unica destinazione per esplorare tool, modelli, protocolli e documentazione senza rumore. Dalla scoperta all'implementazione — sempre il contesto giusto.",
+        home_cta_explore: "Inizia a esplorare",
+        home_highlights_label: "COSA TROVI QUI",
+        home_hl_1: "Repository AI curate con insight tattico",
+        home_hl_2: "Stack AI Big Tech mappati per azienda",
+        home_hl_3: "Server MCP ufficiali e registro protocolli",
+        home_hl_4: "Doc ufficiali e analisi qualità del codice"
     },
     en: {
         system_status: "SYSTEM: ONLINE",
@@ -100,7 +109,16 @@ const I18N = {
         show_all: "SHOW ALL",
         show_less: "SHOW LESS",
         sort_most_stars: "Most Stars",
-        sort_recently_updated: "Recently Updated"
+        sort_recently_updated: "Recently Updated",
+        home_kicker: "AI THINGS / MISSION",
+        home_title: "Your map in the<br />constantly evolving<br />AI world.",
+        home_desc: "A single destination to explore tools, models, protocols and documentation without noise. From discovery to implementation — always the right context.",
+        home_cta_explore: "Start exploring",
+        home_highlights_label: "WHAT YOU FIND HERE",
+        home_hl_1: "Curated AI repos with tactical insight",
+        home_hl_2: "Big-tech AI stacks mapped by player",
+        home_hl_3: "Official MCP servers &amp; protocol registry",
+        home_hl_4: "Source-of-truth docs &amp; code quality review"
     }
 };
 
@@ -483,6 +501,7 @@ const DOCS_DATA = [
         models: "AI fundamentals, ML, CV, NLP, projects",
         hosting: "Free curriculum (Microsoft + GitHub Pages)"
     },
+    { name: "LlamaIndex", link: "https://developers.llamaindex.ai", linkText: "developers.llamaindex.ai", models: "RAG, agentic retrieval, ingestion pipelines, structured extraction", hosting: "Self-hosted, managed cloud" },
     { name: "LangChain", link: "https://python.langchain.com/docs/get_started/introduction", linkText: "python.langchain.com", models: "Framework agnostic", hosting: "Self-hosted, LangSmith" },
     { name: "Hugging Face", link: "https://huggingface.co/docs", linkText: "huggingface.co/docs", models: "1M+ Open Models", hosting: "Inference API, Endpoints" },
     { name: "Microsoft Semantic Kernel", link: "https://learn.microsoft.com/en-us/semantic-kernel", linkText: "learn.microsoft.com", models: "OpenAI, Anthropic, Meta", hosting: "Azure Cloud" },
