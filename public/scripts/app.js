@@ -2024,8 +2024,7 @@ function getApiKeyFromUser() {
             if (val) {
                 localStorage.setItem('gemini_api_key', val);
                 cleanup();
-                location.reload(); // Apply key
-                resolve(val);
+                resolve(val); // The pending callGemini call resumes with this key
             }
         };
 
@@ -2052,14 +2051,49 @@ function getApiKeyFromUser() {
     });
 }
 
+async function callGeminiWithModel(model, key, payload, texts) {
+    const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+        {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }
+    );
+
+    if (!res.ok) {
+        // Return a special object to let the caller inspect the status
+        return { __error: true, status: res.status };
+    }
+
+    const data = await res.json();
+
+    if (!data.candidates || data.candidates.length === 0) {
+        console.warn(`Gemini [${model}]: No candidates returned.`, data);
+        if (data.promptFeedback) {
+            return `[BLOCK] Prompt Blocked: ${data.promptFeedback.blockReason}`;
+        }
+        return "No response (Empty Candidates).";
+    }
+
+    const candidate = data.candidates[0];
+    if (candidate.finishReason !== "STOP" && candidate.finishReason !== "MAX_TOKENS") {
+        console.warn(`Gemini [${model}]: Finish Reason`, candidate.finishReason);
+        if (candidate.finishReason === "SAFETY") {
+            return "[SYSTEM] Response blocked by safety filters.";
+        }
+    }
+
+    return candidate.content?.parts?.[0]?.text || "No response content.";
+}
+
 async function callGemini(prompt, systemInstruction = null) {
     const texts = I18N[currentLang];
     let key = localStorage.getItem('gemini_api_key') || apiKey;
 
-    // Strict check: if no key, force getApiKeyFromUser BEFORE any fetch
+    // If no key, ask user — then resume the call with the new key
     if (!key) {
         key = await getApiKeyFromUser();
-        // If user cancelled or didn't provide key, return null or specific message without fetching
         if (!key) return null;
     }
 
@@ -2074,42 +2108,37 @@ async function callGemini(prompt, systemInstruction = null) {
     }
 
     try {
-        const res = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${key}`,
-            {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            }
-        );
+        // --- Primary model ---
+        const primary = await callGeminiWithModel('gemini-2.5-flash', key, payload, texts);
 
-        if (!res.ok) {
-            if (res.status === 400 || res.status === 401 || res.status === 403) {
+        if (primary && primary.__error) {
+            const status = primary.status;
+
+            // Auth errors: clear key and report
+            if (status === 400 || status === 401 || status === 403) {
                 localStorage.removeItem('gemini_api_key');
                 return texts.gemini_invalid_key || "Invalid Key";
             }
-            return (texts.gemini_generic_error || "Error").replace('{status}', res.status);
-        }
 
-        const data = await res.json();
-
-        if (!data.candidates || data.candidates.length === 0) {
-            console.warn("Gemini: No candidates returned.", data);
-            if (data.promptFeedback) {
-                return `[BLOCK] Prompt Blocked: ${data.promptFeedback.blockReason}`;
+            // Rate limit / quota exceeded: fallback to flash-lite silently
+            if (status === 429 || status === 503) {
+                console.warn(`Gemini: ${status} on gemini-2.5-flash — falling back to gemini-2.5-flash-lite`);
+                try {
+                    const fallback = await callGeminiWithModel('gemini-2.5-flash-lite', key, payload, texts);
+                    if (fallback && fallback.__error) {
+                        return (texts.gemini_generic_error || "Error").replace('{status}', fallback.status);
+                    }
+                    return fallback;
+                } catch (fe) {
+                    console.error("Gemini fallback error:", fe);
+                    return texts.gemini_system_error || "System Error";
+                }
             }
-            return "No response (Empty Candidates).";
+
+            return (texts.gemini_generic_error || "Error").replace('{status}', status);
         }
 
-        const candidate = data.candidates[0];
-        if (candidate.finishReason !== "STOP" && candidate.finishReason !== "MAX_TOKENS") {
-            console.warn("Gemini: Finish Reason", candidate.finishReason);
-            if (candidate.finishReason === "SAFETY") {
-                return "[SYSTEM] Response blocked by safety filters.";
-            }
-        }
-
-        return candidate.content?.parts?.[0]?.text || "No response content.";
+        return primary;
     } catch (e) {
         console.error(e);
         return texts.gemini_system_error || "System Error";
