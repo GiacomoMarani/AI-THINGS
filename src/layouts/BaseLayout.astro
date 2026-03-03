@@ -41,7 +41,7 @@ const firstHomeBgImage = homeBgImages[0];
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={description || "AI things: esplora il mondo AI in costante evoluzione."} />
     <link rel="icon" href="/logo.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="/logo.ico" type="image/x-icon" />
     {isHome && firstHomeBgImage && <link rel="preload" as="image" href={firstHomeBgImage} fetchpriority="high" />}
