@@ -1117,39 +1117,60 @@ async function runCodeReviewAnalysis(tabId) {
         .join('\n\n---\n\n');
 
     const analysisPrompt = buildCodeReviewPrompt(tabId, combinedCode);
-    const response = await callGemini(analysisPrompt, getCodeReviewSystemInstruction(tabId));
-    if (response === null) {
+
+    try {
+        const response = await callGemini(analysisPrompt, getCodeReviewSystemInstruction(tabId));
+
+        // User cancelled (no key)
+        if (response === null) {
+            setCodeReviewStatus(CODE_REVIEW_TEXTS[currentLang].status_no_response, true);
+            return;
+        }
+
+        // Gemini returned an error string (invalid key, rate limit message, etc.)
+        const GEMINI_ERROR_PREFIXES = [
+            I18N[currentLang].gemini_invalid_key,
+            I18N[currentLang].gemini_system_error,
+            '[BLOCK]',
+            '[SYSTEM]'
+        ];
+        const isErrorResponse = GEMINI_ERROR_PREFIXES.some(p => p && String(response).startsWith(p));
+        if (isErrorResponse) {
+            setCodeReviewStatus(String(response), true);
+            return;
+        }
+
+        const rawResponse = String(response || '');
+        let data = parseGeminiJson(rawResponse);
+        let summary = '';
+        let suggestions = [];
+        if (data) {
+            if (typeof data.summary === 'string') summary = data.summary;
+            if (Array.isArray(data.suggestions)) suggestions = data.suggestions;
+        }
+        if (!summary && rawResponse && suggestions.length === 0) {
+            summary = rawResponse;
+        }
+        CODE_REVIEW_STATE.analyses[tabId] = {
+            summary: normalizeAiText(summary),
+            suggestions
+        };
+        saveToCache(cacheKey, {
+            signature,
+            summary: CODE_REVIEW_STATE.analyses[tabId].summary,
+            suggestions: CODE_REVIEW_STATE.analyses[tabId].suggestions
+        });
+        setCodeReviewStatus(CODE_REVIEW_TEXTS[currentLang].status_ready);
+        renderCodeReviewResults(tabId);
+
+    } catch (err) {
+        console.error('Code Review analysis error:', err);
+        setCodeReviewStatus((err && err.message) || 'Unexpected error.', true);
+    } finally {
+        // Always reset the lock and spinner, no matter what
         CODE_REVIEW_STATE.isAnalyzing = false;
         dom.codeReviewSpinner.classList.add('hidden');
-        setCodeReviewStatus(CODE_REVIEW_TEXTS[currentLang].status_no_response, true);
-        return;
     }
-
-    const rawResponse = String(response || '');
-    let data = parseGeminiJson(rawResponse);
-    let summary = '';
-    let suggestions = [];
-    if (data) {
-        if (typeof data.summary === 'string') summary = data.summary;
-        if (Array.isArray(data.suggestions)) suggestions = data.suggestions;
-    }
-    if (!summary && rawResponse && suggestions.length === 0) {
-        summary = rawResponse;
-    }
-    CODE_REVIEW_STATE.analyses[tabId] = {
-        summary: normalizeAiText(summary),
-        suggestions
-    };
-    saveToCache(cacheKey, {
-        signature,
-        summary: CODE_REVIEW_STATE.analyses[tabId].summary,
-        suggestions: CODE_REVIEW_STATE.analyses[tabId].suggestions
-    });
-
-    CODE_REVIEW_STATE.isAnalyzing = false;
-    dom.codeReviewSpinner.classList.add('hidden');
-    setCodeReviewStatus(CODE_REVIEW_TEXTS[currentLang].status_ready);
-    renderCodeReviewResults(tabId);
 }
 
 function renderCodeReviewResults(tabId) {
