@@ -134,7 +134,8 @@ const MCP_THEMES = {
         items: [
             { title: "File System MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem", repoUrl: "https://github.com/modelcontextprotocol/servers", official: true, desc: { en: "Direct local file access (Read/Write). Automated file ops.", it: "Accesso diretto lettura/scrittura file locali. Operazioni file automatiche." } },
             { title: "Memory MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/memory", repoUrl: "https://github.com/modelcontextprotocol/servers", official: true, desc: { en: "Graph-based persistent knowledge graph for agents.", it: "Grafo di conoscenza persistente per la memoria degli agenti." } },
-            { title: "Fetch MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch", repoUrl: "https://github.com/modelcontextprotocol/servers", official: true, desc: { en: "Scrape web pages & convert content to markdown.", it: "Scraping pagine web e conversione contenuti in markdown." } }
+            { title: "Fetch MCP", link: "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch", repoUrl: "https://github.com/modelcontextprotocol/servers", official: true, desc: { en: "Scrape web pages & convert content to markdown.", it: "Scraping pagine web e conversione contenuti in markdown." } },
+            { title: "NotebookLM MCP", link: "https://github.com/jacob-bd/notebooklm-mcp-cli", repoUrl: "https://github.com/jacob-bd/notebooklm-mcp-cli", official: false, desc: { en: "CLI + MCP server to create and manage NotebookLM notebooks, add sources and query them directly from your terminal or any MCP-compatible client.", it: "CLI + server MCP per creare e gestire notebook NotebookLM, aggiungere fonti e interrogarli direttamente dal terminale o da client MCP compatibili." } }
         ]
     }
 };
@@ -143,6 +144,7 @@ const MCP_TITLE_TRANSLATIONS = {
     "file system mcp": { it: "MCP File System", en: "File System MCP" },
     "memory mcp": { it: "MCP Memoria", en: "Memory MCP" },
     "fetch mcp": { it: "MCP Fetch", en: "Fetch MCP" },
+    "notebooklm mcp": { it: "MCP NotebookLM", en: "NotebookLM MCP" },
     "github mcp": { it: "MCP GitHub", en: "GitHub MCP" },
     "slack mcp": { it: "MCP Slack", en: "Slack MCP" },
     "google maps mcp": { it: "MCP Google Maps", en: "Google Maps MCP" },
@@ -236,13 +238,14 @@ const REPO_THEMES = {
         items: [
             { id: "rasbt/LLMs-from-scratch", why: { it: "Libro/repo che ti guida a costruire un GPT-like da zero: perfetto per capire cosa succede sotto il cofano.", en: "Book/repo that guides you to build a GPT-like model from scratch: perfect to understand what happens under the hood." } },
             { id: "huggingface/course", why: { it: "Corso ufficiale gratuito di Hugging Face: copre Transformers, tokenizzazione, fine-tuning e deployment.", en: "Hugging Face’s official free course: covers Transformers, tokenization, fine-tuning and deployment." } },
-            { id: "karpathy/nanoGPT", why: { it: "Codice minimale di Karpathy per addestrare un piccolo GPT: un capolavoro didattico per chi vuole imparare partendo dal codice.", en: "Karpathy’s minimal code to train a small GPT: an educational gem if you want to learn by reading code." } },
+            { id: "karpathy/nanoGPT", why: { it: "Codice minimale di Karpathy per addestrare un piccolo GPT: un capolavoro didattico per chi vuole imparare partendo dal codice.", en: "Karpathy's minimal code to train a small GPT: an educational gem if you want to learn by reading code." } },
             { id: "ageron/handson-ml3", why: { it: "Notebook del libro 'Hands-On ML': coprono tutto, da Scikit-Learn a TensorFlow, con esempi pratici ben spiegati.", en: "Notebooks from 'Hands-On ML': cover everything from Scikit-Learn to TensorFlow, with well-explained practical examples." } },
             { id: "fastai/fastai", why: { it: "Approccio 'top-down' al deep learning: risultati velocemente, con API ad alto livello e spiegazioni progressive.", en: "Top-down approach to deep learning: fast results with high-level APIs and progressive explanations." } },
             { id: "d2l-ai/d2l-en", why: { it: "Dive into Deep Learning: libro interattivo completo con codice eseguibile e spiegazioni matematiche accessibili.", en: "Dive into Deep Learning: complete interactive book with executable code and accessible math explanations." } },
             { id: "microsoft/ML-For-Beginners", why: { it: "Curriculum di 12 settimane creato da Microsoft: ottimo per chi parte da zero e vuole una roadmap strutturata.", en: "12-week curriculum by Microsoft: great for beginners who want a structured learning roadmap." } },
-            { id: "openai/openai-cookbook", why: { it: "Raccolta ufficiale di esempi pratici per costruire app reali con l’API OpenAI: dal prompt design al RAG, fino agli agenti.", en: "Official collection of practical examples for building real apps with the OpenAI API: from prompt design and RAG to agents." } },
-            { id: "meta-llama/llama-cookbook", why: { it: "Ricettario ufficiale per inference, fine-tuning e casi d’uso end-to-end con la famiglia Llama: perfetto per lavorare seriamente con open weights.", en: "Official cookbook for inference, fine-tuning and end-to-end use cases with the Llama family: perfect for serious work with open weights." } }
+            { id: "openai/openai-cookbook", why: { it: "Raccolta ufficiale di esempi pratici per costruire app reali con l'API OpenAI: dal prompt design al RAG, fino agli agenti.", en: "Official collection of practical examples for building real apps with the OpenAI API: from prompt design and RAG to agents." } },
+            { id: "meta-llama/llama-cookbook", why: { it: "Ricettario ufficiale per inference, fine-tuning e casi d'uso end-to-end con la famiglia Llama: perfetto per lavorare seriamente con open weights.", en: "Official cookbook for inference, fine-tuning and end-to-end use cases with the Llama family: perfect for serious work with open weights." } },
+            { id: "google-gemini/cookbook", why: { it: "Ricettario ufficiale Google Gemini: esempi pratici e guide per usare le API Gemini (multimodale, Function Calling, RAG, agentico). Il punto di partenza per costruire con Gemini.", en: "Official Google Gemini cookbook: practical examples and guides for using the Gemini APIs (multimodal, Function Calling, RAG, agentic). The go-to starting point for building with Gemini." } }
         ]
     },
     genai: {
@@ -501,6 +504,7 @@ const DOCS_DATA = [
         models: "AI fundamentals, ML, CV, NLP, projects",
         hosting: "Free curriculum (Microsoft + GitHub Pages)"
     },
+    { name: "Google Gemini Cookbook", link: "https://github.com/google-gemini/cookbook", linkText: "github.com/google-gemini/cookbook", models: "Gemini multimodal, Function Calling, RAG, Agents, Live API", hosting: "Open-source examples (GitHub)" },
     { name: "LlamaIndex", link: "https://developers.llamaindex.ai", linkText: "developers.llamaindex.ai", models: "RAG, agentic retrieval, ingestion pipelines, structured extraction", hosting: "Self-hosted, managed cloud" },
     { name: "LangChain", link: "https://python.langchain.com/docs/get_started/introduction", linkText: "python.langchain.com", models: "Framework agnostic", hosting: "Self-hosted, LangSmith" },
     { name: "Hugging Face", link: "https://huggingface.co/docs", linkText: "huggingface.co/docs", models: "1M+ Open Models", hosting: "Inference API, Endpoints" },
