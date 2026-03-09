@@ -285,7 +285,8 @@ const REPO_THEMES = {
             { id: "microsoft/semantic-kernel", why: { it: "SDK leggero per integrare LLM in codice 'tradizionale' (C#, Python): perfetto per agenti che vivono dentro servizi esistenti.", en: "Lightweight SDK to integrate LLMs into 'traditional' code (C#, Python): perfect for agents living inside existing services." } },
             { id: "deepset-ai/haystack", why: { it: "Framework end-to-end per RAG e sistemi agentici production-ready: pipeline, integrazioni, eval e deployment in un unico stack.", en: "End-to-end framework for RAG and production-ready agentic systems: pipelines, integrations, eval and deployment in a single stack." } },
             { id: "strands-agents/sdk-python", why: { it: "SDK model-driven per costruire agenti AI in poche righe di codice. Supporta Bedrock, Anthropic, Gemini, Ollama, OpenAI e altri provider, con supporto nativo per MCP e sistemi multi-agente.", en: "Model-driven SDK to build AI agents in just a few lines of code. Supports Bedrock, Anthropic, Gemini, Ollama, OpenAI and other providers, with native MCP support and multi-agent systems." } },
-            { id: "agentskills/agentskills", why: { it: "Framework per definire, comporre e condividere skill riutilizzabili per agenti AI: astrae i tool use pattern in moduli portabili e compatibili con MCP.", en: "Framework to define, compose and share reusable skills for AI agents: abstracts tool-use patterns into portable, MCP-compatible modules." } }
+            { id: "agentskills/agentskills", why: { it: "Framework per definire, comporre e condividere skill riutilizzabili per agenti AI: astrae i tool use pattern in moduli portabili e compatibili con MCP.", en: "Framework to define, compose and share reusable skills for AI agents: abstracts tool-use patterns into portable, MCP-compatible modules." } },
+            { id: "paperclipai/paperclip", why: { it: "Orchestrazione open-source per aziende gestite da agenti AI: org chart, budget, monitoring e governance per coordinare Claude Code, Codex, Cursor e altri agenti verso obiettivi comuni, 24/7.", en: "Open-source orchestration for zero-human companies: org charts, budgets, monitoring and governance to coordinate Claude Code, Codex, Cursor and other agents toward shared goals, 24/7." } }
         ]
     },
     ml: {
@@ -534,7 +535,8 @@ const DOCS_DATA = [
     { name: "Tabby", link: "https://github.com/TabbyML/tabby", linkText: "github.com/TabbyML/tabby", models: "Self-hosted code assistant", hosting: "Self-hosted, IDE plugins", group: "ide" },
     { name: "Ollama", link: "https://github.com/ollama/ollama/blob/main/docs/api.md", linkText: "github.com/ollama", models: "Llama 3, Mistral, Gemma", hosting: "Localhost, Docker" },
     { name: "Model Context Protocol", link: "https://modelcontextprotocol.io", linkText: "modelcontextprotocol.io", models: "Standard for connecting AI to data", hosting: "Open Protocol" },
-    { name: "Skills MCP", link: "https://skillsmp.com/docs", linkText: "skillsmp.com/docs", models: "MCP skill definitions, tool schemas, agent capabilities", hosting: "Web platform" }
+    { name: "Skills MCP", link: "https://skillsmp.com/docs", linkText: "skillsmp.com/docs", models: "MCP skill definitions, tool schemas, agent capabilities", hosting: "Web platform" },
+    { name: "Paperclip", link: "https://github.com/paperclipai/paperclip", linkText: "github.com/paperclipai/paperclip", models: "Multi-agent orchestration, org charts, budgets, governance", hosting: "Self-hosted (Node.js + embedded PostgreSQL)" }
 ];
 
 const DOCS_THEMES = {
