@@ -532,7 +532,8 @@ const DOCS_DATA = [
     { name: "Cline", link: "https://github.com/cline/cline", linkText: "github.com/cline/cline", models: "Agentic coding in VS Code", hosting: "VS Code", group: "ide" },
     { name: "Tabby", link: "https://github.com/TabbyML/tabby", linkText: "github.com/TabbyML/tabby", models: "Self-hosted code assistant", hosting: "Self-hosted, IDE plugins", group: "ide" },
     { name: "Ollama", link: "https://github.com/ollama/ollama/blob/main/docs/api.md", linkText: "github.com/ollama", models: "Llama 3, Mistral, Gemma", hosting: "Localhost, Docker" },
-    { name: "Model Context Protocol", link: "https://modelcontextprotocol.io", linkText: "modelcontextprotocol.io", models: "Standard for connecting AI to data", hosting: "Open Protocol" }
+    { name: "Model Context Protocol", link: "https://modelcontextprotocol.io", linkText: "modelcontextprotocol.io", models: "Standard for connecting AI to data", hosting: "Open Protocol" },
+    { name: "Skills MCP", link: "https://skillsmp.com/docs", linkText: "skillsmp.com/docs", models: "MCP skill definitions, tool schemas, agent capabilities", hosting: "Web platform" }
 ];
 
 const DOCS_THEMES = {
