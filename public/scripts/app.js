@@ -2116,6 +2116,14 @@ async function callGeminiWithModel(model, key, payload, texts) {
     return candidate.content?.parts?.[0]?.text || "No response content.";
 }
 
+const GEMINI_MODEL_CHAIN = [
+    'gemini-2.5-flash',
+    'gemini-3.1-flash-lite-preview',
+    'gemini-2.5-flash-lite'
+];
+
+const GEMINI_FALLBACK_STATUSES = new Set([400, 404, 429, 500, 503]);
+
 async function callGemini(prompt, systemInstruction = null) {
     const texts = I18N[currentLang];
     let key = localStorage.getItem('gemini_api_key') || apiKey;
@@ -2137,37 +2145,33 @@ async function callGemini(prompt, systemInstruction = null) {
     }
 
     try {
-        // --- Primary model ---
-        const primary = await callGeminiWithModel('gemini-2.5-flash', key, payload, texts);
+        for (let i = 0; i < GEMINI_MODEL_CHAIN.length; i++) {
+            const model = GEMINI_MODEL_CHAIN[i];
+            const nextModel = GEMINI_MODEL_CHAIN[i + 1];
+            const response = await callGeminiWithModel(model, key, payload, texts);
 
-        if (primary && primary.__error) {
-            const status = primary.status;
+            if (response && response.__error) {
+                const status = response.status;
 
-            // Auth errors: clear key and report
-            if (status === 400 || status === 401 || status === 403) {
-                localStorage.removeItem('gemini_api_key');
-                return texts.gemini_invalid_key || "Invalid Key";
-            }
-
-            // Rate limit / quota exceeded: fallback to flash-lite silently
-            if (status === 429 || status === 503) {
-                console.warn(`Gemini: ${status} on gemini-2.5-flash — falling back to gemini-2.5-flash-lite`);
-                try {
-                    const fallback = await callGeminiWithModel('gemini-2.5-flash-lite', key, payload, texts);
-                    if (fallback && fallback.__error) {
-                        return (texts.gemini_generic_error || "Error").replace('{status}', fallback.status);
-                    }
-                    return fallback;
-                } catch (fe) {
-                    console.error("Gemini fallback error:", fe);
-                    return texts.gemini_system_error || "System Error";
+                // Preserve the existing invalid-key behavior on the primary request,
+                // while allowing preview fallbacks to fail without deleting the key.
+                if (status === 401 || status === 403 || (status === 400 && i === 0)) {
+                    localStorage.removeItem('gemini_api_key');
+                    return texts.gemini_invalid_key || "Invalid Key";
                 }
+
+                if (nextModel && GEMINI_FALLBACK_STATUSES.has(status)) {
+                    console.warn(`Gemini: ${status} on ${model} — falling back to ${nextModel}`);
+                    continue;
+                }
+
+                return (texts.gemini_generic_error || "Error").replace('{status}', status);
             }
 
-            return (texts.gemini_generic_error || "Error").replace('{status}', status);
+            return response;
         }
 
-        return primary;
+        return texts.gemini_system_error || "System Error";
     } catch (e) {
         console.error(e);
         return texts.gemini_system_error || "System Error";
