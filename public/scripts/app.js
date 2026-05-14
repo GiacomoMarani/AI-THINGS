@@ -2117,9 +2117,8 @@ async function callGeminiWithModel(model, key, payload, texts) {
 }
 
 const GEMINI_MODEL_CHAIN = [
-    'gemini-2.5-flash',
-    'gemini-3.1-flash-lite-preview',
-    'gemini-2.5-flash-lite'
+    'gemini-3-flash-preview',
+    'gemini-3.1-flash-lite'
 ];
 
 const GEMINI_FALLBACK_STATUSES = new Set([400, 404, 429, 500, 503]);
@@ -2154,7 +2153,7 @@ async function callGemini(prompt, systemInstruction = null) {
                 const status = response.status;
 
                 // Preserve the existing invalid-key behavior on the primary request,
-                // while allowing preview fallbacks to fail without deleting the key.
+                // while allowing fallback models to fail without deleting the key.
                 if (status === 401 || status === 403 || (status === 400 && i === 0)) {
                     localStorage.removeItem('gemini_api_key');
                     return texts.gemini_invalid_key || "Invalid Key";
