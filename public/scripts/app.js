@@ -690,17 +690,26 @@ function showError(message) {
 }
 
 function detectLanguage() {
+    const saved = localStorage.getItem('ai_things_lang');
+    if (saved === 'it' || saved === 'en') {
+        setLanguage(saved);
+        return;
+    }
     const userLang = navigator.language || navigator.userLanguage;
     setLanguage(userLang.startsWith('it') ? 'it' : 'en');
 }
 
 function setLanguage(lang) {
     currentLang = lang;
+    localStorage.setItem('ai_things_lang', lang);
+    document.documentElement.lang = lang;
     if (dom.langEn) {
+        dom.langEn.classList.toggle('lang-active', lang === 'en');
         dom.langEn.classList.toggle('text-white', lang === 'en');
         dom.langEn.classList.toggle('text-gray-500', lang !== 'en');
     }
     if (dom.langIt) {
+        dom.langIt.classList.toggle('lang-active', lang === 'it');
         dom.langIt.classList.toggle('text-white', lang === 'it');
         dom.langIt.classList.toggle('text-gray-500', lang !== 'it');
     }
@@ -1654,7 +1663,12 @@ async function fetchMcpRepoMeta(fullName) {
     try {
         const res = await fetch(`https://api.github.com/repos/${fullName}`);
         if (!res.ok) {
-            MCP_STATE.repoMeta[fullName] = { fullName, stars: null, owner: '', name: '', htmlUrl: '', language: '', updatedAt: '' };
+            const placeholder = { fullName, stars: null, owner: '', name: '', htmlUrl: '', language: '', updatedAt: '' };
+            MCP_STATE.repoMeta[fullName] = placeholder;
+            // 404 means the registry advertises a repo that does not exist: remember it,
+            // otherwise every page load re-requests it and burns the 60/hr anonymous quota.
+            // 403 (rate limited) and 5xx are transient — never cache those as missing.
+            if (res.status === 404) saveToCache(cacheKey, placeholder);
             return;
         }
         const data = await res.json();

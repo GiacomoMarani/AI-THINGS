@@ -15,7 +15,7 @@
   --font-ui: "IBM Plex Mono", monospace;
   --font-mono: "IBM Plex Mono", monospace;
   --font-display: "Cinzel", serif;
-  --home-tokyo-photo: url("/assets/home/1.png"), url("/assets/tokyo-night-abstract.svg");
+  --home-tokyo-photo: url("/assets/home/1.webp"), url("/assets/tokyo-night-abstract.svg");
 }
 
 html[data-visual="neon"] {
@@ -5984,3 +5984,126 @@ a.intel-source-link:hover,
   border-color: #ff6a3d;
   color: #1a0a06;
 }
+/* ==========================================================================
+   Tailwind utility replacements
+   cdn.tailwindcss.com now 302s to /3.4.17 and the redirect fails CORS, so the
+   Play CDN no longer loads. These are the Tailwind v3 defaults for the
+   utilities this markup actually uses. Appended last to match the CDN's
+   utility-last cascade position.
+   ========================================================================== */
+
+/* layout */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.max-w-\[90\%\] { max-width: 90%; }
+.overflow-hidden { overflow: hidden; }
+.z-10 { z-index: 10; }
+.left-4 { left: 1rem; }
+.items-center { align-items: center; }
+.items-start { align-items: flex-start; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.self-end { align-self: flex-end; }
+.gap-2 { gap: 0.5rem; }
+.gap-3 { gap: 0.75rem; }
+
+/* spacing */
+.p-3 { padding: 0.75rem; }
+.p-4 { padding: 1rem; }
+.px-2 { padding-left: 0.5rem; padding-right: 0.5rem; }
+.py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+.pb-2 { padding-bottom: 0.5rem; }
+.mt-1 { margin-top: 0.25rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-3 { margin-top: 0.75rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-3 { margin-bottom: 0.75rem; }
+.space-y-1 > * + * { margin-top: 0.25rem; }
+.space-y-3 > * + * { margin-top: 0.75rem; }
+.space-y-6 > * + * { margin-top: 1.5rem; }
+
+/* typography */
+.text-\[10px\] { font-size: 10px; }
+.text-xs { font-size: 0.75rem; line-height: 1rem; }
+.text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.font-bold { font-weight: 700; }
+.italic { font-style: italic; }
+.leading-relaxed { line-height: 1.625; }
+.tracking-wide { letter-spacing: 0.025em; }
+.tracking-widest { letter-spacing: 0.1em; }
+.list-disc { list-style-type: disc; }
+.list-none { list-style-type: none; }
+.list-inside { list-style-position: inside; }
+
+/* text colour */
+.text-white { color: #fff; }
+.text-gray-300 { color: #d1d5db; }
+.text-gray-400 { color: #9ca3af; }
+.text-gray-500 { color: #6b7280; }
+.text-gray-600 { color: #4b5563; }
+.text-cyan-100 { color: #cffafe; }
+.text-cyan-400 { color: #22d3ee; }
+.text-cyan-500 { color: #06b6d4; }
+.text-cyan-600 { color: #0891b2; }
+.text-blue-400 { color: #60a5fa; }
+.text-green-400 { color: #4ade80; }
+.text-pink-500 { color: #ec4899; }
+.text-purple-400 { color: #c084fc; }
+.text-red-400 { color: #f87171; }
+.text-yellow-300 { color: #fde047; }
+.text-yellow-500 { color: #eab308; }
+
+/* background */
+.bg-\[\#0a0a0f\] { background-color: #0a0a0f; }
+.bg-black\/40 { background-color: rgba(0, 0, 0, 0.4); }
+.bg-gray-800\/50 { background-color: rgba(31, 41, 55, 0.5); }
+.bg-gray-900\/50 { background-color: rgba(17, 24, 39, 0.5); }
+.bg-cyan-900\/10 { background-color: rgba(22, 78, 99, 0.1); }
+.bg-cyan-900\/20 { background-color: rgba(22, 78, 99, 0.2); }
+
+/* border */
+.rounded { border-radius: 0.25rem; }
+.rounded-lg { border-radius: 0.5rem; }
+.rounded-r { border-top-right-radius: 0.25rem; border-bottom-right-radius: 0.25rem; }
+.border-l-4 { border-left-width: 4px; }
+.border-gray-700 { border-color: #374151; }
+.border-gray-800 { border-color: #1f2937; }
+.border-cyan-500 { border-color: #06b6d4; }
+.border-cyan-800 { border-color: #155e75; }
+.border-cyan-900\/30 { border-color: rgba(22, 78, 99, 0.3); }
+
+/* effects */
+.shadow-\[0_0_15px_rgba\(6\2c 182\2c 212\2c 0\.1\)\] { box-shadow: 0 0 15px rgba(6, 182, 212, 0.1); }
+.transition-all { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.transition-colors { transition-property: color, background-color, border-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+.duration-300 { transition-duration: 300ms; }
+
+@keyframes tw-pulse { 50% { opacity: 0.5; } }
+.animate-pulse { animation: tw-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* base display / position — normally supplied together with Preflight */
+.flex { display: flex; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.uppercase { text-transform: uppercase; }
+.font-mono { font-family: var(--font-mono); }
+.-top-3 { top: -0.75rem; }
+
+/* Preflight normally zeroes border-width and sets border-style:solid globally.
+   Without it, width alone paints nothing — so style ships with the width here.
+   Colour is intentionally omitted so the paired border-*-colour class wins. */
+.border { border-width: 1px; border-style: solid; }
+.border-t { border-top-width: 1px; border-top-style: solid; }
+.border-b { border-bottom-width: 1px; border-bottom-style: solid; }
+.border-l-4 { border-left-style: solid; }
+
+.shadow-\[0_0_15px_rgba\(6\,182\,212\,0\.1\)\] { box-shadow: 0 0 15px rgba(6, 182, 212, 0.1); }
+
+/* variants */
+.hover\:border-pink-500:hover { border-color: #ec4899; }
+.hover\:border-yellow-500:hover { border-color: #eab308; }
+.hover\:bg-cyan-900\/40:hover { background-color: rgba(22, 78, 99, 0.4); }
+.group:hover .group-hover\:text-cyan-300 { color: #67e8f9; }
+.last\:border-0:last-child { border-width: 0; }
