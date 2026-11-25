@@ -789,6 +789,18 @@ p {
   min-width: max-content;
 }
 
+@media (min-width: 768px) {
+  .repo-category-row-wrap {
+    overflow-x: visible;
+  }
+
+  .repo-category-row {
+    display: flex;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+}
+
 .repo-category-row .btn-category {
   border-color: #454b61;
   color: #b5bcd1;
@@ -2800,6 +2812,26 @@ p {
   color: #9ca5ba;
 }
 
+.repo-why {
+  flex: 1;
+  margin: 0;
+  padding: 10px 14px 12px;
+  border-bottom: 1px solid #2f3445;
+  color: #c9d0e2;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.repo-terminal-card:has(.repo-why) .repo-terminal-body {
+  flex: none;
+}
+
+.repo-why::before {
+  content: "// ";
+  color: #596179;
+}
+
 .repo-token-label {
   color: #71b8ff;
   margin-right: 6px;
@@ -3178,23 +3210,29 @@ a.intel-source-link:hover,
 
 .btn-floating-chat {
   position: fixed;
-  bottom: 22px;
-  right: 22px;
+  bottom: 12px;
+  right: 12px;
   z-index: 1100;
   border: 0;
   background: transparent;
   cursor: pointer;
 }
 
+@media (max-width: 767px) {
+  body {
+    padding-bottom: 64px;
+  }
+}
+
 .btn-floating-chat img {
-  width: 62px;
+  width: 46px;
   filter: drop-shadow(0 10px 20px rgba(255, 106, 61, 0.34));
 }
 
 .chat-modal {
   position: fixed;
   right: 18px;
-  bottom: 98px;
+  bottom: 70px;
   z-index: 1200;
   width: min(430px, calc(100vw - 24px));
   height: 530px;

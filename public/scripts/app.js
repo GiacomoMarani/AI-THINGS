@@ -58,7 +58,18 @@ const I18N = {
         home_hl_1: "Repository AI curate con insight tattico",
         home_hl_2: "Stack AI Big Tech mappati per azienda",
         home_hl_3: "Server MCP ufficiali e registro protocolli",
-        home_hl_4: "Doc ufficiali e analisi qualità del codice"
+        home_hl_4: "Doc ufficiali e analisi qualità del codice",
+        home_cta_open: "Apri l'Explorer",
+        home_mod_01_title: "Repository Intelligence",
+        home_mod_01_desc: "Navigazione per categoria e ricerca libera, con un insight tattico su ogni repo.",
+        home_mod_02_title: "Mappa degli stack Big Tech",
+        home_mod_02_desc: "Repo curati per azienda. Confronta a colpo d'occhio le direzioni strategiche sull'AI.",
+        home_mod_03_title: "Registro MCP",
+        home_mod_03_desc: "Cerca i server MCP ufficiali e ispeziona i metadati del protocollo.",
+        home_mod_04_title: "Documentazione ufficiale",
+        home_mod_04_desc: "Accesso diretto alla documentazione ufficiale di modelli, API e framework.",
+        home_mod_05_title: "Code Review da GitHub",
+        home_mod_05_desc: "Review con AI su refactor, documentazione, efficienza e sicurezza."
     },
     en: {
         system_status: "SYSTEM: ONLINE",
@@ -118,7 +129,18 @@ const I18N = {
         home_hl_1: "Curated AI repos with tactical insight",
         home_hl_2: "Big-tech AI stacks mapped by player",
         home_hl_3: "Official MCP servers &amp; protocol registry",
-        home_hl_4: "Source-of-truth docs &amp; code quality review"
+        home_hl_4: "Source-of-truth docs &amp; code quality review",
+        home_cta_open: "Open Explorer",
+        home_mod_01_title: "Repository Intelligence",
+        home_mod_01_desc: "Category browsing and free search with tactical insights on each repo.",
+        home_mod_02_title: "Big Tech Stack Mapping",
+        home_mod_02_desc: "Curated repo sets by company. Compare strategic AI directions at a glance.",
+        home_mod_03_title: "MCP Registry Layer",
+        home_mod_03_desc: "Search official MCP servers and inspect protocol metadata.",
+        home_mod_04_title: "Source-of-Truth Documentation",
+        home_mod_04_desc: "Direct access to official docs for models, APIs, and frameworks.",
+        home_mod_05_title: "GitHub Review Workflow",
+        home_mod_05_desc: "AI-powered review across refactor, docs, efficiency and security."
     }
 };
 
@@ -279,7 +301,7 @@ const REPO_THEMES = {
         items: [
             { id: "langchain-ai/langchain", why: { it: "Framework storico per orchestrare LLM, memorie e tool: ottimo per prototipi veloci e per capire i pattern di base degli agenti.", en: "Historic framework to orchestrate LLMs, memory and tools: great for fast prototyping and learning basic agent patterns." } },
             { id: "langchain-ai/langgraph", why: { it: "Evoluzione di LangChain per creare agenti stateful, ciclici e robusti: pensato per applicazioni più complesse e affidabili.", en: "LangChain’s evolution for building stateful, cyclic and robust agents: aimed at more complex and reliable applications." } },
-            { id: "microsoft/autogen", why: { it: "Crea team di agenti che collaborano tra loro: utile per orchestrare ruoli diversi (planner, coder, critico) su task complessi.", en: "Create teams of agents that talk to each other to solve tasks: perfect for multi-role scenarios (planner, coder, critic)." } },
+            { id: "openai/openai-agents-python", why: { it: "Framework leggero di OpenAI per workflow multi-agente: handoff tra agenti, guardrail e tracing integrati, con supporto a modelli di provider diversi.", en: "OpenAI's lightweight framework for multi-agent workflows: built-in handoffs, guardrails and tracing, with support for models from different providers." } },
             { id: "crewAIInc/crewAI", why: { it: "Orchestra agenti con ruoli specifici (es. Ricercatore, Scrittore, Strategist) e flussi di lavoro coordinati.", en: "Orchestrates agents with specific roles (e.g., Researcher, Writer, Strategist) and coordinated workflows." } },
             { id: "Significant-Gravitas/AutoGPT", why: { it: "Uno dei primi agenti autonomi 'goal-driven': gli dai un obiettivo e lui prova a decomporlo in passi e azioni.", en: "One of the first 'goal-driven' autonomous agents: you give it a goal and it tries to decompose it into steps and actions." } },
             { id: "openinterpreter/openinterpreter", why: { it: "Permette a un LLM di eseguire vero codice sul tuo computer (shell, Python, ecc.): ponte diretto tra modello e ambiente locale.", en: "Lets an LLM execute real code on your machine (shell, Python, etc.): a direct bridge between model and local environment." } },
@@ -404,13 +426,11 @@ const TITAN_THEMES = {
             en: "Microsoft is pushing on multi-LLM agents, enterprise integration (Azure, M365) and knowledge-centric systems (GraphRAG). This is the toolbox for building robust agentic systems inside real organizations."
         },
         items: [
-            { id: "microsoft/autogen", why: { it: "Framework per creare team di agenti che collaborano tra loro: utile per orchestrare ruoli diversi (planner, coder, critico) su task complessi.", en: "Framework for creating teams of collaborating agents: useful to orchestrate different roles (planner, coder, critic) on complex tasks." } },
             { id: "deepspeedai/DeepSpeed", why: { it: "Stack di ottimizzazione per addestrare modelli di grandi dimensioni in modo efficiente (parallelismo, memory saving, throughput elevato).", en: "Optimization stack for training large models efficiently (parallelism, memory savings, high throughput)." } },
             { id: "microsoft/semantic-kernel", why: { it: "SDK leggero per integrare LLM in app esistenti (C#, Python, Java, ecc.): perfetto per portare AI in sistemi enterprise già in produzione.", en: "Lightweight SDK to integrate LLMs into existing apps (C#, Python, Java, etc.): ideal to bring AI into existing enterprise systems." } },
             { id: "microsoft/graphrag", why: { it: "Approccio RAG basato su knowledge graph: permette di strutturare, navigare e interrogare la conoscenza in modo più robusto del semplice “chunking”.", en: "Graph-based RAG approach: lets you structure, navigate and query knowledge more robustly than naïve chunking." } },
             { id: "guidance-ai/guidance", why: { it: "Linguaggio dichiarativo per controllare il comportamento degli LLM (template, vincoli, strutture). Utile quando serve output molto deterministico.", en: "Declarative language to control LLM behavior (templates, constraints, structures). Useful when you need highly deterministic outputs." } },
-            { id: "microsoft/playwright", why: { it: "Automazione browser moderna e affidabile: fondamentale per agenti che devono interagire con web app reali end-to-end.", en: "Modern, reliable browser automation: essential for agents that must interact with real web apps end-to-end." } },
-            { id: "microsoft/LIDA", why: { it: "Strumento per generare visualizzazioni dati e insight guidati dagli LLM: collega direttamente analisi e storytelling visivo.", en: "Tool for generating data visualizations and insights with LLMs: directly connects analysis and visual storytelling." } }
+            { id: "microsoft/playwright", why: { it: "Automazione browser moderna e affidabile: fondamentale per agenti che devono interagire con web app reali end-to-end.", en: "Modern, reliable browser automation: essential for agents that must interact with real web apps end-to-end." } }
         ]
     },
     google: {
@@ -423,7 +443,7 @@ const TITAN_THEMES = {
         items: [
             { id: "google/adk-python", why: { it: "Agent Development Kit: il framework ufficiale per progettare, orchestrare e mettere in produzione agenti avanzati (ottimizzato per Gemini, ma model-agnostic).", en: "Agent Development Kit: the official framework to design, orchestrate and deploy advanced agents (optimized for Gemini, but model-agnostic)." } },
             { id: "google-gemini/gemini-cli", why: { it: "Un agente Gemini pronto nel terminale: esempio concreto di utilizzo quotidiano per coding, refactor e debugging del codice.", en: "A Gemini-powered agent in your terminal: concrete everyday usage example for coding, refactors and debugging." } },
-            { id: "GoogleCloudPlatform/agent-starter-pack", why: { it: "Starter pack per agenti in produzione su Google Cloud: infrastruttura, CI/CD, logging e sicurezza già impostati secondo best practice.", en: "Starter pack for production-grade agents on Google Cloud: infra, CI/CD, logging and security wired in following best practices." } },
+            { id: "google/agents-cli", why: { it: "Il successore ufficiale di Agent Starter Pack: CLI e skill che insegnano a qualsiasi coding assistant a creare, valutare e mettere in produzione agenti su Google Cloud.", en: "The official successor to Agent Starter Pack: CLI and skills that turn any coding assistant into an expert at building, evaluating and deploying agents on Google Cloud." } },
             { id: "google-deepmind/gemma", why: { it: "Libreria ufficiale Gemma: modelli LLM open-weight di Google pensati per essere usati e fine-tunati in applicazioni reali, non solo per benchmark.", en: "Official Gemma library: Google’s open-weight LLMs designed to be used and fine-tuned in real applications, not just for benchmarks." } },
             { id: "google/gemma.cpp", why: { it: "Motore di inferenza C++ leggero per Gemma, in stile llama.cpp: ideale per portare LLM open su laptop e dispositivi edge.", en: "Lightweight C++ inference engine for Gemma, llama.cpp-style: ideal for running open LLMs on laptops and edge devices." } },
             { id: "jax-ml/jax", why: { it: "Il laboratorio numerico di Google: autograd + XLA per calcolo ad alte prestazioni: ponte naturale tra numerica classica e sperimentazione deep moderna.", en: "Google’s numerical lab: autograd + XLA for high-performance research and training on TPUs and GPUs." } },
@@ -443,8 +463,8 @@ const TITAN_THEMES = {
             { id: "openai/tiktoken", why: { it: "Tokenizzatore BPE veloce e ottimizzato per i modelli OpenAI: fondamentale per stimare costi, lunghezze di contesto e controllare l’input.", en: "Fast BPE tokenizer optimized for OpenAI models: essential to estimate cost, context length and control the input." } },
             { id: "openai/clip", why: { it: "Modello che collega testo e immagini in uno spazio comune: base concettuale per tante applicazioni vision-language moderne.", en: "Model that connects text and images in a shared space: conceptual base for many modern vision-language applications." } },
             { id: "openai/evals", why: { it: "Framework per valutare LLM in modo sistematico (task custom, dataset, metriche): utile quando devi davvero misurare qualità, non solo “sensazioni”.", en: "Framework to systematically evaluate LLMs (custom tasks, datasets, metrics): useful when you need real measurement, not just vibes." } },
-            { id: "openai/shap-e", why: { it: "Modello per generare oggetti 3D a partire da testo o immagini: ponte tra GenAI e pipeline 3D/CAD.", en: "Model to generate 3D objects from text or images: bridge between GenAI and 3D/CAD pipelines." } },
-            { id: "openai/point-e", why: { it: "Generazione di nuvole di punti 3D: interessante per prototipi rapidi nel mondo 3D e robotics.", en: "3D point cloud generation: useful for quick prototyping in 3D and robotics contexts." } },
+            { id: "openai/gpt-oss", why: { it: "Il ritorno di OpenAI ai pesi aperti: gpt-oss-120b e gpt-oss-20b, scaricabili ed eseguibili in locale con licenza Apache 2.0.", en: "OpenAI's return to open weights: gpt-oss-120b and gpt-oss-20b, downloadable and runnable locally under Apache 2.0." } },
+            { id: "openai/openai-agents-python", why: { it: "Framework ufficiale per workflow multi-agente: handoff, guardrail e tracing pronti per costruire agenti in produzione.", en: "Official framework for multi-agent workflows: handoffs, guardrails and tracing ready for production agents." } },
             { id: "openai/openai-python", why: { it: "Libreria Python ufficiale: il modo più diretto e stabile per integrare le API OpenAI in backend, script e pipeline.", en: "Official Python library: the most direct and stable way to integrate OpenAI APIs into backends, scripts and pipelines." } }
         ]
     },
@@ -491,7 +511,7 @@ const TITAN_THEMES = {
             { id: "deepseek-ai/DeepSeek-V3", why: { it: "L’architettura Mixture-of-Experts che ha reso DeepSeek un caso: attiva una frazione dei parametri totali, qualità da frontiera a costo contenuto. Resta il riferimento tecnico della serie V, arrivata poi a V4 con pesi MIT distribuiti su Hugging Face.", en: "The Mixture-of-Experts architecture that made DeepSeek's name: it activates a fraction of total parameters for frontier quality at contained cost. Still the technical reference for the V series, since continued to V4 with MIT weights distributed on Hugging Face." } },
             { id: "MoonshotAI/Kimi-K3", why: { it: "Il modello di punta di Moonshot AI: 2.8T parametri totali con 104B attivi, contesto da 1M token e visione nativa. Oggi è considerato il migliore fra gli open-weight generalisti.", en: "Moonshot AI's flagship: 2.8T total parameters with 104B active, 1M-token context and native vision. Currently regarded as the best open-weight all-rounder." } },
             { id: "zai-org/GLM-5", why: { it: "La famiglia GLM di Z.ai: ~753B parametri, contesto da 1M token e pesi sotto licenza MIT. È il riferimento fra gli open-weight per coding e agenti a lungo orizzonte.", en: "Z.ai's GLM family: ~753B parameters, 1M-token context and MIT-licensed weights. The open-weight benchmark for coding and long-horizon agents." } },
-            { id: "mistralai/mistral-inference", why: { it: "Libreria di inferenza ufficiale per i modelli Mistral: la via più diretta per portare in produzione i loro LLM, forti sul rapporto qualità/risorse.", en: "Official inference library for Mistral models: the most direct way to put their LLMs into production, strong on the quality-to-resources ratio." } },
+            { id: "mistralai/client-python", why: { it: "SDK Python ufficiale della piattaforma Mistral: il modo diretto per usare i modelli Mistral via API, inclusi chat, embedding, function calling e agenti.", en: "Official Python SDK for the Mistral platform: the direct way to use Mistral models via API, including chat, embeddings, function calling and agents." } },
             { id: "cohere-ai/cohere-python", why: { it: "SDK Python ufficiale per i modelli Cohere (Command, Embed, Rerank): utile per costruire pipeline di search e applicazioni enterprise.", en: "Official Python SDK for Cohere models (Command, Embed, Rerank): useful for building search pipelines and enterprise applications." } }
         ]
     },
@@ -508,7 +528,7 @@ const TITAN_THEMES = {
             { id: "anthropics/prompt-eng-interactive-tutorial", why: { it: "Tutorial interattivo di prompt engineering: ti porta, passo dopo passo, da prompt naïf a pattern più robusti e riutilizzabili.", en: "Interactive prompt engineering tutorial: walks you step-by-step from naïve prompts to more robust and reusable patterns." } },
             { id: "anthropics/anthropic-sdk-python", why: { it: "SDK Python ufficiale per integrare Claude (3.5 e successivi) in backend, script e pipeline dati.", en: "Official Python SDK to integrate Claude (3.5 and later) into backends, scripts and data pipelines." } },
             { id: "anthropics/claude-cookbooks", why: { it: "Repository essenziale con esempi avanzati (RAG, citazioni con fonti, Vision, tool use): perfetto come “laboratorio” per progetti seri.", en: "Essential repo with advanced examples (RAG, cited answers, Vision, tool use): perfect as a 'lab' for real projects." } },
-            { id: "anthropics/courses", why: { it: "Materiale educativo su sicurezza, allineamento e best practice di utilizzo: utile per chi vuole andare oltre la semplice integrazione tecnica.", en: "Educational material on safety, alignment and usage best practices: useful if you want to go beyond plain technical integration." } }
+            { id: "anthropics/claude-agent-sdk-python", why: { it: "SDK Python per costruire agenti con lo stesso motore di Claude Code: tool, permessi, hook e server MCP gestiti dal loop agentico.", en: "Python SDK to build agents on the same engine as Claude Code: tools, permissions, hooks and MCP servers handled by the agent loop." } }
         ]
     }
 };
@@ -1431,7 +1451,7 @@ function renderExplorerTerminalCard(repo, whyTextObj) {
     const languageRaw = repo.language || 'repo';
     const repoDescRaw = trimText(repo.description || 'No description available.', 108);
     const whyRaw = whyTextObj && whyTextObj[currentLang] ? whyTextObj[currentLang] : '';
-    const insightRaw = trimText(whyRaw || repoDescRaw, 96);
+    const insightRaw = whyRaw ? '' : trimText(repoDescRaw, 96);
     const fileNameRaw = toRepoFileName(repoNameRaw);
     const updatedRaw = formatRepoDate(repo.pushed_at || repo.updated_at);
     const starsRaw = formatStars(repo.stargazers_count);
@@ -1442,6 +1462,7 @@ function renderExplorerTerminalCard(repo, whyTextObj) {
     const language = escapeHtml(languageRaw);
     const repoDesc = escapeHtml(repoDescRaw);
     const insight = escapeHtml(insightRaw);
+    const why = escapeHtml(whyRaw);
     const fileName = escapeHtml(fileNameRaw);
     const updatedAt = escapeHtml(updatedRaw);
     const stars = escapeHtml(starsRaw);
@@ -1487,6 +1508,7 @@ function renderExplorerTerminalCard(repo, whyTextObj) {
                             </p>
                         </div>
                     </div>
+                    ${why ? `<p class="repo-why">${why}</p>` : ''}
 
                     <footer class="repo-terminal-foot">
                         <span class="repo-terminal-date">${updatedAt}</span>
@@ -2155,7 +2177,9 @@ async function callGeminiWithModel(model, key, payload, texts) {
 
     if (!res.ok) {
         // Return a special object to let the caller inspect the status
-        return { __error: true, status: res.status };
+        const body = await res.json().catch(() => null);
+        const invalidKey = Boolean(body?.error?.details?.some(d => d.reason === 'API_KEY_INVALID'));
+        return { __error: true, status: res.status, invalidKey };
     }
 
     const data = await res.json();
@@ -2180,8 +2204,8 @@ async function callGeminiWithModel(model, key, payload, texts) {
 }
 
 const GEMINI_MODEL_CHAIN = [
-    'gemini-3-flash-preview',
-    'gemini-3.1-flash-lite'
+    'gemini-4-hydrogen',
+    'gemini-3.5-flash-lite'
 ];
 
 const GEMINI_FALLBACK_STATUSES = new Set([400, 404, 429, 500, 503]);
@@ -2215,9 +2239,9 @@ async function callGemini(prompt, systemInstruction = null) {
             if (response && response.__error) {
                 const status = response.status;
 
-                // Preserve the existing invalid-key behavior on the primary request,
-                // while allowing fallback models to fail without deleting the key.
-                if (status === 401 || status === 403 || (status === 400 && i === 0)) {
+                // Only drop the stored key when Google says the key itself is bad;
+                // a 400 caused by the model (e.g. retired ID) must fall back instead.
+                if (status === 401 || status === 403 || response.invalidKey) {
                     localStorage.removeItem('gemini_api_key');
                     return texts.gemini_invalid_key || "Invalid Key";
                 }

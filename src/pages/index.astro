@@ -27,7 +27,7 @@ const modules = [
         </p>
         <div class="home-hero-actions">
           <a href="#section-modules" class="home-cta home-cta--primary" data-i18n="home_cta_explore">Start exploring</a>
-          <a href="/explorer" class="home-cta">Open Explorer</a>
+          <a href="/explorer" class="home-cta" data-i18n="home_cta_open">Open Explorer</a>
         </div>
       </div>
 
@@ -61,8 +61,8 @@ const modules = [
     {modules.map((m) => (
       <a href={m.href} class="home-module-card">
         <span class="home-module-kicker"><span class="home-module-num">{m.num}</span> / {m.tag}</span>
-        <span class="home-module-title">{m.title}</span>
-        <span class="home-module-desc">{m.desc}</span>
+        <span class="home-module-title" data-i18n={`home_mod_${m.num}_title`}>{m.title}</span>
+        <span class="home-module-desc" data-i18n={`home_mod_${m.num}_desc`}>{m.desc}</span>
         <span class="home-module-arrow">→</span>
       </a>
     ))}
