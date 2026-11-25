@@ -641,6 +641,7 @@ let explorerSortMode = 'stars';
 let explorerActiveKey = 'core';
 let explorerMode = 'theme';
 let explorerSearchResults = [];
+let explorerSearchQuery = '';
 
 const dom = {
     navButtons: document.querySelectorAll('.nav-tab-btn'),
@@ -1522,9 +1523,23 @@ function renderExplorerTerminalCard(repo, whyTextObj) {
             `;
 }
 
+// 0 = repo name or owner equals the query, 1 = repo name (or one of its -_. parts) starts with it, 2 = anything else.
+function searchMatchRank(repo, query) {
+    const q = query.toLowerCase();
+    const name = (repo.name || '').toLowerCase();
+    const owner = (repo.owner && repo.owner.login ? repo.owner.login : '').toLowerCase();
+    const full = (repo.full_name || '').toLowerCase();
+    if (name === q || owner === q || full === q) return 0;
+    if (name.split(/[-_.]/).some(part => part.startsWith(q))) return 1;
+    return 2;
+}
+
 function renderExplorerSearchResults() {
     if (!dom.resultsContainer) return;
-    const sorted = sortExplorerRepos(explorerSearchResults || []);
+    const query = explorerSearchQuery.trim();
+    // Array.prototype.sort is stable, so the chosen order (stars/updated) is kept within each rank.
+    const sorted = sortExplorerRepos(explorerSearchResults || [])
+        .sort((a, b) => searchMatchRank(a, query) - searchMatchRank(b, query));
     if (!sorted.length) {
         dom.resultsContainer.innerHTML = `<div class='text-gray-500 font-mono'>${I18N[currentLang].no_result}</div>`;
         return;
@@ -2617,6 +2632,7 @@ function handleSearch() {
             if (dom.spinnerExp) dom.spinnerExp.classList.add('hidden');
             if (d.items && d.items.length) {
                 explorerSearchResults = d.items.slice();
+                explorerSearchQuery = q;
                 renderExplorerSearchResults();
             } else {
                 explorerSearchResults = [];
