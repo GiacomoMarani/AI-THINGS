@@ -2179,7 +2179,7 @@ async function callGeminiWithModel(model, key, payload, texts) {
         // Return a special object to let the caller inspect the status
         const body = await res.json().catch(() => null);
         const invalidKey = Boolean(body?.error?.details?.some(d => d.reason === 'API_KEY_INVALID'));
-        return { __error: true, status: res.status, invalidKey };
+        return { __error: true, status: res.status, invalidKey, message: body?.error?.message || '' };
     }
 
     const data = await res.json();
@@ -2205,10 +2205,12 @@ async function callGeminiWithModel(model, key, payload, texts) {
 
 const GEMINI_MODEL_CHAIN = [
     'gemini-4-hydrogen',
+    'gemini-3.8-flash',
     'gemini-3.5-flash-lite'
 ];
 
 const GEMINI_FALLBACK_STATUSES = new Set([400, 404, 429, 500, 503]);
+const GEMINI_RETRY_STATUSES = new Set([500, 503]);
 
 async function callGemini(prompt, systemInstruction = null) {
     const texts = I18N[currentLang];
@@ -2234,7 +2236,12 @@ async function callGemini(prompt, systemInstruction = null) {
         for (let i = 0; i < GEMINI_MODEL_CHAIN.length; i++) {
             const model = GEMINI_MODEL_CHAIN[i];
             const nextModel = GEMINI_MODEL_CHAIN[i + 1];
-            const response = await callGeminiWithModel(model, key, payload, texts);
+            let response = await callGeminiWithModel(model, key, payload, texts);
+            if (response && response.__error && GEMINI_RETRY_STATUSES.has(response.status)) {
+                // Overloaded/unavailable is often transient: retry once before falling back.
+                await new Promise(r => setTimeout(r, 1500));
+                response = await callGeminiWithModel(model, key, payload, texts);
+            }
 
             if (response && response.__error) {
                 const status = response.status;
@@ -2247,11 +2254,12 @@ async function callGemini(prompt, systemInstruction = null) {
                 }
 
                 if (nextModel && GEMINI_FALLBACK_STATUSES.has(status)) {
-                    console.warn(`Gemini: ${status} on ${model} — falling back to ${nextModel}`);
+                    console.warn(`Gemini: ${status} on ${model} — falling back to ${nextModel}`, response.message);
                     continue;
                 }
 
-                return (texts.gemini_generic_error || "Error").replace('{status}', status);
+                const generic = (texts.gemini_generic_error || "Error").replace('{status}', status);
+                return response.message ? `${generic}\n\n[${model}] ${response.message}` : generic;
             }
 
             return response;
