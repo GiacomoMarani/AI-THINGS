@@ -2165,15 +2165,24 @@ function getApiKeyFromUser() {
     });
 }
 
-async function callGeminiWithModel(model, key, payload, texts) {
-    const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
-        {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
+async function callGeminiWithModel(model, key, payload, texts, timeoutMs) {
+    let res;
+    try {
+        res = await fetch(
+            `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+            {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+                signal: AbortSignal.timeout(timeoutMs)
+            }
+        );
+    } catch (e) {
+        if (e.name === 'TimeoutError') {
+            return { __error: true, status: 504, invalidKey: false, message: `No response after ${timeoutMs / 1000}s.` };
         }
-    );
+        throw e;
+    }
 
     if (!res.ok) {
         // Return a special object to let the caller inspect the status
@@ -2209,7 +2218,7 @@ const GEMINI_MODEL_CHAIN = [
     'gemini-3.5-flash-lite'
 ];
 
-const GEMINI_FALLBACK_STATUSES = new Set([400, 404, 429, 500, 503]);
+const GEMINI_FALLBACK_STATUSES = new Set([400, 404, 429, 500, 503, 504]);
 const GEMINI_RETRY_STATUSES = new Set([500, 503]);
 
 async function callGemini(prompt, systemInstruction = null) {
@@ -2236,11 +2245,14 @@ async function callGemini(prompt, systemInstruction = null) {
         for (let i = 0; i < GEMINI_MODEL_CHAIN.length; i++) {
             const model = GEMINI_MODEL_CHAIN[i];
             const nextModel = GEMINI_MODEL_CHAIN[i + 1];
-            let response = await callGeminiWithModel(model, key, payload, texts);
+            // Under load Google can hold a request for minutes: cap each attempt so
+            // NEXUS moves on, but give the last model in the chain more room.
+            const timeoutMs = nextModel ? 20000 : 90000;
+            let response = await callGeminiWithModel(model, key, payload, texts, timeoutMs);
             if (response && response.__error && GEMINI_RETRY_STATUSES.has(response.status)) {
                 // Overloaded/unavailable is often transient: retry once before falling back.
                 await new Promise(r => setTimeout(r, 1500));
-                response = await callGeminiWithModel(model, key, payload, texts);
+                response = await callGeminiWithModel(model, key, payload, texts, timeoutMs);
             }
 
             if (response && response.__error) {
