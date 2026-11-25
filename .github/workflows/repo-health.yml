@@ -1,0 +1,67 @@
+name: Repo list health check
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # every Monday 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: repo-health
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
+      BRANCH: bot/repo-renames
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Check repos and Gemini models
+        id: check
+        run: |
+          node scripts/check-repos.mjs --fix-renames --report report.md
+          cat report.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Open or update the rename PR
+        if: steps.check.outputs.renames != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git commit -am "fix: Update renamed repo IDs in curated lists"
+          git push --force origin "$BRANCH"
+          if gh pr view "$BRANCH" --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            echo "PR already open, branch updated."
+          elif ! gh pr create --base main --head "$BRANCH" \
+                 --title "Update renamed repo IDs" \
+                 --body "Automatic fix from the weekly repo health check. See the open \`repo-health\` issue for details."; then
+            # Repo setting "Allow GitHub Actions to create pull requests" is off: link the branch instead.
+            printf '\n> Le rinomine sono già corrette nel branch `%s`: [apri la PR](%s/compare/main...%s?expand=1).\n' \
+              "$BRANCH" "${{ github.server_url }}/${{ github.repository }}" "$BRANCH" >> report.md
+          fi
+
+      - name: Open, update or close the report issue
+        run: |
+          gh label create repo-health --color D93F0B --description "Weekly repo list health check" --force
+          issue=$(gh issue list --label repo-health --state open --json number --jq '.[0].number')
+          if [ "${{ steps.check.outputs.problems }}" != "0" ]; then
+            if [ -n "$issue" ]; then
+              gh issue edit "$issue" --body-file report.md
+            else
+              gh issue create --title "Repo list health check" --label repo-health --body-file report.md
+            fi
+          elif [ -n "$issue" ]; then
+            gh issue close "$issue" --comment "Controllo del $(date -u +%F): niente da sistemare."
+          fi
